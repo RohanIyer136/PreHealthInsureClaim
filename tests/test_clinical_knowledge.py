@@ -69,6 +69,8 @@ def test_applicable_procedure_and_recommendation_are_structured() -> None:
     service = knowledge["applicable_service"]
     recommendation = knowledge["recommendation"]
 
+    assert service["service_code"] == "IMG-MRI-LS"
+    assert service["service_code_system"] == "PREHEALTHINSURECLAIM_INTERNAL"
     assert service["procedure"] == "MRI lumbar spine without IV contrast"
     assert service["contrast"] == "WITHOUT_IV_CONTRAST"
     assert service["imaging_phase"] == "INITIAL_IMAGING"

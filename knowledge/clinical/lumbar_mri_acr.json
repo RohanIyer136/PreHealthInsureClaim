@@ -12,6 +12,8 @@
   "source_revision": "Revised 2021",
   "accessed_date": "2026-10-01",
   "applicable_service": {
+    "service_code": "IMG-MRI-LS",
+    "service_code_system": "PREHEALTHINSURECLAIM_INTERNAL",
     "procedure": "MRI lumbar spine without IV contrast",
     "modality": "MRI",
     "anatomic_region": "LUMBAR_SPINE",
