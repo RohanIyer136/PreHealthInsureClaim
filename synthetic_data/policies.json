@@ -1,0 +1,67 @@
+[
+  {
+    "policy_id": "POL-DEMO-01",
+    "insurer_name": "DemoCare Insurance",
+    "plan_name": "Demo Standard Plan",
+    "member_id": "MEM-10001",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": ["Diagnostic imaging"],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-01"
+  },
+  {
+    "policy_id": "POL-DEMO-02",
+    "insurer_name": "DemoCare Insurance",
+    "plan_name": "Demo Standard Plan",
+    "member_id": "MEM-10002",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": ["Diagnostic imaging"],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-02"
+  },
+  {
+    "policy_id": "POL-DEMO-03",
+    "insurer_name": "DemoCare Insurance",
+    "plan_name": "Demo Standard Plan",
+    "member_id": "MEM-10003",
+    "coverage_status": "EXPIRED",
+    "effective_date": "2025-09-01",
+    "expiry_date": "2026-08-31",
+    "benefits": ["Diagnostic imaging"],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-03"
+  },
+  {
+    "policy_id": "POL-DEMO-04",
+    "insurer_name": "DemoCare Insurance",
+    "plan_name": "Demo Standard Plan",
+    "member_id": "MEM-10004",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": ["Diagnostic imaging"],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-04"
+  },
+  {
+    "policy_id": "POL-DEMO-05",
+    "insurer_name": "DemoCare Insurance",
+    "plan_name": "Demo Standard Plan",
+    "member_id": "MEM-10005",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": ["Diagnostic imaging"],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-05"
+  }
+]

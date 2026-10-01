@@ -1,0 +1,87 @@
+[
+  {
+    "authorization_id": "PA-DEMO-001",
+    "patient_id": "PAT-001",
+    "policy_id": "POL-DEMO-01",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": "M54.16",
+      "diagnosis_description": "Lumbar radiculopathy",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Demo Medical Center",
+    "submitted_document_ids": ["NOTE-001", "PT-001"],
+    "submitted_at": "2026-09-15T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-DEMO-002",
+    "patient_id": "PAT-002",
+    "policy_id": "POL-DEMO-02",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": "M54.16",
+      "diagnosis_description": "Lumbar radiculopathy",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Demo Medical Center",
+    "submitted_document_ids": ["NOTE-002"],
+    "submitted_at": "2026-09-15T10:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-DEMO-003",
+    "patient_id": "PAT-003",
+    "policy_id": "POL-DEMO-03",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": "M54.16",
+      "diagnosis_description": "Lumbar radiculopathy",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Demo Medical Center",
+    "submitted_document_ids": ["NOTE-003", "PT-003"],
+    "submitted_at": "2026-09-15T11:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-DEMO-004",
+    "patient_id": "PAT-004",
+    "policy_id": "POL-DEMO-04",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back pain with intermittent radicular symptoms",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Demo Medical Center",
+    "submitted_document_ids": ["NOTE-004"],
+    "submitted_at": "2026-09-15T12:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-DEMO-005",
+    "patient_id": "PAT-005",
+    "policy_id": "POL-DEMO-05",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": "M54.16",
+      "diagnosis_description": "Lumbar radiculopathy",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Demo Medical Center",
+    "submitted_document_ids": ["NOTE-005", "PT-005"],
+    "submitted_at": "2026-09-15T13:00:00+04:00",
+    "status": "SUBMITTED"
+  }
+]

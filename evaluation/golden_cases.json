@@ -1,0 +1,32 @@
+[
+  {
+    "authorization_id": "PA-DEMO-001",
+    "scenario": "complete_submission",
+    "expected_readiness": "READY_FOR_EXPERT_REVIEW",
+    "expected_findings": ["physiotherapy_documentation_present"]
+  },
+  {
+    "authorization_id": "PA-DEMO-002",
+    "scenario": "missing_supporting_evidence",
+    "expected_readiness": "EVIDENCE_REQUIRED",
+    "expected_findings": ["missing_physiotherapy_documentation"]
+  },
+  {
+    "authorization_id": "PA-DEMO-003",
+    "scenario": "coverage_eligibility_problem",
+    "expected_readiness": "HUMAN_REVIEW_REQUIRED",
+    "expected_findings": ["inactive_policy"]
+  },
+  {
+    "authorization_id": "PA-DEMO-004",
+    "scenario": "ambiguous_clinical_evidence",
+    "expected_readiness": "HUMAN_REVIEW_REQUIRED",
+    "expected_findings": ["ambiguous_symptom_duration"]
+  },
+  {
+    "authorization_id": "PA-DEMO-005",
+    "scenario": "conflicting_information",
+    "expected_readiness": "HUMAN_REVIEW_REQUIRED",
+    "expected_findings": ["conflicting_physiotherapy_history"]
+  }
+]

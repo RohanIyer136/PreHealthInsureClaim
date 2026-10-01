@@ -1,0 +1,37 @@
+[
+  {
+    "patient_id": "PAT-001",
+    "age": 46,
+    "sex": "FEMALE",
+    "member_id": "MEM-10001",
+    "policy_id": "POL-DEMO-01"
+  },
+  {
+    "patient_id": "PAT-002",
+    "age": 39,
+    "sex": "MALE",
+    "member_id": "MEM-10002",
+    "policy_id": "POL-DEMO-02"
+  },
+  {
+    "patient_id": "PAT-003",
+    "age": 57,
+    "sex": "FEMALE",
+    "member_id": "MEM-10003",
+    "policy_id": "POL-DEMO-03"
+  },
+  {
+    "patient_id": "PAT-004",
+    "age": 34,
+    "sex": "OTHER",
+    "member_id": "MEM-10004",
+    "policy_id": "POL-DEMO-04"
+  },
+  {
+    "patient_id": "PAT-005",
+    "age": 51,
+    "sex": "MALE",
+    "member_id": "MEM-10005",
+    "policy_id": "POL-DEMO-05"
+  }
+]

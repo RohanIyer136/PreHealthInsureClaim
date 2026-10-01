@@ -1,0 +1,83 @@
+[
+  {
+    "document_id": "NOTE-001",
+    "patient_id": "PAT-001",
+    "document_type": "CLINICAL_NOTE",
+    "date": "2026-09-10",
+    "author_role": "Orthopedic Specialist",
+    "content": "Lower-back pain with radiation down the right leg has persisted for eight weeks. The patient completed six weeks of physiotherapy with limited improvement and has used an NSAID and acetaminophen. Examination shows reduced right ankle reflex and mild weakness of right great-toe extension. Lumbar spine MRI is requested to assess suspected lumbar radiculopathy.",
+    "source_system": "Demo Medical Center EHR"
+  },
+  {
+    "document_id": "PT-001",
+    "patient_id": "PAT-001",
+    "document_type": "PHYSIOTHERAPY_REPORT",
+    "date": "2026-09-09",
+    "author_role": "Physiotherapist",
+    "content": "Six-week course completed with twelve attended sessions. Treatment included guided exercise, mobility work, and a home program. Lower-back and right-leg symptoms improved only slightly and continue to limit prolonged standing.",
+    "source_system": "Demo Medical Center Rehabilitation"
+  },
+  {
+    "document_id": "NOTE-002",
+    "patient_id": "PAT-002",
+    "document_type": "CLINICAL_NOTE",
+    "date": "2026-09-11",
+    "author_role": "Neurology Specialist",
+    "content": "Seven weeks of lower-back pain radiating to the left calf despite a reported six-week physiotherapy course, home exercises, ibuprofen, and acetaminophen. Improvement has been limited. Examination documents diminished sensation over the lateral left calf and a positive straight-leg raise. Lumbar spine MRI is requested for suspected lumbar radiculopathy.",
+    "source_system": "Demo Medical Center EHR"
+  },
+  {
+    "document_id": "PT-002",
+    "patient_id": "PAT-002",
+    "document_type": "PHYSIOTHERAPY_REPORT",
+    "date": "2026-09-10",
+    "author_role": "Physiotherapist",
+    "content": "Six weeks of physiotherapy were completed with persistent left-leg symptoms despite exercise therapy and activity modification.",
+    "source_system": "Demo Community Physiotherapy"
+  },
+  {
+    "document_id": "NOTE-003",
+    "patient_id": "PAT-003",
+    "document_type": "CLINICAL_NOTE",
+    "date": "2026-09-12",
+    "author_role": "Orthopedic Specialist",
+    "content": "Lower-back pain with radiation to the posterior thigh has continued for nine weeks. Six weeks of supervised physiotherapy, naproxen, and a home exercise program provided minimal relief. Examination shows a positive right straight-leg raise and reduced right Achilles reflex. Lumbar spine MRI is requested for persistent radicular symptoms.",
+    "source_system": "Demo Medical Center EHR"
+  },
+  {
+    "document_id": "PT-003",
+    "patient_id": "PAT-003",
+    "document_type": "PHYSIOTHERAPY_REPORT",
+    "date": "2026-09-11",
+    "author_role": "Physiotherapist",
+    "content": "The patient attended eleven sessions over six weeks. Lumbar stabilization and mobility exercises produced limited change in back and posterior-thigh symptoms.",
+    "source_system": "Demo Medical Center Rehabilitation"
+  },
+  {
+    "document_id": "NOTE-004",
+    "patient_id": "PAT-004",
+    "document_type": "CLINICAL_NOTE",
+    "date": "2026-09-13",
+    "author_role": "Primary Care Physician",
+    "content": "Patient reports several weeks of lower-back pain with intermittent tingling into the right foot. They have used an over-the-counter anti-inflammatory and attended physiotherapy during the past month, but the exact treatment start date and number of sessions are not available today. Straight-leg raise produces leg discomfort without a clearly documented sensory or motor deficit. Lumbar spine MRI is requested for further assessment.",
+    "source_system": "Demo Medical Center EHR"
+  },
+  {
+    "document_id": "NOTE-005",
+    "patient_id": "PAT-005",
+    "document_type": "CLINICAL_NOTE",
+    "date": "2026-09-14",
+    "author_role": "Orthopedic Specialist",
+    "content": "Eight weeks of lower-back pain radiating to the left foot. The patient reports completing approximately six weeks of physiotherapy with little improvement and has used diclofenac and acetaminophen. Examination shows reduced sensation along the lateral left foot and a positive straight-leg raise. Lumbar spine MRI is requested for suspected lumbar radiculopathy.",
+    "source_system": "Demo Medical Center EHR"
+  },
+  {
+    "document_id": "PT-005",
+    "patient_id": "PAT-005",
+    "document_type": "PHYSIOTHERAPY_REPORT",
+    "date": "2026-09-14",
+    "author_role": "Physiotherapist",
+    "content": "Treatment began two weeks ago. The patient completed the initial assessment and three treatment sessions focused on mobility exercises and activity guidance. Leg symptoms remain present.",
+    "source_system": "Demo Medical Center Rehabilitation"
+  }
+]
