@@ -42,6 +42,22 @@ class DocumentType(str, Enum):
     DISCHARGE_SUMMARY = "DISCHARGE_SUMMARY"
 
 
+class EvidenceConcept(str, Enum):
+    """Controlled clinical concepts supported by evidence extraction."""
+
+    SYMPTOM_DURATION = "SYMPTOM_DURATION"
+    SYMPTOM_COURSE = "SYMPTOM_COURSE"
+    LOW_BACK_PAIN = "LOW_BACK_PAIN"
+    RADICULAR_SYMPTOMS = "RADICULAR_SYMPTOMS"
+    CONSERVATIVE_MANAGEMENT = "CONSERVATIVE_MANAGEMENT"
+    PHYSIOTHERAPY_HISTORY = "PHYSIOTHERAPY_HISTORY"
+    MEDICATION_HISTORY = "MEDICATION_HISTORY"
+    NEUROLOGICAL_FINDINGS = "NEUROLOGICAL_FINDINGS"
+    FUNCTIONAL_IMPACT = "FUNCTIONAL_IMPACT"
+    INTERVENTION_OR_SPECIALIST_PLANNING = "INTERVENTION_OR_SPECIALIST_PLANNING"
+    OTHER_CLINICAL_EVIDENCE = "OTHER_CLINICAL_EVIDENCE"
+
+
 class AuthorizationStatus(str, Enum):
     """Workflow state of an authorization request."""
 
@@ -151,6 +167,11 @@ class EvidenceItem(BaseModel):
     source_document_id: str
     source_type: str
     excerpt: str
+    concept: EvidenceConcept
+    value: str = Field(min_length=1)
+    confidence: float = Field(ge=0.0, le=1.0)
+    uncertainty: str | None = None
+    extraction_method: str = Field(min_length=1)
     location: str | None = None
     relevance: str | None = None
 

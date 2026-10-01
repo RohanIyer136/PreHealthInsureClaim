@@ -26,6 +26,7 @@
     "management_duration": {
       "value": 6,
       "unit": "WEEKS",
+      "approximate": true,
       "relationship": "DURING_OR_FOLLOWING"
     },
     "management_type": "OPTIMAL_MEDICAL_MANAGEMENT",

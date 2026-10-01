@@ -16,6 +16,7 @@ from backend.models.schemas import (
     CriterionStatus,
     DecisionWorkspace,
     DocumentType,
+    EvidenceConcept,
     EvidenceItem,
     InsurancePolicy,
     Patient,
@@ -33,6 +34,10 @@ def make_evidence() -> EvidenceItem:
         source_document_id="document-001",
         source_type="clinical_document",
         excerpt="Symptoms persisted after six weeks of conservative care.",
+        concept=EvidenceConcept.SYMPTOM_DURATION,
+        value="six weeks",
+        confidence=0.9,
+        extraction_method="test-fixture",
         location="page 2",
         relevance="Supports the duration criterion.",
     )
