@@ -1,0 +1,27 @@
+{
+  "knowledge_id": "DEMOCARE-LUMBAR-MRI-001",
+  "title": "DemoCare Lumbar Spine MRI Demonstration Policy",
+  "version": "1.0",
+  "effective_date": "2026-01-01",
+  "insurer_name": "DemoCare Insurance",
+  "disclaimer": "Fictional demonstration policy for prototype development only; it does not represent any real insurer or coverage contract.",
+  "applicable_service": {
+    "service_code": "IMG-MRI-LS",
+    "service_category": "Diagnostic imaging"
+  },
+  "prior_authorization_required": true,
+  "coverage_requirements": [
+    {
+      "requirement_id": "active_policy_on_submission",
+      "description": "Coverage must be active on the authorization submission date."
+    },
+    {
+      "requirement_id": "covered_service_category",
+      "description": "The requested service category must be listed in policy benefits."
+    }
+  ],
+  "required_supporting_document_types": [
+    "CLINICAL_NOTE",
+    "PHYSIOTHERAPY_REPORT"
+  ]
+}

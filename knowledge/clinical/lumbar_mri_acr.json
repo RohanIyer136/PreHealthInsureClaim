@@ -1,0 +1,72 @@
+{
+  "knowledge_id": "ACR-LBP-VARIANT-3",
+  "representation_version": "1.0",
+  "title": "ACR Appropriateness Criteria - Low Back Pain, Variant 3",
+  "organization": "American College of Radiology",
+  "source_type": "CLINICAL_IMAGING_APPROPRIATENESS_GUIDANCE",
+  "topic": "Low Back Pain",
+  "topic_id": 141,
+  "variant": 3,
+  "source_url": "https://acsearch.acr.org/docs/69483/Narrative/",
+  "topic_portal_url": "https://acsearch.acr.org/list",
+  "source_revision": "Revised 2021",
+  "accessed_date": "2026-10-01",
+  "applicable_service": {
+    "procedure": "MRI lumbar spine without IV contrast",
+    "modality": "MRI",
+    "anatomic_region": "LUMBAR_SPINE",
+    "contrast": "WITHOUT_IV_CONTRAST",
+    "imaging_phase": "INITIAL_IMAGING"
+  },
+  "clinical_scenario": {
+    "population": "ADULT",
+    "presentation": "SUBACUTE_OR_CHRONIC_LOW_BACK_PAIN",
+    "radiculopathy": "WITH_OR_WITHOUT",
+    "symptom_course": "PERSISTENT_OR_PROGRESSIVE",
+    "management_duration": {
+      "value": 6,
+      "unit": "WEEKS",
+      "relationship": "DURING_OR_FOLLOWING"
+    },
+    "management_type": "OPTIMAL_MEDICAL_MANAGEMENT",
+    "candidate_for": "SURGERY_OR_INTERVENTION",
+    "imaging_phase": "INITIAL_IMAGING"
+  },
+  "criteria_for_future_evaluation": [
+    {
+      "criterion_id": "low_back_pain_context",
+      "concept": "SUBACUTE_OR_CHRONIC_LOW_BACK_PAIN_WITH_OR_WITHOUT_RADICULOPATHY"
+    },
+    {
+      "criterion_id": "persistent_or_progressive_symptoms",
+      "concept": "PERSISTENT_OR_PROGRESSIVE_SYMPTOMS"
+    },
+    {
+      "criterion_id": "management_duration",
+      "concept": "DURING_OR_FOLLOWING_APPROXIMATELY_SIX_WEEKS"
+    },
+    {
+      "criterion_id": "optimal_medical_management",
+      "concept": "OPTIMAL_MEDICAL_MANAGEMENT"
+    },
+    {
+      "criterion_id": "intervention_candidate",
+      "concept": "SURGERY_OR_INTERVENTION_CANDIDATE"
+    }
+  ],
+  "recommendation": {
+    "procedure": "MRI lumbar spine without IV contrast",
+    "appropriateness": "USUALLY_APPROPRIATE"
+  },
+  "scope_context": {
+    "separate_red_flag_pathways_exist": true,
+    "represented_variant_only": 3
+  },
+  "provenance": {
+    "source_organization": "American College of Radiology",
+    "source_document": "ACR Appropriateness Criteria - Low Back Pain",
+    "source_clinical_scenario": "Variant 3",
+    "representation_note": "This JSON is a prototype machine-readable representation derived from the cited ACR source. It is not an official ACR artifact and should be verified against the authoritative source before production use.",
+    "guidance_scope_note": "This source describes clinical imaging appropriateness and is not an insurance coverage policy or authorization decision."
+  }
+}
