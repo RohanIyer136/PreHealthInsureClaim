@@ -170,6 +170,33 @@ def test_valid_grounded_output_becomes_clinical_criterion_results() -> None:
     assert results[1].evidence == []
 
 
+def test_reasoning_request_requires_direct_and_sufficient_criterion_support() -> None:
+    provider = StubClinicalReasoningProvider([complete_response()])
+    GroundedClinicalReasoner(provider).reason([make_evidence()], make_knowledge())
+
+    instructions = provider.requests[0].instructions
+    assert (
+        "Use SATISFIED only when cited evidence directly and sufficiently supports "
+        "the specific criterion."
+    ) in instructions
+    assert (
+        "Do not promote related or suggestive evidence into a stronger clinical fact "
+        "through inference."
+    ) in instructions
+    assert (
+        "Use INSUFFICIENT_EVIDENCE when evidence is relevant but does not establish "
+        "the criterion."
+    ) in instructions
+    assert (
+        "An imaging request or diagnostic evaluation does not by itself establish "
+        "surgery/intervention candidacy."
+    ) in instructions
+    assert (
+        "For surgery/intervention candidacy, require cited evidence explicitly "
+        "establishing that candidacy."
+    ) in instructions
+
+
 def test_unknown_evidence_id_is_rejected() -> None:
     invalid = response(
         criterion_payload("criterion-alpha", evidence_ids=["UNKNOWN-EVIDENCE"]),
@@ -442,4 +469,3 @@ def test_implementation_has_no_demo_ids_or_golden_labels() -> None:
     assert "expected_readiness" not in source
     assert "expected_findings" not in source
     assert "golden_cases" not in source
-

@@ -107,6 +107,9 @@ def test_fake_ollama_response_through_real_grounded_reasoner():
 
     results = GroundedClinicalReasoner(provider).reason([evidence], knowledge)
 
+    system = client.calls[0][1]["messages"][0]
+    assert system["role"] == "system"
+    assert CLINICAL_REASONING_INSTRUCTIONS in system["content"]
     assert len(results) == 2
     assert all(isinstance(item, CriterionResult) for item in results)
     assert [item.criterion_id for item in results] == ["criterion-alpha", "criterion-beta"]
