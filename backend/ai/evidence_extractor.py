@@ -74,6 +74,11 @@ class _ProviderExtractionResponse(BaseModel):
     evidence: list[_ProviderEvidence]
 
 
+def evidence_extraction_json_schema() -> dict[str, object]:
+    """Expose the existing output contract for structured provider generation."""
+    return _ProviderExtractionResponse.model_json_schema()
+
+
 class EvidenceExtractor:
     """Validate provider output and create source-grounded evidence items."""
 

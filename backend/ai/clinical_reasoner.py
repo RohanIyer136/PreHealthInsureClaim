@@ -74,6 +74,11 @@ class _ProviderReasoningResponse(BaseModel):
     results: list[_ProviderCriterionResult]
 
 
+def clinical_reasoning_json_schema() -> dict[str, object]:
+    """Expose the existing output contract for structured provider generation."""
+    return _ProviderReasoningResponse.model_json_schema()
+
+
 _ALLOWED_STATUSES = {
     CriterionStatus.SATISFIED,
     CriterionStatus.NOT_SATISFIED,
