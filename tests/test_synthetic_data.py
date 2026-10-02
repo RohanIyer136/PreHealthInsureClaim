@@ -88,12 +88,13 @@ def test_all_source_records_validate(
     assert all(isinstance(record, AuthorizationRequest) for record in authorizations)
 
 
-def test_exactly_five_expected_authorizations_exist(
+def test_original_five_authorizations_remain_present(
     authorizations: list[AuthorizationRequest],
 ) -> None:
     expected_ids = {f"PA-DEMO-{number:03d}" for number in range(1, 6)}
-    assert {item.authorization_id for item in authorizations} == expected_ids
-    assert len(authorizations) == 5
+    original_ids = {item.authorization_id for item in authorizations
+                    if item.authorization_id.startswith("PA-DEMO-")}
+    assert original_ids == expected_ids
 
 
 @pytest.mark.parametrize(
@@ -158,6 +159,7 @@ def test_golden_readiness_values_use_existing_enum(
     assert all(
         ReadinessStatus(item["expectations"]["workflow"]["expected_readiness"])
         for item in golden_cases
+        if item["expectations"].get("workflow") is not None
     )
 
 

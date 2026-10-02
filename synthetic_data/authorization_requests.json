@@ -83,5 +83,278 @@
     "submitted_document_ids": ["NOTE-005", "PT-005"],
     "submitted_at": "2026-09-15T13:00:00+04:00",
     "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-006",
+    "patient_id": "PAT-BENCH-006",
+    "policy_id": "POL-BENCH-006",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-006",
+      "PT-BENCH-006"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-007",
+    "patient_id": "PAT-BENCH-007",
+    "policy_id": "POL-BENCH-007",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-007"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-008",
+    "patient_id": "PAT-BENCH-008",
+    "policy_id": "POL-BENCH-008",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-008"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-009",
+    "patient_id": "PAT-BENCH-009",
+    "policy_id": "POL-BENCH-009",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-009"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-010",
+    "patient_id": "PAT-BENCH-010",
+    "policy_id": "POL-BENCH-010",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-010"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-011",
+    "patient_id": "PAT-BENCH-011",
+    "policy_id": "POL-BENCH-011",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-011"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-012",
+    "patient_id": "PAT-BENCH-012",
+    "policy_id": "POL-BENCH-012",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-012"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-013",
+    "patient_id": "PAT-BENCH-013",
+    "policy_id": "POL-BENCH-013",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-013",
+      "PT-BENCH-013",
+      "REF-BENCH-013"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-014",
+    "patient_id": "PAT-BENCH-014",
+    "policy_id": "POL-BENCH-014",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-014",
+      "REF-BENCH-014"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-015",
+    "patient_id": "PAT-BENCH-015",
+    "policy_id": "POL-BENCH-015",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-015"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-016",
+    "patient_id": "PAT-BENCH-016",
+    "policy_id": "POL-BENCH-016",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-016"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-019",
+    "patient_id": "PAT-BENCH-019",
+    "policy_id": "POL-BENCH-019",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-019",
+      "PT-BENCH-019"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-023",
+    "patient_id": "PAT-BENCH-023",
+    "policy_id": "POL-BENCH-023",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-023"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
+  },
+  {
+    "authorization_id": "PA-BENCH-024",
+    "patient_id": "PAT-BENCH-024",
+    "policy_id": "POL-BENCH-024",
+    "requested_service": {
+      "service_code": "IMG-MRI-LS",
+      "service_name": "MRI Lumbar Spine",
+      "category": "Diagnostic imaging",
+      "diagnosis_code": null,
+      "diagnosis_description": "Lower-back symptoms for assessment",
+      "priority": "ROUTINE"
+    },
+    "requesting_provider": "Fictional Benchmark Clinic",
+    "submitted_document_ids": [
+      "NOTE-BENCH-024",
+      "PT-BENCH-024",
+      "REF-BENCH-024"
+    ],
+    "submitted_at": "2026-10-02T09:00:00+04:00",
+    "status": "SUBMITTED"
   }
 ]

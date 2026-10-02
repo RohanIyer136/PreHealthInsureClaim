@@ -63,5 +63,215 @@
     "exclusions": [],
     "prior_authorization_required": true,
     "policy_document_id": "POL-DOC-05"
+  },
+  {
+    "policy_id": "POL-BENCH-006",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-006",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-006"
+  },
+  {
+    "policy_id": "POL-BENCH-007",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-007",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-007"
+  },
+  {
+    "policy_id": "POL-BENCH-008",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-008",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-008"
+  },
+  {
+    "policy_id": "POL-BENCH-009",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-009",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-009"
+  },
+  {
+    "policy_id": "POL-BENCH-010",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-010",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-010"
+  },
+  {
+    "policy_id": "POL-BENCH-011",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-011",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-011"
+  },
+  {
+    "policy_id": "POL-BENCH-012",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-012",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-012"
+  },
+  {
+    "policy_id": "POL-BENCH-013",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-013",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-013"
+  },
+  {
+    "policy_id": "POL-BENCH-014",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-014",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-014"
+  },
+  {
+    "policy_id": "POL-BENCH-015",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-015",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-015"
+  },
+  {
+    "policy_id": "POL-BENCH-016",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-016",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-016"
+  },
+  {
+    "policy_id": "POL-BENCH-019",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-019",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Dental care"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-019"
+  },
+  {
+    "policy_id": "POL-BENCH-023",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-023",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-023"
+  },
+  {
+    "policy_id": "POL-BENCH-024",
+    "insurer_name": "Fictional Benchmark Insurer",
+    "plan_name": "Synthetic Standard Plan",
+    "member_id": "MEM-BENCH-024",
+    "coverage_status": "ACTIVE",
+    "effective_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "benefits": [
+      "Diagnostic imaging"
+    ],
+    "exclusions": [],
+    "prior_authorization_required": true,
+    "policy_document_id": "POL-DOC-BENCH-024"
   }
 ]

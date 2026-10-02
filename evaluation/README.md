@@ -50,55 +50,100 @@ PA-DEMO-001 is complete **documentation**, not proven candidacy: neither NOTE-00
 nor PT-001 establishes surgery/intervention candidacy. Its clinical expectation
 is `INSUFFICIENT_EVIDENCE` and readiness is corrected from
 `READY_FOR_EXPERT_REVIEW` to `EVIDENCE_REQUIRED`, following the unchanged workspace
-rules. A genuinely complete explicit-candidacy positive control is planned below.
+rules. PA-BENCH-006 is the complete explicit-candidacy positive control below.
 Cases 002-005 keep their original readiness; absent candidacy is explicitly
 represented without masking missing documents, policy expiry, ambiguity, or conflict.
 
-## Planned Matrix
+## Coverage Matrix
 
-28 slots total: 5 materialized, 23 deferred. Planning IDs are not authorization
+28 slots total: 19 MATERIALIZED synthetic golden cases and 9 COVERED offline
+fixture slots. No matrix slots are deferred. Slot numbers are not authorization
 IDs. E = extraction, C = clinical reasoning, W = workflow/deterministic behavior.
-`synthetic` means a future source case; `fixture` means a focused offline
-unit/integration scenario, not a fabricated patient record. Rows describe planned
-behaviors, not claimed measured performance.
+Fixture slots reference existing tests unless a software-coverage gap required a
+new fixture. They are not fabricated patient records. Counts describe coverage,
+not measured model performance. Synthetic cases use reviewed source statements
+and selected expectations; case-specific document requirements are explicit
+evaluator configuration, not inferred from note text or passed to the AI.
 
 | Slot | State / Source | Category | Tags | Layers | Named behavior |
 |---|---|---|---|---|---|
-| 01 | Existing PA-DEMO-001 | clinical | complete_documents, cross_document_evidence, intervention_candidacy | E/C/W | Complete documents do not prove candidacy |
-| 02 | Existing PA-DEMO-002 | orchestration | missing_required_document | E/W | Unsubmitted physiotherapy report cannot be used |
-| 03 | Existing PA-DEMO-003 | insurance | expired_policy | W | Expiry at submission blocks routine readiness |
-| 04 | Existing PA-DEMO-004 | clinical | ambiguous_wording, missing_clinical_evidence | E/C/W | Preserve materially ambiguous duration |
-| 05 | Existing PA-DEMO-005 | clinical | cross_document_contradiction, conflicting_treatment_duration | E/C/W | Conflicting treatment histories require review |
-| 06 | Planned synthetic | clinical | complete_documents, explicit_candidacy | E/C/W | Explicit sufficient evidence for every criterion; positive control |
-| 07 | Planned synthetic | clinical | missing_clinical_evidence | E/C/W | No treatment history yields insufficient evidence |
-| 08 | Planned synthetic | clinical | explicit_contrary_evidence | E/C | Explicit non-candidacy supports NOT_SATISFIED |
-| 09 | Planned synthetic | clinical | approximate_duration | E/C | Approximation must survive extraction and reasoning |
-| 10 | Planned synthetic | clinical | negation | E/C | Negated symptoms must not become positive findings |
-| 11 | Planned synthetic | clinical | historical_treatment | E/C | Previous episode treatment is not current management |
-| 12 | Planned synthetic | clinical | temporal_confusion | E/C | Distinguish symptom onset, treatment start, document dates |
-| 13 | Planned synthetic | clinical | cross_document_evidence | E/C | Complementary documents jointly support a criterion |
-| 14 | Planned synthetic | clinical | cross_document_contradiction | E/C/W | Conflicting neurological findings remain independent |
-| 15 | Planned synthetic | clinical | irrelevant_information | E/C | Unrelated facts do not support target criteria |
-| 16 | Planned synthetic | adversarial | prompt_injection | E/C | Clinical instruction-like text stays data |
-| 17 | Planned fixture | orchestration | wrong_patient | W | Reject wrong-patient source before AI execution |
-| 18 | Planned fixture | orchestration | duplicate_document | W | Reject duplicate submitted document IDs |
-| 19 | Planned synthetic | insurance | uncovered_service | W | Uncovered service category is a deterministic blocker |
-| 20 | Planned fixture | insurance | prior_authorization | W | Required prior authorization is recorded without deciding approval |
-| 21 | Planned fixture | insurance | prior_authorization | W | Not-required prior authorization uses existing deterministic behavior |
-| 22 | Planned fixture | clinical | low_confidence | C/W | Preserve uncertain evidence; no invented confidence threshold |
-| 23 | Planned synthetic | clinical | intervention_candidacy | E/C | MRI/evaluation alone is insufficient candidacy evidence |
-| 24 | Planned synthetic | clinical | multiple_sources | E/C | Three complementary sources retain provenance |
-| 25 | Planned fixture | adversarial | fabricated_evidence | E/C | Reject fabricated excerpt, source, or evidence reference |
-| 26 | Planned fixture | orchestration | no_matching_knowledge | W | Empty retrieval escalates; reasoning is not invoked |
-| 27 | Planned fixture | orchestration | multiple_matching_knowledge | W | Inject two valid distinct artifacts; no production-data corruption |
-| 28 | Planned fixture | orchestration | provider_failure | E/C/W | Infrastructure failures propagate, never become insufficient evidence |
+| 01 | MATERIALIZED PA-DEMO-001 | clinical | complete_documents, cross_document_evidence, intervention_candidacy | E/C/W | Complete documents do not prove candidacy |
+| 02 | MATERIALIZED PA-DEMO-002 | orchestration | missing_required_document | E/W | Unsubmitted physiotherapy report cannot be used |
+| 03 | MATERIALIZED PA-DEMO-003 | insurance | expired_policy | W | Expiry at submission blocks routine readiness |
+| 04 | MATERIALIZED PA-DEMO-004 | clinical | ambiguous_wording, missing_clinical_evidence | E/C/W | Preserve materially ambiguous duration |
+| 05 | MATERIALIZED PA-DEMO-005 | clinical | cross_document_contradiction, conflicting_treatment_duration | E/C/W | Conflicting treatment histories require review |
+| 06 | MATERIALIZED PA-BENCH-006 | clinical | complete_documents, explicit_candidacy | E/C/W | Explicit sufficient evidence for every criterion; positive control |
+| 07 | MATERIALIZED PA-BENCH-007 | clinical | missing_clinical_evidence | E/C/W | Undocumented treatment history yields insufficient evidence |
+| 08 | MATERIALIZED PA-BENCH-008 | clinical | explicit_contrary_evidence | E/C | Explicit non-candidacy supports NOT_SATISFIED |
+| 09 | MATERIALIZED PA-BENCH-009 | clinical | approximate_duration | E/C | Approximation survives the approximate-duration criterion |
+| 10 | MATERIALIZED PA-BENCH-010 | clinical | negation | E/C | Negated radicular symptoms do not become positive findings |
+| 11 | MATERIALIZED PA-BENCH-011 | clinical | historical_treatment | E/C | Previous resolved-episode treatment is not current management |
+| 12 | MATERIALIZED PA-BENCH-012 | clinical | temporal_confusion | E/C | Eight-week symptoms do not inflate two-week treatment |
+| 13 | MATERIALIZED PA-BENCH-013 | clinical | cross_document_evidence | E/C | Complementary note, PT, and referral support distinct facts |
+| 14 | MATERIALIZED PA-BENCH-014 | clinical | cross_document_contradiction | E/C/W | Opposing neurological findings and explicit candidacy assessments require review |
+| 15 | MATERIALIZED PA-BENCH-015 | clinical | irrelevant_information | E/C | Historical wrist therapy does not establish lumbar management |
+| 16 | MATERIALIZED PA-BENCH-016 | adversarial | prompt_injection | E/C | Pasted chatbot comment stays data; surrounding facts remain usable |
+| 17 | COVERED fixture F17 | orchestration | wrong_patient | W | Reject wrong-patient source before AI execution |
+| 18 | COVERED fixture F18 | orchestration | duplicate_document | W | Reject duplicate submitted document IDs |
+| 19 | MATERIALIZED PA-BENCH-019 | insurance | uncovered_service | W | Dental-only benefit does not cover diagnostic imaging |
+| 20 | COVERED fixture F20 | insurance | prior_authorization | W | Required prior authorization recorded without approval |
+| 21 | COVERED fixture F21 | insurance | prior_authorization | W | Not-required prior authorization uses NOT_APPLICABLE |
+| 22 | COVERED fixture F22 | clinical | low_confidence | C/W | Preserve uncertainty and 0.2 confidence; no automatic confidence threshold |
+| 23 | MATERIALIZED PA-BENCH-023 | clinical | intervention_candidacy | E/C | MRI/evaluation alone is insufficient candidacy evidence |
+| 24 | MATERIALIZED PA-BENCH-024 | clinical | multiple_sources | E/C | Three complementary sources retain provenance |
+| 25 | COVERED fixture F25 | adversarial | fabricated_evidence | E/C | Reject fabricated excerpt, source, or evidence reference |
+| 26 | COVERED fixture F26 | orchestration | no_matching_knowledge | W | Empty retrieval escalates without reasoning |
+| 27 | COVERED fixture F27 | orchestration | multiple_matching_knowledge | W | Inject two valid distinct artifacts, without changing production data |
+| 28 | COVERED fixture F28 | orchestration | provider_failure | E/C/W | Infrastructure failures propagate rather than yielding fallback statuses |
 
-8A implements only the materialized authorization contract and integrity checks.
-Fixture input/error contracts, new source cases, runtime result formats, scoring,
-and runners are deferred. In particular, fixture rows must not be shoehorned into
-`golden_cases.json` with nonexistent authorization IDs. Review ambiguous/optimal
-management adjudications when expanding expectations; unspecified criteria are
-deliberately unscored.
+## Fixture Test Locations
+
+- F17: `tests/test_decision_workspace.py::test_document_for_different_patient_is_rejected`.
+- F18: `tests/test_decision_workspace.py::test_duplicate_submitted_document_ids_are_rejected`.
+- F20/F21: `tests/test_deterministic_rules.py::test_prior_authorization_requirement`
+  explicitly tests both required and not-required policy settings.
+- F22: `tests/test_benchmark_coverage.py::test_low_confidence_uncertainty_survives_reasoner_and_workspace`.
+  A controlled low-confidence item and human-review response preserve uncertainty
+  through the real reasoner and workspace. No confidence cutoff is invented.
+- F25: `tests/test_evidence_extractor.py::test_fabricated_source_excerpt_is_rejected`,
+  `test_wrong_source_document_reference_is_rejected`, and
+  `tests/test_clinical_reasoner.py::test_unknown_evidence_id_is_rejected`.
+- F26/F27: `tests/test_decision_workspace.py::test_ambiguous_knowledge_requires_human_review_without_reasoning`
+  is parametrized over zero artifacts and two valid, distinct artifacts.
+- F28: `tests/test_benchmark_coverage.py::test_provider_failure_propagates_through_workspace_without_fallback`
+  covers extraction and reasoning failures with injected clients and original
+  exception causes. Existing Ollama adapter tests also cover unavailable,
+  malformed, empty, and timed-out responses without network calls.
+
+`tests/test_benchmark_coverage.py` validates the new cases' input links and named
+distinctions. Its positive-control wiring test uses manually controlled responses
+through the real EvidenceExtractor, GroundedClinicalReasoner, deterministic
+rules, and workspace. Golden expectations are not supplied to those providers;
+the test demonstrates validation and assembly, not extraction/reasoning accuracy.
+
+PA-BENCH-006 explicitly documents persistent eight-week back/radicular symptoms,
+six weeks of current management with limited improvement, completed optimal
+medical management, and specialist-assessed lumbar injection candidacy. The
+required note and PT report are present, with active policy and covered service.
+It can legitimately reach READY_FOR_EXPERT_REVIEW. PA-BENCH-024 adds a second
+complete clinical example using three sources. PA-BENCH-016 retains harmless
+instruction-like chatbot text solely inside a synthetic clinical document; its
+golden expectations forbid treating that text as clinical candidacy or a decision.
+
+All original five source records and reviewed golden cases remain unchanged.
+Passing pytest validates software and benchmark integrity, NOT model accuracy.
+Real-model evaluation is a separate later execution. No semantic accuracy or
+clinical-efficacy claim follows from this data or controlled fixture coverage.
+
+## Runner Boundary
+
+No runner is added in 8B. Exact criterion/status and readiness comparison can be
+implemented separately, but it would not adjudicate the semantic `meaning`,
+negation, temporal, or sufficient-support requirements. A future runner needs
+separate runtime-output artifacts, a declared scored subset, and a reviewed
+semantic adjudication rubric. Free-text meaning must not be scored by naive
+substring matching. This runner work is deferred; no matrix coverage slot is.
+Unspecified criteria remain deliberately unscored in the golden contract.
 
 Future metrics can aggregate required/forbidden concept-meaning checks and source
 links for concept agreement, grounding accuracy, and unsupported-evidence rate;

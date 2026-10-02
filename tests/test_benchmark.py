@@ -40,10 +40,11 @@ def inputs():
 def test_benchmark_loads_with_valid_references_and_domain_enums(inputs):
     benchmark = load_benchmark(ROOT / "evaluation" / "golden_cases.json")
     validate_references(benchmark, *inputs)
-    assert len(benchmark.cases) == 5
-    assert len({case.case_id for case in benchmark.cases}) == 5
+    assert len(benchmark.cases) == 19
+    assert len({case.case_id for case in benchmark.cases}) == 19
     for case in benchmark.cases:
-        assert isinstance(case.expectations.workflow.expected_readiness, ReadinessStatus)
+        if case.expectations.workflow:
+            assert isinstance(case.expectations.workflow.expected_readiness, ReadinessStatus)
         assert all(isinstance(item.status, CriterionStatus)
                    for item in case.expectations.clinical.criteria)
 
