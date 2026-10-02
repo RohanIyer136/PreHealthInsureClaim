@@ -1,32 +1,165 @@
-[
-  {
-    "authorization_id": "PA-DEMO-001",
-    "scenario": "complete_submission",
-    "expected_readiness": "READY_FOR_EXPERT_REVIEW",
-    "expected_findings": ["physiotherapy_documentation_present"]
-  },
-  {
-    "authorization_id": "PA-DEMO-002",
-    "scenario": "missing_supporting_evidence",
-    "expected_readiness": "EVIDENCE_REQUIRED",
-    "expected_findings": ["missing_physiotherapy_documentation"]
-  },
-  {
-    "authorization_id": "PA-DEMO-003",
-    "scenario": "coverage_eligibility_problem",
-    "expected_readiness": "HUMAN_REVIEW_REQUIRED",
-    "expected_findings": ["inactive_policy"]
-  },
-  {
-    "authorization_id": "PA-DEMO-004",
-    "scenario": "ambiguous_clinical_evidence",
-    "expected_readiness": "HUMAN_REVIEW_REQUIRED",
-    "expected_findings": ["ambiguous_symptom_duration"]
-  },
-  {
-    "authorization_id": "PA-DEMO-005",
-    "scenario": "conflicting_information",
-    "expected_readiness": "HUMAN_REVIEW_REQUIRED",
-    "expected_findings": ["conflicting_physiotherapy_history"]
-  }
-]
+{
+  "schema_version": "1.0",
+  "cases": [
+    {
+      "case_id": "PA-DEMO-001",
+      "authorization_id": "PA-DEMO-001",
+      "scenario": "complete_submission",
+      "purpose": "Complete supporting documents must not imply explicit surgery/intervention candidacy.",
+      "category": "clinical",
+      "tags": ["complete_documents", "cross_document_evidence", "intervention_candidacy"],
+      "required_document_types": ["CLINICAL_NOTE", "PHYSIOTHERAPY_REPORT"],
+      "expectations": {
+        "evidence": {
+          "required": [
+            {"concept": "SYMPTOM_DURATION", "source_document_ids": ["NOTE-001"], "meaning": "Symptoms persisted for eight weeks."},
+            {"concept": "PHYSIOTHERAPY_HISTORY", "source_document_ids": ["NOTE-001", "PT-001"], "meaning": "Six-week physiotherapy course; retain each source independently."},
+            {"concept": "MEDICATION_HISTORY", "source_document_ids": ["NOTE-001"], "meaning": "NSAID and acetaminophen use."},
+            {"concept": "NEUROLOGICAL_FINDINGS", "source_document_ids": ["NOTE-001"], "meaning": "Reduced right ankle reflex and mild great-toe extension weakness."}
+          ],
+          "forbidden": [
+            {"concept": "INTERVENTION_OR_SPECIALIST_PLANNING", "source_document_ids": ["NOTE-001", "PT-001"], "meaning": "Established surgery/intervention candidacy. MRI evaluation itself may be extracted, but not strengthened into candidacy."}
+          ]
+        },
+        "clinical": {
+          "knowledge_id": "ACR-LBP-VARIANT-3",
+          "criteria": [
+            {"criterion_id": "low_back_pain_context", "status": "SATISFIED", "source_document_ids": ["NOTE-001"]},
+            {"criterion_id": "persistent_or_progressive_symptoms", "status": "SATISFIED", "source_document_ids": ["NOTE-001"]},
+            {"criterion_id": "management_duration", "status": "SATISFIED", "source_document_ids": ["PT-001"]},
+            {"criterion_id": "intervention_candidate", "status": "INSUFFICIENT_EVIDENCE"}
+          ]
+        },
+        "workflow": {
+          "expected_readiness": "EVIDENCE_REQUIRED",
+          "missing_clinical_criterion_ids": ["intervention_candidate"],
+          "findings": ["physiotherapy_documentation_present"]
+        }
+      }
+    },
+    {
+      "case_id": "PA-DEMO-002",
+      "authorization_id": "PA-DEMO-002",
+      "scenario": "missing_supporting_evidence",
+      "purpose": "Reported treatment does not replace an unsubmitted required physiotherapy report.",
+      "category": "orchestration",
+      "tags": ["missing_required_document", "intervention_candidacy"],
+      "required_document_types": ["CLINICAL_NOTE", "PHYSIOTHERAPY_REPORT"],
+      "expectations": {
+        "evidence": {
+          "required": [
+            {"concept": "SYMPTOM_DURATION", "source_document_ids": ["NOTE-002"], "meaning": "Seven weeks of symptoms."},
+            {"concept": "PHYSIOTHERAPY_HISTORY", "source_document_ids": ["NOTE-002"], "meaning": "Reported six-week physiotherapy course, not independently documented attendance."}
+          ],
+          "forbidden": [
+            {"concept": "PHYSIOTHERAPY_HISTORY", "source_document_ids": ["NOTE-002"], "meaning": "Independently verified sessions or attendance not stated in the submitted note."}
+          ]
+        },
+        "clinical": {
+          "knowledge_id": "ACR-LBP-VARIANT-3",
+          "criteria": [{"criterion_id": "intervention_candidate", "status": "INSUFFICIENT_EVIDENCE"}]
+        },
+        "workflow": {
+          "expected_readiness": "EVIDENCE_REQUIRED",
+          "missing_document_types": ["PHYSIOTHERAPY_REPORT"],
+          "missing_clinical_criterion_ids": ["intervention_candidate"],
+          "findings": ["missing_physiotherapy_documentation"]
+        }
+      }
+    },
+    {
+      "case_id": "PA-DEMO-003",
+      "authorization_id": "PA-DEMO-003",
+      "scenario": "coverage_eligibility_problem",
+      "purpose": "Expired policy is a deterministic review blocker regardless of clinical evidence.",
+      "category": "insurance",
+      "tags": ["expired_policy", "complete_documents"],
+      "required_document_types": ["CLINICAL_NOTE", "PHYSIOTHERAPY_REPORT"],
+      "expectations": {
+        "evidence": {"required": [
+          {"concept": "SYMPTOM_DURATION", "source_document_ids": ["NOTE-003"], "meaning": "Nine weeks of symptoms."},
+          {"concept": "PHYSIOTHERAPY_HISTORY", "source_document_ids": ["NOTE-003", "PT-003"], "meaning": "Six weeks of physiotherapy, limited relief; independent sources."}
+        ]},
+        "clinical": {
+          "knowledge_id": "ACR-LBP-VARIANT-3",
+          "criteria": [{"criterion_id": "intervention_candidate", "status": "INSUFFICIENT_EVIDENCE"}]
+        },
+        "workflow": {
+          "expected_readiness": "HUMAN_REVIEW_REQUIRED",
+          "missing_clinical_criterion_ids": ["intervention_candidate"],
+          "conflict_criterion_ids": ["policy_active_at_submission"],
+          "findings": ["inactive_policy"]
+        }
+      }
+    },
+    {
+      "case_id": "PA-DEMO-004",
+      "authorization_id": "PA-DEMO-004",
+      "scenario": "ambiguous_clinical_evidence",
+      "purpose": "Preserve imprecise symptom/treatment duration and surface material ambiguity for review.",
+      "category": "clinical",
+      "tags": ["ambiguous_wording", "missing_required_document", "missing_clinical_evidence"],
+      "required_document_types": ["CLINICAL_NOTE", "PHYSIOTHERAPY_REPORT"],
+      "expectations": {
+        "evidence": {
+          "required": [
+            {"concept": "SYMPTOM_DURATION", "source_document_ids": ["NOTE-004"], "meaning": "Several weeks, no precise duration.", "uncertainty": "preserve_ambiguity"},
+            {"concept": "PHYSIOTHERAPY_HISTORY", "source_document_ids": ["NOTE-004"], "meaning": "Attendance during the past month; start date and session count unknown.", "uncertainty": "preserve_ambiguity"}
+          ],
+          "forbidden": [
+            {"concept": "SYMPTOM_DURATION", "source_document_ids": ["NOTE-004"], "meaning": "A precise numeric symptom duration."},
+            {"concept": "PHYSIOTHERAPY_HISTORY", "source_document_ids": ["NOTE-004"], "meaning": "A precise treatment start date, completed six-week course, or session count."},
+            {"concept": "NEUROLOGICAL_FINDINGS", "source_document_ids": ["NOTE-004"], "meaning": "An established sensory or motor deficit."}
+          ]
+        },
+        "clinical": {
+          "knowledge_id": "ACR-LBP-VARIANT-3",
+          "criteria": [
+            {"criterion_id": "management_duration", "status": "REQUIRES_HUMAN_REVIEW", "source_document_ids": ["NOTE-004"]},
+            {"criterion_id": "intervention_candidate", "status": "INSUFFICIENT_EVIDENCE"}
+          ]
+        },
+        "workflow": {
+          "expected_readiness": "HUMAN_REVIEW_REQUIRED",
+          "missing_document_types": ["PHYSIOTHERAPY_REPORT"],
+          "missing_clinical_criterion_ids": ["intervention_candidate"],
+          "conflict_criterion_ids": ["management_duration"],
+          "findings": ["ambiguous_symptom_duration"]
+        }
+      }
+    },
+    {
+      "case_id": "PA-DEMO-005",
+      "authorization_id": "PA-DEMO-005",
+      "scenario": "conflicting_information",
+      "purpose": "Preserve conflicting treatment histories rather than choosing or averaging durations.",
+      "category": "clinical",
+      "tags": ["cross_document_contradiction", "conflicting_treatment_duration", "approximate_duration", "multiple_sources"],
+      "required_document_types": ["CLINICAL_NOTE", "PHYSIOTHERAPY_REPORT"],
+      "expectations": {
+        "evidence": {
+          "required": [
+            {"concept": "PHYSIOTHERAPY_HISTORY", "source_document_ids": ["NOTE-005"], "meaning": "Patient reports approximately six weeks; preserve approximation.", "uncertainty": "preserve_approximation"},
+            {"concept": "PHYSIOTHERAPY_HISTORY", "source_document_ids": ["PT-005"], "meaning": "Treatment began two weeks ago; initial assessment and three sessions."}
+          ],
+          "forbidden": [
+            {"concept": "PHYSIOTHERAPY_HISTORY", "source_document_ids": ["NOTE-005", "PT-005"], "meaning": "A reconciled or averaged single treatment duration, or six weeks attributed to PT-005."}
+          ]
+        },
+        "clinical": {
+          "knowledge_id": "ACR-LBP-VARIANT-3",
+          "criteria": [
+            {"criterion_id": "management_duration", "status": "REQUIRES_HUMAN_REVIEW", "source_document_ids": ["NOTE-005", "PT-005"]},
+            {"criterion_id": "intervention_candidate", "status": "INSUFFICIENT_EVIDENCE"}
+          ]
+        },
+        "workflow": {
+          "expected_readiness": "HUMAN_REVIEW_REQUIRED",
+          "missing_clinical_criterion_ids": ["intervention_candidate"],
+          "conflict_criterion_ids": ["management_duration"],
+          "findings": ["conflicting_physiotherapy_history"]
+        }
+      }
+    }
+  ]
+}

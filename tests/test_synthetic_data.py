@@ -67,7 +67,8 @@ def authorizations() -> list[AuthorizationRequest]:
 
 @pytest.fixture(scope="module")
 def golden_cases() -> list[dict[str, Any]]:
-    return load_json(GOLDEN_FILE)
+    with GOLDEN_FILE.open(encoding="utf-8") as source:
+        return json.load(source)["cases"]
 
 
 def index_by(records: list[Any], field: str) -> dict[str, Any]:
@@ -155,7 +156,7 @@ def test_golden_readiness_values_use_existing_enum(
     golden_cases: list[dict[str, Any]],
 ) -> None:
     assert all(
-        ReadinessStatus(item["expected_readiness"])
+        ReadinessStatus(item["expectations"]["workflow"]["expected_readiness"])
         for item in golden_cases
     )
 
@@ -235,7 +236,10 @@ def test_conflict_case_submits_contradictory_sources(
 
 
 def test_evaluation_labels_do_not_leak_into_source_data() -> None:
-    forbidden_keys = {"expected_readiness", "expected_findings"}
+    forbidden_keys = {
+        "expected_readiness", "expected_findings", "expectations", "case_id",
+        "missing_clinical_criterion_ids", "conflict_criterion_ids",
+    }
     readiness_values = {item.value for item in ReadinessStatus}
 
     for path in SOURCE_FILES.values():
