@@ -223,6 +223,8 @@ def test_api_contract_and_production_boundaries():
     assert set(schema["paths"]) == {
         "/health", "/api/v1/cases", "/api/v1/cases/{authorization_id}",
         "/api/v1/cases/{authorization_id}/analyze",
+        "/api/v1/demo/cases", "/api/v1/demo/cases/{authorization_id}",
+        "/api/v1/demo/cases/{authorization_id}/analyze",
     }
     for directory in (ROOT / "backend/api", ROOT / "backend/repositories"):
         for path in directory.rglob("*.py"):

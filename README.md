@@ -47,3 +47,11 @@ do not invoke Ollama. Final authorization remains with the human reviewer.
 
 Offline frontend checks: `npm test`, `npm run typecheck`, `npm run build`.
 The frontend tests mock HTTP and require neither FastAPI nor Ollama.
+
+## Pre-Evaluated Demo Mode
+
+See [demo/README.md](demo/README.md) for selected synthetic cases, artifact
+generation, and exact local run commands. `VITE_WORKSPACE_MODE=demo` selects
+separate offline demo endpoints; the default `live` mode keeps the existing local
+Ollama pipeline. Demo Mode is visibly disclosed and never pretends to run live
+inference. Both modes use the same human-review workspace contract.

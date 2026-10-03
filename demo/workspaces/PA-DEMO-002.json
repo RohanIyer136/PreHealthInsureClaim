@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "mode": "pre_evaluated_synthetic_demo",
+  "generator": "production_local_ollama",
+  "model": "qwen3:8b",
+  "source_sha256": "6d56de29e82e7ddea12ce842d80bfcd0093dec4eba78f4915c96e4de896bc244",
+  "elapsed_seconds": 171.9104603000451,
+  "workspace": {
+    "workspace_id": "a4bff4e1-12d5-4574-93d3-3c0a2927fbb4",
+    "authorization_id": "PA-DEMO-002",
+    "clinical_results": [
+      {
+        "criterion_id": "low_back_pain_context",
+        "criterion_name": "SUBACUTE_OR_CHRONIC_LOW_BACK_PAIN_WITH_OR_WITHOUT_RADICULOPATHY",
+        "domain": "CLINICAL",
+        "status": "SATISFIED",
+        "explanation": "The patient has seven weeks of lower-back pain, which satisfies the criterion for subacute or chronic low back pain.",
+        "evidence": [
+          {
+            "evidence_id": "EVIDENCE-001",
+            "source_document_id": "NOTE-002",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "Seven weeks of lower-back pain",
+            "concept": "LOW_BACK_PAIN",
+            "value": "Seven weeks of lower-back pain",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": "start",
+            "relevance": null
+          }
+        ],
+        "confidence": 1.0,
+        "source_rule_id": "ACR-LBP-VARIANT-3"
+      },
+      {
+        "criterion_id": "persistent_or_progressive_symptoms",
+        "criterion_name": "PERSISTENT_OR_PROGRESSIVE_SYMPTOMS",
+        "domain": "CLINICAL",
+        "status": "SATISFIED",
+        "explanation": "The patient has symptoms that have been persistent or progressive, as indicated by the limited improvement despite treatment.",
+        "evidence": [
+          {
+            "evidence_id": "EVIDENCE-005",
+            "source_document_id": "NOTE-002",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "Improvement has been limited",
+            "concept": "FUNCTIONAL_IMPACT",
+            "value": "Improvement has been limited",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": "middle",
+            "relevance": null
+          }
+        ],
+        "confidence": 1.0,
+        "source_rule_id": "ACR-LBP-VARIANT-3"
+      },
+      {
+        "criterion_id": "management_duration",
+        "criterion_name": "DURING_OR_FOLLOWING_APPROXIMATELY_SIX_WEEKS",
+        "domain": "CLINICAL",
+        "status": "SATISFIED",
+        "explanation": "The patient has undergone a six-week physiotherapy course, which satisfies the management duration criterion.",
+        "evidence": [
+          {
+            "evidence_id": "EVIDENCE-003",
+            "source_document_id": "NOTE-002",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "despite a reported six-week physiotherapy course",
+            "concept": "PHYSIOTHERAPY_HISTORY",
+            "value": "Reported six-week physiotherapy course",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": "middle",
+            "relevance": null
+          }
+        ],
+        "confidence": 1.0,
+        "source_rule_id": "ACR-LBP-VARIANT-3"
+      },
+      {
+        "criterion_id": "optimal_medical_management",
+        "criterion_name": "OPTIMAL_MEDICAL_MANAGEMENT",
+        "domain": "CLINICAL",
+        "status": "SATISFIED",
+        "explanation": "The patient has received optimal medical management, including ibuprofen and acetaminophen.",
+        "evidence": [
+          {
+            "evidence_id": "EVIDENCE-004",
+            "source_document_id": "NOTE-002",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "ibuprofen, and acetaminophen",
+            "concept": "MEDICATION_HISTORY",
+            "value": "Ibuprofen, and acetaminophen",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": "middle",
+            "relevance": null
+          }
+        ],
+        "confidence": 1.0,
+        "source_rule_id": "ACR-LBP-VARIANT-3"
+      },
+      {
+        "criterion_id": "intervention_candidate",
+        "criterion_name": "SURGERY_OR_INTERVENTION_CANDIDATE",
+        "domain": "CLINICAL",
+        "status": "SATISFIED",
+        "explanation": "The patient is a candidate for surgery or intervention, as indicated by the request for lumbar spine MRI for suspected lumbar radiculopathy.",
+        "evidence": [
+          {
+            "evidence_id": "EVIDENCE-007",
+            "source_document_id": "NOTE-002",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "Lumbar spine MRI is requested for suspected lumbar radiculopathy",
+            "concept": "INTERVENTION_OR_SPECIALIST_PLANNING",
+            "value": "Lumbar spine MRI is requested for suspected lumbar radiculopathy",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": "end",
+            "relevance": null
+          }
+        ],
+        "confidence": 1.0,
+        "source_rule_id": "ACR-LBP-VARIANT-3"
+      }
+    ],
+    "insurance_results": [
+      {
+        "criterion_id": "policy_active_at_submission",
+        "criterion_name": "Policy active at submission",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Policy is active and the submission date is within its coverage dates.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "POL-DOC-02"
+      },
+      {
+        "criterion_id": "requested_service_category_covered",
+        "criterion_name": "Requested service category covered",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Service category 'Diagnostic imaging' is listed in policy benefits.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "POL-DOC-02"
+      },
+      {
+        "criterion_id": "prior_authorization_required",
+        "criterion_name": "Prior authorization requirement",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Policy marks the requested benefit as requiring prior authorization.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "POL-DOC-02"
+      },
+      {
+        "criterion_id": "required_document_types_present",
+        "criterion_name": "Required document types present",
+        "domain": "INSURANCE",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "explanation": "Required submitted document types not present: PHYSIOTHERAPY_REPORT.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "DEMOCARE-LUMBAR-MRI-001"
+      }
+    ],
+    "regulatory_results": [],
+    "missing_evidence": [
+      "required_document_types_present: Required submitted document types not present: PHYSIOTHERAPY_REPORT."
+    ],
+    "conflicts": [],
+    "overall_confidence": null,
+    "readiness_status": "EVIDENCE_REQUIRED",
+    "generated_at": "2026-10-03T00:55:44.863226Z",
+    "audit_trail": [
+      {
+        "event_id": "564d21af-e525-4674-bf43-d2051b1d0e43",
+        "timestamp": "2026-10-03T00:52:52.953065Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_PROCESSING_STARTED",
+        "details": "Started processing authorization PA-DEMO-002."
+      },
+      {
+        "event_id": "ff63eb65-9ab3-4e22-97be-7b0845b933b2",
+        "timestamp": "2026-10-03T00:52:52.953137Z",
+        "actor": "decision-workspace-service",
+        "action": "DETERMINISTIC_RULES_COMPLETED",
+        "details": "Completed 4 deterministic rule evaluations."
+      },
+      {
+        "event_id": "944e99cf-a3bf-45e8-907f-867459fa1e9a",
+        "timestamp": "2026-10-03T00:54:33.398807Z",
+        "actor": "decision-workspace-service",
+        "action": "EVIDENCE_EXTRACTION_COMPLETED",
+        "details": "Extracted 7 evidence items from 1 submitted documents."
+      },
+      {
+        "event_id": "351d5502-cc35-42c5-beab-4144ef673289",
+        "timestamp": "2026-10-03T00:54:33.398833Z",
+        "actor": "decision-workspace-service",
+        "action": "CLINICAL_KNOWLEDGE_RETRIEVED",
+        "details": "Retrieved 1 matching clinical knowledge artifacts."
+      },
+      {
+        "event_id": "1999be37-084e-45ba-8844-19c4bafd8a46",
+        "timestamp": "2026-10-03T00:55:44.863197Z",
+        "actor": "decision-workspace-service",
+        "action": "CLINICAL_REASONING_COMPLETED",
+        "details": "Completed 5 clinical criterion evaluations."
+      },
+      {
+        "event_id": "835a2854-167e-40a4-8ac2-d42cf25cd0bd",
+        "timestamp": "2026-10-03T00:55:44.863226Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_ASSEMBLED",
+        "details": "Workspace readiness is EVIDENCE_REQUIRED."
+      }
+    ]
+  }
+}

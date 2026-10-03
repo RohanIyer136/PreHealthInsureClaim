@@ -4,6 +4,14 @@ const base = (
   import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000"
 ).replace(/\/$/, "");
 
+export function isDemoMode(): boolean {
+  return import.meta.env.VITE_WORKSPACE_MODE === "demo";
+}
+
+function casesPath(): string {
+  return isDemoMode() ? "/api/v1/demo/cases" : "/api/v1/cases";
+}
+
 export class ApiError extends Error {
   constructor(public status: number) {
     const messages: Record<number, string> = {
@@ -36,12 +44,12 @@ async function request<T>(
 
 export const api = {
   listCases: (signal?: AbortSignal) =>
-    request<CaseSummary[]>("/api/v1/cases", signal),
+    request<CaseSummary[]>(casesPath(), signal),
   getCase: (id: string, signal?: AbortSignal) =>
-    request<CaseDetail>(`/api/v1/cases/${encodeURIComponent(id)}`, signal),
+    request<CaseDetail>(`${casesPath()}/${encodeURIComponent(id)}`, signal),
   analyzeCase: (id: string, signal?: AbortSignal) =>
     request<DecisionWorkspace>(
-      `/api/v1/cases/${encodeURIComponent(id)}/analyze`,
+      `${casesPath()}/${encodeURIComponent(id)}/analyze`,
       signal,
       "POST",
     ),

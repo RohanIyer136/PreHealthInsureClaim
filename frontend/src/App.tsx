@@ -10,7 +10,7 @@ import {
   Shield,
   TriangleAlert,
 } from "lucide-react";
-import { api, errorMessage } from "./api/client";
+import { api, errorMessage, isDemoMode } from "./api/client";
 import type { CaseDetail, CaseSummary, DecisionWorkspace } from "./types/api";
 import { date, label } from "./utils/format";
 import { SourceDialog, type SourceSelection } from "./components/SourceDialog";
@@ -41,6 +41,7 @@ function ErrorNotice({
 }
 
 export default function App() {
+  const demoMode = isDemoMode();
   const [cases, setCases] = useState<CaseSummary[]>([]);
   const [queueLoading, setQueueLoading] = useState(true);
   const [queueError, setQueueError] = useState("");
@@ -162,7 +163,9 @@ export default function App() {
         </div>
         <span className="demo-indicator">
           <span />
-          Synthetic Demo
+          {demoMode
+            ? "Demo Mode - pre-evaluated synthetic authorization cases"
+            : "Live Local Mode - synthetic data"}
         </span>
       </header>
       <div className="app-layout">
@@ -340,7 +343,9 @@ export default function App() {
                   <div>
                     <strong>Preparing decision workspace...</strong>
                     <p>
-                      Local inference is running. This may take several minutes.
+                      {demoMode
+                        ? "Loading a pre-evaluated workspace. No live inference is running."
+                        : "Local inference is running. This may take several minutes."}
                     </p>
                   </div>
                 </div>

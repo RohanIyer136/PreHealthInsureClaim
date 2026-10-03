@@ -29,7 +29,7 @@ function mockHttp(
     async (input: RequestInfo | URL, init?: RequestInit) => {
       const path = new URL(String(input)).pathname;
       if (init?.method === "POST") return analyze();
-      if (path === "/api/v1/cases") return response(cases);
+      if (path.endsWith("/cases")) return response(cases);
       if (path.endsWith("/CASE-101")) return response(detail);
       if (path.endsWith("/CASE-102")) return response(secondDetail);
       throw new Error("Unexpected test request");
@@ -298,5 +298,29 @@ describe("workspace semantics", () => {
       }
     }
     inspect(resolve("src"));
+  });
+});
+
+describe("pre-evaluated demo mode", () => {
+  it.each<[ReadinessStatus, string]>([
+    ["READY_FOR_EXPERT_REVIEW", "Ready for Expert Review"],
+    ["EVIDENCE_REQUIRED", "Evidence Required"],
+    ["HUMAN_REVIEW_REQUIRED", "Human Review Required"],
+  ])("discloses demo serving and preserves %s and source inspection", async (status, text) => {
+    vi.stubEnv("VITE_WORKSPACE_MODE", "demo");
+    let finish!: (value: Response) => void;
+    const pending = new Promise<Response>((resolve) => { finish = resolve; });
+    const fetchMock = mockHttp(() => pending);
+    await loadApp();
+    expect(screen.getByText("Demo Mode - pre-evaluated synthetic authorization cases")).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: /Analyze Authorization/ }));
+    expect(screen.getByText("Loading a pre-evaluated workspace. No live inference is running.")).toBeVisible();
+    expect(screen.queryByText(/Local inference is running/)).not.toBeInTheDocument();
+    await act(async () => finish(response({ ...workspace, readiness_status: status })));
+    expect(await screen.findByText(text)).toBeVisible();
+    expect(fetchMock.mock.calls.every(([url]) => String(url).includes("/api/v1/demo/cases"))).toBe(true);
+    fireEvent.click(screen.getByRole("button", { name: /View source: NOTE-101/ }));
+    expect(screen.getByRole("dialog").querySelector("mark")).toHaveTextContent("Six weeks of physiotherapy completed.");
+    expect(document.body).not.toHaveTextContent(/\b(APPROVED|REJECTED|Denied|Authorized)\b/);
   });
 });
