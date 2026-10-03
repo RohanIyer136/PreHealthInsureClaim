@@ -20,7 +20,7 @@ not benchmark expectations. Domain rules, validation, and readiness derivation a
 
 ### Execution Routing
 
-The production builder configures `IMG-MRI-LS` for existing lumbar clinical
+The production builder configures `IMG-MRI-LS` and `SURG-CHOLECYSTECTOMY` for clinical
 retrieval and reasoning. The deterministic router uses exact service-code
 configuration, never document keywords or model-selected tools. Existing policy
 and document checks run first. Explicit routing control marks failed coverage
@@ -37,7 +37,18 @@ Other document requirements need deliberate future configuration.
 The existing case repository now serves 55 synthetic cases: the original 19 plus
 36 source-only runtime cases described in [synthetic_data/RUNTIME_CASES.md](synthetic_data/RUNTIME_CASES.md).
 Administrative-only processing and unavailable clinical capabilities are explicitly
-recorded in workspaces; only the existing lumbar service enables clinical AI.
+recorded in workspaces; only these two service codes enable clinical AI.
+
+The second vertical represents symptomatic gallstone evidence for elective
+laparoscopic cholecystectomy, derived from SAGES' January 2010
+[Guidelines for the Clinical Application of Laparoscopic Biliary Tract Surgery](https://www.sages.org/publications/guidelines/guidelines-for-the-clinical-application-of-laparoscopic-biliary-tract-surgery/),
+section III (accessed 2026-10-04). It is a prototype structured representation,
+not an official guideline artifact or a complete surgical eligibility assessment.
+It checks documented symptoms attributed to stones and explicit stone evidence;
+anesthesia fitness, contraindications and final authorization remain human judgments.
+Missing diagnostic-report roles are separate deterministic findings; the guideline
+does not require a submitted ultrasound report for the represented indication.
+Unsupported clinical domains continue to escalate without clinical AI.
 
 `DecisionWorkspaceService(execution_router=...)` enables this routing; the production
 builder always supplies it. Existing injected setups without a router retain their

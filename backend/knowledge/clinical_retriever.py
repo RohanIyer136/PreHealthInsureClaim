@@ -3,9 +3,9 @@
 import json
 from datetime import date
 from pathlib import Path
-from typing import Literal, Protocol
+from typing import Annotated, Literal, Protocol
 
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl, TypeAdapter, ValidationError, model_validator
 
 from backend.models.schemas import RequestedService
 
@@ -16,12 +16,17 @@ class _StrictKnowledgeModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
 
-class ApplicableClinicalService(_StrictKnowledgeModel):
-    """Structured procedure metadata used for retrieval matching."""
+class ClinicalServiceScope(_StrictKnowledgeModel):
+    """Exact internal service scope shared by clinical guidance types."""
 
     service_code: str = Field(min_length=1)
     service_code_system: Literal["PREHEALTHINSURECLAIM_INTERNAL"]
     procedure: str = Field(min_length=1)
+
+
+class ApplicableClinicalService(ClinicalServiceScope):
+    """Existing imaging procedure metadata."""
+
     modality: str = Field(min_length=1)
     anatomic_region: str = Field(min_length=1)
     contrast: str = Field(min_length=1)
@@ -81,29 +86,63 @@ class ClinicalProvenance(_StrictKnowledgeModel):
     guidance_scope_note: str = Field(min_length=1)
 
 
-class ClinicalKnowledgeArtifact(_StrictKnowledgeModel):
-    """Validated, versioned clinical knowledge returned to downstream code."""
+class ClinicalKnowledgeBase(_StrictKnowledgeModel):
+    """Shared provenance, service scope and criteria; loading uses the typed union."""
 
     knowledge_id: str = Field(min_length=1)
     representation_version: str = Field(min_length=1)
     title: str = Field(min_length=1)
     organization: str = Field(min_length=1)
-    source_type: Literal["CLINICAL_IMAGING_APPROPRIATENESS_GUIDANCE"]
     topic: str = Field(min_length=1)
-    topic_id: int = Field(gt=0)
-    variant: int = Field(gt=0)
     source_url: HttpUrl
-    topic_portal_url: HttpUrl
     source_revision: str = Field(min_length=1)
     accessed_date: date
-    applicable_service: ApplicableClinicalService
-    clinical_scenario: ClinicalScenario
+    applicable_service: ClinicalServiceScope
     criteria_for_future_evaluation: list[ClinicalKnowledgeCriterion] = Field(
         min_length=1
     )
+    provenance: ClinicalProvenance
+
+    @model_validator(mode="after")
+    def unique_criteria(self) -> "ClinicalKnowledgeBase":
+        identifiers = [item.criterion_id for item in self.criteria_for_future_evaluation]
+        if len(identifiers) != len(set(identifiers)):
+            raise ValueError("Clinical knowledge criterion IDs must be unique.")
+        return self
+
+
+class ClinicalKnowledgeArtifact(ClinicalKnowledgeBase):
+    """Existing imaging subtype, preserving its public constructor and JSON fields."""
+
+    source_type: Literal["CLINICAL_IMAGING_APPROPRIATENESS_GUIDANCE"]
+    topic_id: int = Field(gt=0)
+    variant: int = Field(gt=0)
+    topic_portal_url: HttpUrl
+    applicable_service: ApplicableClinicalService
+    clinical_scenario: ClinicalScenario
     recommendation: ClinicalRecommendation
     scope_context: ClinicalScopeContext
-    provenance: ClinicalProvenance
+
+
+class SurgicalScopeContext(_StrictKnowledgeModel):
+    """Explicit limits of the represented surgical guidance."""
+
+    included_scope: str = Field(min_length=1)
+    excluded_scopes: list[Annotated[str, Field(min_length=1)]] = Field(min_length=1)
+
+
+class SurgicalClinicalKnowledgeArtifact(ClinicalKnowledgeBase):
+    """Surgical guidance without imaging-specific placeholders."""
+
+    source_type: Literal["CLINICAL_SURGICAL_GUIDANCE"]
+    scope_context: SurgicalScopeContext
+
+
+ClinicalArtifact = Annotated[
+    ClinicalKnowledgeArtifact | SurgicalClinicalKnowledgeArtifact,
+    Field(discriminator="source_type"),
+]
+_ARTIFACT_ADAPTER = TypeAdapter(ClinicalArtifact)
 
 
 class ClinicalKnowledgeRetriever(Protocol):
@@ -112,7 +151,7 @@ class ClinicalKnowledgeRetriever(Protocol):
     def retrieve(
         self,
         requested_service: RequestedService,
-    ) -> list[ClinicalKnowledgeArtifact]:
+    ) -> list[ClinicalArtifact]:
         """Return relevant artifacts, or an empty list when none match."""
         ...
 
@@ -129,12 +168,12 @@ class DuplicateClinicalKnowledgeIdError(ClinicalKnowledgeError):
     """Raised when multiple artifacts use the same knowledge identifier."""
 
 
-def load_clinical_knowledge_artifact(path: Path) -> ClinicalKnowledgeArtifact:
+def load_clinical_knowledge_artifact(path: Path) -> ClinicalArtifact:
     """Load one JSON artifact and validate its complete clinical schema."""
     try:
         with path.open(encoding="utf-8") as source:
             payload = json.load(source)
-        return ClinicalKnowledgeArtifact.model_validate(payload)
+        return _ARTIFACT_ADAPTER.validate_python(payload)
     except (OSError, json.JSONDecodeError, ValidationError) as error:
         raise ClinicalKnowledgeValidationError(
             f"Invalid clinical knowledge artifact: {path}."
@@ -144,7 +183,7 @@ def load_clinical_knowledge_artifact(path: Path) -> ClinicalKnowledgeArtifact:
 class JsonClinicalKnowledgeRetriever:
     """Retrieve clinical artifacts through explicit service metadata matching."""
 
-    def __init__(self, artifacts: list[ClinicalKnowledgeArtifact]) -> None:
+    def __init__(self, artifacts: list[ClinicalArtifact]) -> None:
         identifiers = [artifact.knowledge_id for artifact in artifacts]
         duplicates = sorted(
             identifier
@@ -169,7 +208,7 @@ class JsonClinicalKnowledgeRetriever:
     def retrieve(
         self,
         requested_service: RequestedService,
-    ) -> list[ClinicalKnowledgeArtifact]:
+    ) -> list[ClinicalArtifact]:
         """Return artifacts matching the application's exact internal service code."""
         return [
             artifact
@@ -180,6 +219,6 @@ class JsonClinicalKnowledgeRetriever:
 
 def _service_matches(
     requested_service: RequestedService,
-    applicable_service: ApplicableClinicalService,
+    applicable_service: ClinicalServiceScope,
 ) -> bool:
     return requested_service.service_code == applicable_service.service_code

@@ -1,0 +1,42 @@
+{
+  "knowledge_id": "SAGES-SYMPTOMATIC-GALLSTONES-PROTOTYPE",
+  "representation_version": "1.0",
+  "title": "Prototype symptomatic gallstone evidence for elective laparoscopic cholecystectomy review",
+  "organization": "Society of American Gastrointestinal and Endoscopic Surgeons (SAGES)",
+  "source_type": "CLINICAL_SURGICAL_GUIDANCE",
+  "topic": "Symptomatic gallstones",
+  "source_url": "https://www.sages.org/publications/guidelines/guidelines-for-the-clinical-application-of-laparoscopic-biliary-tract-surgery/",
+  "source_revision": "January 2010; publication date listed in the SAGES guideline index",
+  "accessed_date": "2026-10-04",
+  "applicable_service": {
+    "service_code": "SURG-CHOLECYSTECTOMY",
+    "service_code_system": "PREHEALTHINSURECLAIM_INTERNAL",
+    "procedure": "Elective laparoscopic cholecystectomy for symptomatic gallstones"
+  },
+  "criteria_for_future_evaluation": [
+    {
+      "criterion_id": "symptomatic_gallstone_presentation",
+      "concept": "Submitted clinical evidence explicitly describes symptoms attributed to gallstones, rather than asymptomatic incidental stones. This represents the symptomatic component of SAGES section III, not independent diagnosis or full surgical candidacy."
+    },
+    {
+      "criterion_id": "gallstones_documented",
+      "concept": "Submitted evidence explicitly documents gallstones, the stone component of symptomatic cholelithiasis in SAGES section III. Clinical assertions or diagnostic findings may support this criterion; an imaging document's presence alone cannot. Do not infer stones from abdominal pain or a procedure request alone."
+    }
+  ],
+  "scope_context": {
+    "included_scope": "Criterion-level evidence preparation for the symptomatic gallstone indication in section III (Indications), for an elective laparoscopic cholecystectomy request. The two criteria separate symptoms attributed to stones from explicit stone documentation; they do not establish medical necessity or operative eligibility.",
+    "excluded_scopes": [
+      "Full surgical candidacy, anesthesia tolerance, cardiopulmonary fitness and other contraindication assessment remain for the human expert; absence of such information does not establish fitness.",
+      "Other gallbladder disease, biliary dyskinesia, common bile duct disease and emergency surgery management",
+      "Operative technique, antibiotic selection, perioperative and postoperative management",
+      "Insurer document requirements, coverage and final authorization decisions"
+    ]
+  },
+  "provenance": {
+    "source_organization": "Society of American Gastrointestinal and Endoscopic Surgeons (SAGES)",
+    "source_document": "Guidelines for the Clinical Application of Laparoscopic Biliary Tract Surgery",
+    "source_clinical_scenario": "Section III: Indications; symptomatic cholelithiasis only. Source publication date confirmed at https://www.sages.org/publications/guidelines/ (January 2010); accessed 2026-10-04.",
+    "representation_note": "This is a prototype structured representation derived from the cited source, not an official SAGES guideline artifact or a complete reproduction. Criteria are concise paraphrases of components of the symptomatic gallstone indication, not additional guideline-mandated eligibility tests. Verify the representation against the authoritative source before production use.",
+    "guidance_scope_note": "Evidence support prepares the case for human expert review only. Final clinical and authorization judgments remain human. The source discusses anesthesia tolerance and comorbidities; this narrow prototype does not assess them or declare surgery medically necessary. SAGES section III does not impose a submitted ultrasound-report requirement: report completeness belongs to separate deterministic document rules."
+  }
+}

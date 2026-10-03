@@ -28,7 +28,7 @@ from tests.test_ollama_evidence_provider import FakeClient, ollama_response
 ROOT = Path(__file__).resolve().parents[1]
 ADMIN = ["ORTH-04", "SURG-01", "SURG-06", "ONC-06", "ACUTE-01", "ACUTE-04", "ACUTE-06",
          "MED-01", "MED-02", "MED-05", "SPEC-01", "SPEC-02", "SPEC-03", "SPEC-04", "SPEC-06"]
-UNSUPPORTED = ["ORTH-03", "ORTH-05", "ORTH-06", "SURG-02", "SURG-03", "SURG-04", "SURG-05",
+UNSUPPORTED = ["ORTH-03", "ORTH-05", "ORTH-06", "SURG-04", "SURG-05",
                "ONC-01", "ONC-02", "ONC-03", "ONC-04", "ONC-05", "ACUTE-02", "ACUTE-03",
                "ACUTE-05", "MED-03", "MED-04", "MED-06", "SPEC-05"]
 
@@ -215,9 +215,11 @@ def test_expanded_api_lists_and_analyzes_through_existing_endpoints(repository):
         assert response.json()["clinical_results"] == []
 
 
-def test_only_existing_lumbar_clinical_execution_is_enabled():
+def test_only_lumbar_and_cholecystectomy_clinical_execution_are_enabled():
     catalog = SyntheticInsuranceCatalog.from_file(ROOT / "backend/runtime/synthetic_insurance.json")
-    assert {item.service_code for item in catalog.capabilities if item.clinical_reasoning} == {"IMG-MRI-LS"}
+    assert {item.service_code for item in catalog.capabilities if item.clinical_reasoning} == {
+        "IMG-MRI-LS", "SURG-CHOLECYSTECTOMY",
+    }
     assert len(catalog.capabilities) == len(catalog.services) == 30
     assert {item.service_code for item in catalog.capabilities} == {item.service_code for item in catalog.services}
     assert len({item.family for item in catalog.capabilities}) == 6

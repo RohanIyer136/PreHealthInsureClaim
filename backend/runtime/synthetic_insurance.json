@@ -904,7 +904,7 @@
     {
       "service_code": "SURG-CHOLECYSTECTOMY",
       "family": "SURGERY_GI",
-      "clinical_reasoning": false,
+      "clinical_reasoning": true,
       "insurance_reasoning": false,
       "benefit_utilization": false,
       "clinical_knowledge_required": true

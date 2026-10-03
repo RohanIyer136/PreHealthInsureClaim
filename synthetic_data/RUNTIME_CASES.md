@@ -43,7 +43,12 @@ router uses service codes and insurance findings, never authorization IDs:
 - ORTH-01/02 reuse IMG-MRI-LS and ACR-LBP-VARIANT-3. Clinical extraction/reasoning
   runs only after applicable terminal checks and knowledge preflight. Missing PT
   remains non-terminal, visible in missing evidence while useful interpretation continues.
-- The other 19 services require unavailable clinical knowledge. Insurance checks
+- SURG-02/03 reuse SURG-CHOLECYSTECTOMY and the same SAGES symptomatic gallstone
+  prototype artifact. Both notes explicitly describe symptomatic gallstones;
+  SURG-02 adds ultrasound corroboration. SURG-03 lacks the required diagnostic-imaging
+  role, which remains a deterministic missing-document finding independent of
+  criterion-level clinical support. Full operative eligibility remains human.
+- The other 17 clinical scenarios require unavailable clinical knowledge. Insurance checks
   run, then human escalation occurs without retrieval, extraction or reasoning.
   No lumbar fallback or generic medical reasoning is enabled.
 - ONC-03/06 share a service configuration. The excluded-policy branch is terminal;

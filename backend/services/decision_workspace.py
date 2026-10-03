@@ -4,7 +4,7 @@ from collections.abc import Callable, Iterable
 from datetime import datetime
 from typing import Protocol
 
-from backend.knowledge.clinical_retriever import ClinicalKnowledgeArtifact
+from backend.knowledge.clinical_retriever import ClinicalArtifact
 from backend.models.schemas import (
     AuditEvent,
     AuthorizationRequest,
@@ -47,7 +47,7 @@ class ClinicalKnowledgeRetrieverPort(Protocol):
 
     def retrieve(
         self, requested_service: RequestedService
-    ) -> list[ClinicalKnowledgeArtifact]: ...
+    ) -> list[ClinicalArtifact]: ...
 
 
 class ClinicalReasonerPort(Protocol):
@@ -56,7 +56,7 @@ class ClinicalReasonerPort(Protocol):
     def reason(
         self,
         evidence: list[EvidenceItem],
-        knowledge: ClinicalKnowledgeArtifact,
+        knowledge: ClinicalArtifact,
     ) -> list[CriterionResult]: ...
 
 

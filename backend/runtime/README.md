@@ -25,8 +25,11 @@ requires review rather than guessing or silently falling back. Missing service
 requirements and unknown benefit categories likewise require review. Structured
 terms control category-specific findings; legacy summary fields are not substitutes.
 The existing repository also loads `synthetic_data/runtime_cases.json`; 36 additional
-synthetic source cases are registered with the same API. Only the existing lumbar
-clinical scope is enabled. See `synthetic_data/RUNTIME_CASES.md` for source provenance.
+synthetic source cases are registered with the same API. Only `IMG-MRI-LS` and
+`SURG-CHOLECYSTECTOMY` enable clinical execution. The latter uses a narrow prototype
+of SAGES section III symptomatic gallstone guidance, not full surgical eligibility.
+See the root README for the clinical source and `synthetic_data/RUNTIME_CASES.md`
+for case-source provenance. Unsupported clinical domains still escalate without AI.
 
 Supported findings use existing CriterionResult statuses and insurance provenance:
 policy_active_on_service_date, requested_service_category_covered,

@@ -1,6 +1,10 @@
 """Typed clinical knowledge retrieval for PreHealthInsureClaim."""
 
 from .clinical_retriever import (
+    ClinicalArtifact,
+    ClinicalKnowledgeBase,
+    ClinicalServiceScope,
+    SurgicalClinicalKnowledgeArtifact,
     ClinicalKnowledgeArtifact,
     ClinicalKnowledgeError,
     ClinicalKnowledgeRetriever,
@@ -11,6 +15,10 @@ from .clinical_retriever import (
 )
 
 __all__ = [
+    "ClinicalArtifact",
+    "ClinicalKnowledgeBase",
+    "ClinicalServiceScope",
+    "SurgicalClinicalKnowledgeArtifact",
     "ClinicalKnowledgeArtifact",
     "ClinicalKnowledgeError",
     "ClinicalKnowledgeRetriever",

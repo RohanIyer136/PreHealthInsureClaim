@@ -5,7 +5,7 @@ from typing import Protocol
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
-from backend.knowledge.clinical_retriever import ClinicalKnowledgeArtifact
+from backend.knowledge.clinical_retriever import ClinicalArtifact
 from backend.ai.validation_diagnostics import report_grounding_failure, report_schema_failure
 from backend.models.schemas import (
     CriterionDomain,
@@ -39,7 +39,7 @@ class ClinicalReasoningRequest:
     """Trusted instructions plus typed, untrusted reasoning inputs."""
 
     evidence: tuple[EvidenceItem, ...]
-    knowledge: ClinicalKnowledgeArtifact
+    knowledge: ClinicalArtifact
     instructions: str
 
 
@@ -104,7 +104,7 @@ class GroundedClinicalReasoner:
     def reason(
         self,
         evidence: list[EvidenceItem],
-        knowledge: ClinicalKnowledgeArtifact,
+        knowledge: ClinicalArtifact,
     ) -> list[CriterionResult]:
         """Produce one grounded clinical result for every knowledge criterion."""
         evidence_by_id = self._index_evidence(evidence)
@@ -146,7 +146,7 @@ class GroundedClinicalReasoner:
 
     @staticmethod
     def _index_criteria(
-        knowledge: ClinicalKnowledgeArtifact,
+        knowledge: ClinicalArtifact,
     ) -> dict[str, str]:
         criteria = knowledge.criteria_for_future_evaluation
         criteria_by_id = {item.criterion_id: item.concept for item in criteria}
