@@ -4,7 +4,8 @@ from datetime import date as Date
 from datetime import datetime
 from enum import Enum
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_serializer
+from backend.models.insurance import InsuranceRequestContext, StructuredInsuranceTerms
 
 
 class Sex(str, Enum):
@@ -122,6 +123,14 @@ class InsurancePolicy(BaseModel):
     exclusions: list[str] = Field(default_factory=list)
     prior_authorization_required: bool
     policy_document_id: str
+    structured_terms: StructuredInsuranceTerms | None = None
+
+    @model_serializer(mode="wrap")
+    def serialize_legacy_compatible(self, handler):
+        data = handler(self)
+        if self.structured_terms is None:
+            data.pop("structured_terms", None)
+        return data
 
 
 class RequestedService(BaseModel):
@@ -158,6 +167,14 @@ class AuthorizationRequest(BaseModel):
     submitted_document_ids: list[str] = Field(default_factory=list)
     submitted_at: datetime
     status: AuthorizationStatus
+    insurance_context: InsuranceRequestContext | None = None
+
+    @model_serializer(mode="wrap")
+    def serialize_legacy_compatible(self, handler):
+        data = handler(self)
+        if self.insurance_context is None:
+            data.pop("insurance_context", None)
+        return data
 
 
 class EvidenceItem(BaseModel):

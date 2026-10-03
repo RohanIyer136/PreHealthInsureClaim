@@ -1,0 +1,789 @@
+{
+  "schema_version": "1.0",
+  "disclaimer": "Fictional synthetic prototype-only configuration; not a real insurer policy, payment promise, or clinical guideline.",
+  "products": [
+    {
+      "product_id": "P1_ESSENTIAL",
+      "display_name": "Fictional Essential",
+      "effective_date": "2025-01-01",
+      "expiry_date": "2027-12-31",
+      "coverage_status": "ACTIVE",
+      "terms": {
+        "source_id": "P1_ESSENTIAL@1.0",
+        "synthetic": true,
+        "fictional": true,
+        "prototype_only": true,
+        "category_benefits": {
+          "routine_outpatient": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "advanced_imaging": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "elective_surgery": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "emergency_care": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "inpatient_admission": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note",
+              "hospital_summary"
+            ]
+          },
+          "rehabilitation": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "physiotherapy",
+              "utilization_statement"
+            ],
+            "limit": {
+              "amount": 6,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "specialty_medication": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note",
+              "specialist_assessment"
+            ]
+          },
+          "maternity": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "dental": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 2,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "chronic_care": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 12,
+              "unit": "months",
+              "period_months": 12
+            }
+          }
+        },
+        "excluded_service_intents": [
+          "cosmetic",
+          "dental_implant"
+        ],
+        "emergency_authorization_timing": "expedited_review"
+      }
+    },
+    {
+      "product_id": "P2_STANDARD",
+      "display_name": "Fictional Standard",
+      "effective_date": "2025-01-01",
+      "expiry_date": "2027-12-31",
+      "coverage_status": "ACTIVE",
+      "terms": {
+        "source_id": "P2_STANDARD@1.0",
+        "synthetic": true,
+        "fictional": true,
+        "prototype_only": true,
+        "category_benefits": {
+          "routine_outpatient": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "advanced_imaging": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "elective_surgery": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "emergency_care": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "inpatient_admission": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note",
+              "hospital_summary"
+            ]
+          },
+          "rehabilitation": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "physiotherapy",
+              "utilization_statement"
+            ],
+            "limit": {
+              "amount": 12,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "specialty_medication": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note",
+              "specialist_assessment"
+            ]
+          },
+          "maternity": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "dental": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 2,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "chronic_care": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 12,
+              "unit": "months",
+              "period_months": 12
+            }
+          }
+        },
+        "excluded_service_intents": [
+          "cosmetic",
+          "dental_implant"
+        ],
+        "emergency_authorization_timing": "retrospective_review"
+      }
+    },
+    {
+      "product_id": "P3_PREMIUM",
+      "display_name": "Fictional Premium",
+      "effective_date": "2025-01-01",
+      "expiry_date": "2027-12-31",
+      "coverage_status": "ACTIVE",
+      "terms": {
+        "source_id": "P3_PREMIUM@1.0",
+        "synthetic": true,
+        "fictional": true,
+        "prototype_only": true,
+        "category_benefits": {
+          "routine_outpatient": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "advanced_imaging": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "elective_surgery": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "emergency_care": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "inpatient_admission": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note",
+              "hospital_summary"
+            ]
+          },
+          "rehabilitation": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "physiotherapy",
+              "utilization_statement"
+            ],
+            "limit": {
+              "amount": 24,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "specialty_medication": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note",
+              "specialist_assessment"
+            ]
+          },
+          "maternity": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "dental": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 2,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "chronic_care": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 12,
+              "unit": "months",
+              "period_months": 12
+            }
+          }
+        },
+        "excluded_service_intents": [
+          "cosmetic",
+          "dental_implant"
+        ],
+        "emergency_authorization_timing": "retrospective_review"
+      }
+    },
+    {
+      "product_id": "P4_FAMILY_PLUS",
+      "display_name": "Fictional Family Plus",
+      "effective_date": "2025-01-01",
+      "expiry_date": "2027-12-31",
+      "coverage_status": "ACTIVE",
+      "terms": {
+        "source_id": "P4_FAMILY_PLUS@1.0",
+        "synthetic": true,
+        "fictional": true,
+        "prototype_only": true,
+        "category_benefits": {
+          "routine_outpatient": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "advanced_imaging": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "elective_surgery": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "emergency_care": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "inpatient_admission": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note",
+              "hospital_summary"
+            ]
+          },
+          "rehabilitation": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "physiotherapy",
+              "utilization_statement"
+            ],
+            "limit": {
+              "amount": 16,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "specialty_medication": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note",
+              "specialist_assessment"
+            ]
+          },
+          "maternity": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "dental": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 2,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "chronic_care": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 12,
+              "unit": "months",
+              "period_months": 12
+            }
+          }
+        },
+        "excluded_service_intents": [
+          "cosmetic",
+          "dental_implant"
+        ],
+        "emergency_authorization_timing": "retrospective_review"
+      }
+    },
+    {
+      "product_id": "P5_CHRONIC_CARE",
+      "display_name": "Fictional Chronic Care",
+      "effective_date": "2025-01-01",
+      "expiry_date": "2027-12-31",
+      "coverage_status": "ACTIVE",
+      "terms": {
+        "source_id": "P5_CHRONIC_CARE@1.0",
+        "synthetic": true,
+        "fictional": true,
+        "prototype_only": true,
+        "category_benefits": {
+          "routine_outpatient": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "advanced_imaging": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "elective_surgery": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "emergency_care": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "inpatient_admission": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note",
+              "hospital_summary"
+            ]
+          },
+          "rehabilitation": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "physiotherapy",
+              "utilization_statement"
+            ],
+            "limit": {
+              "amount": 18,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "specialty_medication": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note",
+              "specialist_assessment"
+            ]
+          },
+          "maternity": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "dental": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 2,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "chronic_care": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 12,
+              "unit": "months",
+              "period_months": 12
+            }
+          }
+        },
+        "excluded_service_intents": [
+          "cosmetic",
+          "dental_implant"
+        ],
+        "emergency_authorization_timing": "retrospective_review"
+      }
+    },
+    {
+      "product_id": "P6_RESTRICTED_LEGACY",
+      "display_name": "Fictional Restricted Legacy",
+      "effective_date": "2025-01-01",
+      "expiry_date": "2027-12-31",
+      "coverage_status": "ACTIVE",
+      "terms": {
+        "source_id": "P6_RESTRICTED_LEGACY@0.9",
+        "synthetic": true,
+        "fictional": true,
+        "prototype_only": true,
+        "category_benefits": {
+          "routine_outpatient": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "advanced_imaging": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "elective_surgery": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "emergency_care": {
+            "included": true,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "inpatient_admission": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "clinical_note",
+              "hospital_summary"
+            ]
+          },
+          "rehabilitation": {
+            "included": true,
+            "prior_authorization": true,
+            "required_document_roles": [
+              "physiotherapy",
+              "utilization_statement"
+            ],
+            "limit": {
+              "amount": 4,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "specialty_medication": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note",
+              "specialist_assessment"
+            ]
+          },
+          "maternity": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ]
+          },
+          "dental": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 2,
+              "unit": "visits",
+              "period_months": 12
+            }
+          },
+          "chronic_care": {
+            "included": false,
+            "prior_authorization": false,
+            "required_document_roles": [
+              "clinical_note"
+            ],
+            "limit": {
+              "amount": 12,
+              "unit": "months",
+              "period_months": 12
+            }
+          }
+        },
+        "excluded_service_intents": [
+          "cosmetic",
+          "dental_implant"
+        ],
+        "emergency_authorization_timing": "retrospective_review"
+      }
+    }
+  ],
+  "services": [
+    {
+      "service_code": "IMG-MRI-LS",
+      "category": "advanced_imaging",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": [
+        "physiotherapy"
+      ]
+    },
+    {
+      "service_code": "SURG-CHOLECYSTECTOMY",
+      "category": "elective_surgery",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": [
+        "diagnostic_imaging"
+      ]
+    },
+    {
+      "service_code": "ONC-LUNG-SYSTEMIC-REQUEST",
+      "category": "specialty_medication",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": [
+        "pathology",
+        "biomarker",
+        "specialist_assessment"
+      ]
+    },
+    {
+      "service_code": "ONC-COLORECTAL-SYSTEMIC-REQUEST",
+      "category": "specialty_medication",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": [
+        "pathology",
+        "specialist_assessment"
+      ]
+    },
+    {
+      "service_code": "NEURO-MS-SPECIALTY-REQUEST",
+      "category": "specialty_medication",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": [
+        "specialist_assessment"
+      ]
+    },
+    {
+      "service_code": "REHAB-KNEE-COURSE",
+      "category": "rehabilitation",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "OUTPATIENT-FRACTURE-CONSERVATIVE",
+      "category": "routine_outpatient",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "OUTPATIENT-RESPIRATORY-ROUTINE",
+      "category": "routine_outpatient",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "SURG-COSMETIC-RHINOPLASTY",
+      "category": "elective_surgery",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "SURG-FACIAL-RECONSTRUCTION",
+      "category": "elective_surgery",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": [
+        "diagnostic_imaging"
+      ]
+    },
+    {
+      "service_code": "MATERNITY-ANTENATAL-ROUTINE",
+      "category": "maternity",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "DENTAL-IMPLANT",
+      "category": "dental",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "CHRONIC-CKD-PROGRAM",
+      "category": "chronic_care",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "EMERGENCY-TRAUMA-FIXATION",
+      "category": "emergency_care",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "EMERGENCY-APPENDECTOMY",
+      "category": "emergency_care",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "EMERGENCY-PCI-PATHWAY",
+      "category": "emergency_care",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "EMERGENCY-STROKE-PATHWAY",
+      "category": "emergency_care",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "EMERGENCY-SEPSIS-ADMISSION",
+      "category": "emergency_care",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": [
+        "hospital_summary"
+      ]
+    },
+    {
+      "service_code": "EMERGENCY-MATERNITY-PATHWAY",
+      "category": "emergency_care",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": [
+        "hospital_summary"
+      ]
+    }
+  ]
+}
