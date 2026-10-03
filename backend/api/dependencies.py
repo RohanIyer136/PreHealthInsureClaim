@@ -25,14 +25,14 @@ class _DocumentRequirements(BaseModel):
     required_supporting_document_types: list[DocumentType]
 
 
-def build_local_workspace_service() -> DecisionWorkspaceService:
+def build_local_workspace_service(*, timeout: float = 120.0) -> DecisionWorkspaceService:
     requirements = _DocumentRequirements.model_validate_json(
         (ROOT / "knowledge/insurance/demo_mri_policy.json").read_text(encoding="utf-8")
     )
     return DecisionWorkspaceService(
-        evidence_extractor=EvidenceExtractor(OllamaEvidenceProvider()),
+        evidence_extractor=EvidenceExtractor(OllamaEvidenceProvider(timeout=timeout)),
         clinical_retriever=JsonClinicalKnowledgeRetriever.from_directory(ROOT / "knowledge/clinical"),
-        clinical_reasoner=GroundedClinicalReasoner(OllamaClinicalReasoningProvider()),
+        clinical_reasoner=GroundedClinicalReasoner(OllamaClinicalReasoningProvider(timeout=timeout)),
         deterministic_evaluator=DefaultDeterministicEvaluator(
             requirements.required_supporting_document_types, requirements.knowledge_id,
         ),

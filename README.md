@@ -28,3 +28,22 @@ Errors use `{"error": {"code": "...", "message": "..."}}`: unknown cases 404,
 invalid parameters/workflow inputs 422, rejected AI output 502, local AI failure
 503, and internal/source-data failures 500. Public messages never include exception
 causes, provider output, or filesystem paths. No approval/rejection endpoints exist.
+
+## Review Interface
+
+Keep the backend command above running. In a second terminal:
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Open the Vite URL (normally `http://127.0.0.1:5173`). `VITE_API_BASE_URL`
+defaults to `http://127.0.0.1:8000`; set it in `frontend/.env.local` for another
+local API URL. If Vite chooses another port, add that origin to backend
+`CORS_ORIGINS`. Analysis can take several minutes; queue and document browsing
+do not invoke Ollama. Final authorization remains with the human reviewer.
+
+Offline frontend checks: `npm test`, `npm run typecheck`, `npm run build`.
+The frontend tests mock HTTP and require neither FastAPI nor Ollama.

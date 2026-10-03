@@ -212,3 +212,41 @@ def test_default_http_transport_without_network_or_credentials(monkeypatch):
 def test_invalid_timeout_is_rejected(timeout):
     with pytest.raises(ValueError, match="finite and positive"):
         OllamaEvidenceProvider(timeout=timeout, client=FakeClient())
+
+
+@pytest.mark.parametrize("excerpt,valid", [
+    ("Back and leg symptoms remain with limited improvement.", False),
+    ("back and leg symptoms remain with limited improvement.", True),
+])
+def test_mid_sentence_quote_requires_exact_source_capitalization(excerpt, valid, caplog):
+    content = "Exercise and home program were followed; back and leg symptoms remain with limited improvement."
+    payload = response(evidence_payload(
+        concept="SYMPTOM_COURSE", value="Symptoms remain with limited improvement",
+        excerpt=excerpt,
+    ))
+    client = FakeClient(ollama_response(json.dumps(payload)))
+    provider = OllamaEvidenceProvider(client=client)
+    # Invalid quotes are never repaired by the adapter to force grounding.
+    assert provider.extract(request(content)) == payload
+    if valid:
+        items = EvidenceExtractor(provider).extract(make_document(content))
+        assert items[0].excerpt == excerpt
+    else:
+        with pytest.raises(EvidenceExtractionError, match="source excerpt not found"):
+            EvidenceExtractor(provider).extract(make_document(content))
+        assert "category=literal_excerpt_not_found" in caplog.text
+        assert excerpt not in caplog.text
+
+
+def test_literal_excerpt_guidance_is_in_instructions_and_ollama_schema():
+    client = FakeClient(ollama_response('{"evidence": []}'))
+    provider = OllamaEvidenceProvider(client=client)
+    provider.extract(request())
+    payload = client.calls[0][1]
+    description = payload["format"]["$defs"]["_ProviderEvidence"]["properties"]["excerpt"]["description"]
+    assert "exact contiguous substring" in description
+    assert "capitalization, punctuation, and whitespace" in description
+    assert "original lowercase start" in description
+    system = payload["messages"][0]["content"]
+    assert "do not capitalize it or rewrite it as a standalone sentence" in system
+    assert "must not introduce a clinical fact" in system.lower()

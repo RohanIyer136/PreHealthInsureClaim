@@ -237,7 +237,8 @@ def test_api_contract_and_production_boundaries():
                                for name in imports)
 
 
-def test_local_service_wiring_uses_existing_components_without_inference(monkeypatch):
+@pytest.mark.parametrize("timeout", [120.0, 300.0])
+def test_local_service_wiring_uses_existing_components_without_inference(monkeypatch, timeout):
     from backend.ai.clinical_reasoner import GroundedClinicalReasoner
     from backend.ai.evidence_extractor import EvidenceExtractor
     from backend.knowledge.clinical_retriever import JsonClinicalKnowledgeRetriever
@@ -246,7 +247,7 @@ def test_local_service_wiring_uses_existing_components_without_inference(monkeyp
     monkeypatch.setenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434")
     monkeypatch.setenv("OLLAMA_MODEL", "qwen3:8b")
     # The original builder only constructs adapters; guarded transports remain unused.
-    service = build_local_workspace_service()
+    service = build_local_workspace_service(timeout=timeout)
     assert isinstance(service._evidence_extractor, EvidenceExtractor)
     assert isinstance(service._clinical_reasoner, GroundedClinicalReasoner)
     assert isinstance(service._clinical_retriever, JsonClinicalKnowledgeRetriever)
@@ -258,3 +259,4 @@ def test_local_service_wiring_uses_existing_components_without_inference(monkeyp
         assert isinstance(provider, provider_type)
         assert provider.base_url == "http://127.0.0.1:11434"
         assert provider.model == "qwen3:8b"
+        assert provider.timeout == timeout
