@@ -15,6 +15,8 @@ from backend.knowledge.clinical_retriever import JsonClinicalKnowledgeRetriever
 from backend.models.schemas import DocumentType
 from backend.repositories.synthetic_cases import CaseSource, SyntheticCaseRepository
 from backend.services.decision_workspace import DecisionWorkspaceService, DefaultDeterministicEvaluator
+from backend.services.execution_plan import DeterministicRoutingControl, ServiceCapabilities, ServiceFamily
+from backend.services.execution_router import ExecutionRouter
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -35,7 +37,14 @@ def build_local_workspace_service(*, timeout: float = 120.0) -> DecisionWorkspac
         clinical_reasoner=GroundedClinicalReasoner(OllamaClinicalReasoningProvider(timeout=timeout)),
         deterministic_evaluator=DefaultDeterministicEvaluator(
             requirements.required_supporting_document_types, requirements.knowledge_id,
+            document_requirement_service_codes=("IMG-MRI-LS",),
         ),
+        execution_router=ExecutionRouter((ServiceCapabilities(
+            service_code="IMG-MRI-LS", family=ServiceFamily.ORTHOPEDICS_TRAUMA,
+            clinical_reasoning=True,
+        ),), deterministic_control=DeterministicRoutingControl(terminal_criterion_ids=(
+            "policy_active_at_submission", "requested_service_category_covered",
+        ))),
         workspace_id_factory=lambda: str(uuid4()),
         event_id_factory=lambda: str(uuid4()),
         clock=lambda: datetime.now(timezone.utc),

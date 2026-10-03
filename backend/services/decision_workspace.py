@@ -28,6 +28,8 @@ from backend.rules.deterministic import (
     evaluate_submitted_document_existence,
     evaluate_submitted_document_patient_consistency,
 )
+from backend.services.execution_plan import Capability
+from backend.services.execution_router import ExecutionRouter
 
 
 class DecisionWorkspaceError(ValueError):
@@ -76,9 +78,15 @@ class DefaultDeterministicEvaluator:
         self,
         required_document_types: Iterable[DocumentType],
         document_requirement_source: str,
+        *,
+        document_requirement_service_codes: Iterable[str] | None = None,
     ) -> None:
         self._required_document_types = tuple(required_document_types)
         self._document_requirement_source = document_requirement_source
+        self._document_requirement_service_codes = (
+            frozenset(document_requirement_service_codes)
+            if document_requirement_service_codes is not None else None
+        )
 
     def evaluate(
         self,
@@ -94,7 +102,10 @@ class DefaultDeterministicEvaluator:
             evaluate_required_document_types(
                 authorization,
                 documents,
-                self._required_document_types,
+                self._required_document_types if (
+                    self._document_requirement_service_codes is None
+                    or authorization.requested_service.service_code in self._document_requirement_service_codes
+                ) else (),
                 self._document_requirement_source,
             ),
         ]
@@ -134,6 +145,7 @@ class DecisionWorkspaceService:
         workspace_id_factory: Callable[[], str],
         event_id_factory: Callable[[], str],
         clock: Callable[[], datetime],
+        execution_router: ExecutionRouter | None = None,
     ) -> None:
         self._evidence_extractor = evidence_extractor
         self._clinical_retriever = clinical_retriever
@@ -142,6 +154,7 @@ class DecisionWorkspaceService:
         self._workspace_id_factory = workspace_id_factory
         self._event_id_factory = event_id_factory
         self._clock = clock
+        self._execution_router = execution_router
 
     def build(
         self,
@@ -171,28 +184,45 @@ class DecisionWorkspaceService:
             )
         )
 
-        evidence = self._extract_evidence(submitted_documents)
+        plan = None
+        knowledge = None
+        if self._execution_router is not None:
+            plan = self._execution_router.plan(authorization.requested_service, insurance_results)
+            if Capability.CLINICAL_RETRIEVAL in plan.steps:
+                knowledge = self._clinical_retriever.retrieve(authorization.requested_service)
+                plan = self._execution_router.resolve_knowledge(plan, len(knowledge))
+            audit_trail.append(self._audit_event("EXECUTION_PLANNED", plan.model_dump_json()))
+
+        extract = plan is None or Capability.EVIDENCE_EXTRACTION in plan.steps
+        evidence = self._extract_evidence(submitted_documents) if extract else []
         audit_trail.append(
             self._audit_event(
-                "EVIDENCE_EXTRACTION_COMPLETED",
-                f"Extracted {len(evidence)} evidence items from "
-                f"{len(submitted_documents)} submitted documents.",
+                "EVIDENCE_EXTRACTION_COMPLETED" if extract else "EVIDENCE_EXTRACTION_SKIPPED",
+                (f"Extracted {len(evidence)} evidence items from "
+                 f"{len(submitted_documents)} submitted documents.") if extract else
+                "Extraction was not required by the execution plan; no model was invoked.",
             )
         )
 
-        knowledge = self._clinical_retriever.retrieve(
-            authorization.requested_service
-        )
+        retrieve = plan is None or Capability.CLINICAL_RETRIEVAL in plan.steps
+        if knowledge is None:
+            knowledge = self._clinical_retriever.retrieve(
+                authorization.requested_service
+            ) if retrieve else []
         audit_trail.append(
             self._audit_event(
-                "CLINICAL_KNOWLEDGE_RETRIEVED",
-                f"Retrieved {len(knowledge)} matching clinical knowledge artifacts.",
+                "CLINICAL_KNOWLEDGE_RETRIEVED" if retrieve else "CLINICAL_RETRIEVAL_SKIPPED",
+                f"Retrieved {len(knowledge)} matching clinical knowledge artifacts." if retrieve else
+                "Clinical retrieval was not required by the execution plan.",
             )
         )
 
         conflicts: list[str] = []
         clinical_results: list[CriterionResult] = []
-        if len(knowledge) == 1:
+        if plan is not None and plan.requires_escalation:
+            conflicts.extend(plan.reasons)
+        reason = plan is None or Capability.CLINICAL_REASONING in plan.steps
+        if reason and len(knowledge) == 1:
             clinical_results = self._clinical_reasoner.reason(evidence, knowledge[0])
             audit_trail.append(
                 self._audit_event(
@@ -200,12 +230,12 @@ class DecisionWorkspaceService:
                     f"Completed {len(clinical_results)} clinical criterion evaluations.",
                 )
             )
-        elif not knowledge:
+        elif retrieve and not knowledge:
             conflicts.append(
                 "No clinical knowledge artifact matches the requested service; "
                 "expert review is required."
             )
-        else:
+        elif retrieve and len(knowledge) > 1:
             identifiers = ", ".join(item.knowledge_id for item in knowledge)
             conflicts.append(
                 "Multiple clinical knowledge artifacts match the requested service "
