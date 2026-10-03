@@ -241,7 +241,7 @@ def test_production_api_payloads_exclude_design_data_and_golden_fields():
 
     with TestClient(create_app()) as client:
         queue = client.get("/api/v1/cases").json()
-        assert len(queue) == 19
+        assert len(queue) == 55
         for case in queue:
             assert case["authorization_id"].startswith("PA-")
             detail = client.get(f'/api/v1/cases/{case["authorization_id"]}')

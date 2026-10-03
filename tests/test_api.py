@@ -59,7 +59,7 @@ def test_case_browsing_loads_real_sources_without_ai_or_golden_fields():
         result = client.get("/api/v1/cases")
         assert result.status_code == 200
         cases = result.json()
-        assert len(cases) == 19
+        assert len(cases) == 55
         assert [case["authorization_id"] for case in cases] == sorted(
             case["authorization_id"] for case in cases
         )

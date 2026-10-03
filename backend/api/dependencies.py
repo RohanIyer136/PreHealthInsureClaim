@@ -15,7 +15,7 @@ from backend.knowledge.clinical_retriever import JsonClinicalKnowledgeRetriever
 from backend.models.schemas import DocumentType
 from backend.repositories.synthetic_cases import CaseSource, SyntheticCaseRepository
 from backend.services.decision_workspace import DecisionWorkspaceService
-from backend.services.execution_plan import DeterministicRoutingControl, ServiceCapabilities, ServiceFamily
+from backend.services.execution_plan import DeterministicRoutingControl
 from backend.services.execution_router import ExecutionRouter
 from backend.runtime.insurance_config import SyntheticInsuranceCatalog
 from backend.services.insurance_evaluator import DeterministicInsuranceEvaluator
@@ -43,10 +43,8 @@ def build_local_workspace_service(*, timeout: float = 120.0) -> DecisionWorkspac
             document_requirement_service_codes=("IMG-MRI-LS",),
             service_requirements=insurance_catalog.services,
         ),
-        execution_router=ExecutionRouter((ServiceCapabilities(
-            service_code="IMG-MRI-LS", family=ServiceFamily.ORTHOPEDICS_TRAUMA,
-            clinical_reasoning=True,
-        ),), deterministic_control=DeterministicRoutingControl(terminal_criterion_ids=(
+        execution_router=ExecutionRouter(insurance_catalog.capabilities,
+                                        deterministic_control=DeterministicRoutingControl(terminal_criterion_ids=(
             "policy_active_at_submission", "requested_service_category_covered",
             "policy_active_on_service_date", "service_intent_not_excluded",
         ))),

@@ -34,6 +34,10 @@ require expert review without invented clinical criteria. Insurance reasoning an
 benefit utilization are declared future capabilities, not implemented engines.
 Lumbar PT documentation requirements apply only to the configured lumbar service.
 Other document requirements need deliberate future configuration.
+The existing case repository now serves 55 synthetic cases: the original 19 plus
+36 source-only runtime cases described in [synthetic_data/RUNTIME_CASES.md](synthetic_data/RUNTIME_CASES.md).
+Administrative-only processing and unavailable clinical capabilities are explicitly
+recorded in workspaces; only the existing lumbar service enables clinical AI.
 
 `DecisionWorkspaceService(execution_router=...)` enables this routing; the production
 builder always supplies it. Existing injected setups without a router retain their
@@ -41,7 +45,8 @@ original full-pipeline behavior. No final authorization decision is generated.
 `HUMAN_REVIEW` in a plan means exceptional escalation, not the normal final expert
 decision. Successful preparation plans omit that capability; every workspace still
 requires a human expert for the final authorization decision.
-Design-only multidomain specifications are not runtime configuration. Frozen demo
+Design-only multidomain specifications are not runtime configuration; their separate
+source-only runtime copies contain no evaluation targets. Frozen demo
 workspaces remain historical saved outputs, not regenerated routed outputs.
 
 `CORS_ORIGINS` is a comma-separated allowlist, defaulting to

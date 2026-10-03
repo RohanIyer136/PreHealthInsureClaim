@@ -5,7 +5,7 @@ are fictional, synthetic, project-authored and prototype-only. They are not real
 insurer contracts, clinical guidance, payment promises, or regulatory obligations.
 No golden answers, case IDs, readiness labels, or model outputs are stored here.
 
-`synthetic_insurance.json` contains six product templates and 19 explicit service
+`synthetic_insurance.json` contains six product templates and 30 explicit service
 document configurations. The broad imaging PT requirement is scoped to IMG-MRI-LS,
 not every imaging request. Templates bind to caller-supplied policy/member IDs via
 `SyntheticProduct.for_member`; that does not verify independent member eligibility.
@@ -24,7 +24,9 @@ unchanged legacy deterministic rules. If only one extension is present, the eval
 requires review rather than guessing or silently falling back. Missing service
 requirements and unknown benefit categories likewise require review. Structured
 terms control category-specific findings; legacy summary fields are not substitutes.
-No additional cases are registered with the API, and no new clinical routes are enabled.
+The existing repository also loads `synthetic_data/runtime_cases.json`; 36 additional
+synthetic source cases are registered with the same API. Only the existing lumbar
+clinical scope is enabled. See `synthetic_data/RUNTIME_CASES.md` for source provenance.
 
 Supported findings use existing CriterionResult statuses and insurance provenance:
 policy_active_on_service_date, requested_service_category_covered,
@@ -35,19 +37,20 @@ are configured terminal; missing documents normally allow useful clinical prepar
 Emergency timing creates an exceptional review finding, never treatment selection,
 permission to delay care, or a legal/compliance conclusion.
 
-Administrative configuration now covers ORTH-01/02/03/04/06, SURG-01/03/06,
-ONC-03/05/06, ACUTE-01/04/06, MED-01/02/05/06 and SPEC-01/02/03/04/06.
-SURG-02 and ONC-04 share their paired service configuration as well.
-The remaining service requirements need explicit configuration and safely escalate;
-they are not silently declared complete. These are insurance preparation capabilities,
-not claims that the 36 design records are executable authorization cases.
+Administrative configuration covers all promoted service codes with category-level
+document requirements and represented service-specific additions. Unsupported
+clinical services still require human review: basic document completeness is not
+clinical sufficiency or medical necessity. Capability profiles separate a requirement
+for clinical knowledge from availability of clinical execution. These are insurance
+preparation capabilities, not new medical-necessity knowledge.
 
 Deliberate limitations:
-- Source design records are not materialized at runtime. Explicit service codes,
-  authoritative role metadata, and member/policy context need a future source adapter.
+- Runtime records are a checked-in source-only snapshot; production never reads design
+  records. Real source adapters and authoritative member/role verification remain future work.
 - SPEC-01/02 supply visit counts but no dated ledger period. Execution requires an
-  explicit ledger interval, matching units and policy period; tests provide clearly
-  synthetic periods. No period is inferred from note prose or the developer clock.
+  explicit ledger interval, matching units and policy period. Promoted records declare
+  a new synthetic 2026 ledger period, documented in RUNTIME_CASES.md. No evaluator
+  period is inferred from note prose or the developer clock.
 - Clinical disease activity, treatment response, marker thresholds, medical necessity,
   or reconstructive eligibility cannot be established from document presence.
   MED-06 detects a missing specialist role, not missing clinical facts by parsing prose.

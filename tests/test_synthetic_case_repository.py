@@ -28,7 +28,7 @@ def make_repository(**overrides):
 def test_real_source_data_loads_and_resolves_all_cases():
     repository = SyntheticCaseRepository.from_directory(ROOT / "synthetic_data")
     cases = repository.list_cases()
-    assert len(cases) == 19
+    assert len(cases) == 55
     assert [case.authorization_id for case in cases] == sorted(
         case.authorization_id for case in cases
     )

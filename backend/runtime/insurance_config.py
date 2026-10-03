@@ -8,6 +8,7 @@ from pydantic import Field, model_validator
 
 from backend.models.insurance import InsuranceModel, ServiceDocumentRequirements, StructuredInsuranceTerms
 from backend.models.schemas import CoverageStatus, InsurancePolicy
+from backend.services.execution_plan import ServiceCapabilities
 
 
 class SyntheticProduct(InsuranceModel):
@@ -42,6 +43,7 @@ class SyntheticInsuranceCatalog(InsuranceModel):
     disclaimer: str = Field(min_length=1)
     products: list[SyntheticProduct] = Field(min_length=1)
     services: list[ServiceDocumentRequirements] = Field(min_length=1)
+    capabilities: list[ServiceCapabilities] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def unique_configuration(self):
@@ -49,6 +51,9 @@ class SyntheticInsuranceCatalog(InsuranceModel):
             raise ValueError("Duplicate runtime product IDs")
         if len({item.service_code for item in self.services}) != len(self.services):
             raise ValueError("Duplicate runtime service codes")
+        codes = {item.service_code for item in self.capabilities}
+        if len(codes) != len(self.capabilities) or codes != {item.service_code for item in self.services}:
+            raise ValueError("Runtime capability and service configuration codes differ")
         return self
 
     @classmethod

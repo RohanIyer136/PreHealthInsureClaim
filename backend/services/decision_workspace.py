@@ -221,6 +221,11 @@ class DecisionWorkspaceService:
         clinical_results: list[CriterionResult] = []
         if plan is not None and plan.requires_escalation:
             conflicts.extend(plan.reasons)
+        if plan is not None and Capability.CLINICAL_REASONING not in plan.steps:
+            audit_trail.append(self._audit_event(
+                "ADMINISTRATIVE_PREPARATION_ONLY",
+                "Structured insurance preparation only; clinical medical necessity was not evaluated. Final authorization remains with a human expert.",
+            ))
         reason = plan is None or Capability.CLINICAL_REASONING in plan.steps
         if reason and len(knowledge) == 1:
             clinical_results = self._clinical_reasoner.reason(evidence, knowledge[0])

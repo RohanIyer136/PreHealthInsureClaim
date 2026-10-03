@@ -35,6 +35,7 @@ class ServiceCapabilities(BaseModel):
     clinical_reasoning: bool
     insurance_reasoning: bool = False
     benefit_utilization: bool = False
+    clinical_knowledge_required: bool = False
 
 
 class DeterministicRoutingControl(BaseModel):

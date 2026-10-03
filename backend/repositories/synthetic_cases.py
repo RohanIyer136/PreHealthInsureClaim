@@ -9,6 +9,8 @@ from pydantic import BaseModel, TypeAdapter, ValidationError
 from backend.models.schemas import (
     AuthorizationRequest, ClinicalDocument, InsurancePolicy, Patient,
 )
+from backend.runtime.cases import RuntimeCaseDataset
+from backend.runtime.insurance_config import SyntheticInsuranceCatalog
 
 
 class CaseRepositoryError(ValueError):
@@ -69,11 +71,40 @@ class SyntheticCaseRepository:
             except (OSError, ValidationError) as exc:
                 raise CaseRepositoryError("Synthetic source data could not be loaded.") from exc
 
-        return cls(
-            load("patients.json", Patient), load("policies.json", InsurancePolicy),
-            load("authorization_requests.json", AuthorizationRequest),
-            load("clinical_notes.json", ClinicalDocument),
-        )
+        patients, policies = load("patients.json", Patient), load("policies.json", InsurancePolicy)
+        authorizations = load("authorization_requests.json", AuthorizationRequest)
+        documents = load("clinical_notes.json", ClinicalDocument)
+        runtime_path = directory / "runtime_cases.json"
+        if runtime_path.exists():
+            try:
+                runtime = RuntimeCaseDataset.model_validate_json(runtime_path.read_text(encoding="utf-8"))
+                catalog = SyntheticInsuranceCatalog.from_file(
+                    Path(__file__).resolve().parents[1] / "runtime/synthetic_insurance.json"
+                )
+                products = {item.product_id: item for item in catalog.products}
+                services = {item.service_code: item for item in catalog.services}
+                bound_policies = [products[item.product_id].for_member(
+                    policy_id=item.policy_id, member_id=item.member_id,
+                ) for item in runtime.policies]
+                for request in runtime.authorizations:
+                    if services[request.requested_service.service_code].category != request.requested_service.category:
+                        raise ValueError("Runtime service category mismatch")
+                patients.extend(runtime.patients)
+                policies.extend(bound_policies)
+                authorizations.extend(runtime.authorizations)
+                documents.extend(runtime.documents)
+            except (OSError, ValueError, KeyError) as exc:
+                raise CaseRepositoryError("Synthetic runtime source configuration could not be loaded.") from exc
+        repository = cls(patients, policies, authorizations, documents)
+        if runtime_path.exists():
+            for request in runtime.authorizations:
+                case = repository.get_case(request.authorization_id)
+                if (case.patient.policy_id != case.policy.policy_id
+                        or case.patient.member_id != case.policy.member_id
+                        or any(doc.patient_id != case.patient.patient_id for doc in case.documents)
+                        or set(request.insurance_context.document_roles) != set(request.submitted_document_ids)):
+                    raise CaseRepositoryError("Synthetic runtime source references are inconsistent.")
+        return repository
 
     def _authorization(self, authorization_id: str) -> AuthorizationRequest:
         try:

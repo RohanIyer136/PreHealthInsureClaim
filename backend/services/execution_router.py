@@ -51,7 +51,7 @@ class ExecutionRouter:
         if terminal:
             return ExecutionPlan(
                 **base, steps=(*checks, *((Capability.HUMAN_REVIEW,) if escalation else ())),
-                deferred=_CLINICAL if profile and profile.clinical_reasoning else (),
+                deferred=_CLINICAL if profile and (profile.clinical_reasoning or profile.clinical_knowledge_required) else (),
                 reasons=(*finding_reasons, "Configured terminal deterministic finding; clinical preparation deferred."),
                 requires_escalation=escalation,
             )
@@ -59,6 +59,12 @@ class ExecutionRouter:
             return ExecutionPlan(
                 **base, steps=(*checks, Capability.HUMAN_REVIEW),
                 reasons=("No service capability configuration; expert review is required.",),
+                requires_escalation=True,
+            )
+        if profile.clinical_knowledge_required and not profile.clinical_reasoning:
+            return ExecutionPlan(
+                **base, steps=(*checks, Capability.HUMAN_REVIEW), deferred=_CLINICAL,
+                reasons=("Clinical knowledge/capability for the requested service is unavailable; expert review is required.",),
                 requires_escalation=True,
             )
         unavailable = tuple(capability for required, capability in (

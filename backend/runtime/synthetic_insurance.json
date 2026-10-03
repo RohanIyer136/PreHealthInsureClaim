@@ -784,6 +784,314 @@
       "required_document_roles": [
         "hospital_summary"
       ]
+    },
+    {
+      "service_code": "SURG-KNEE-ARTHROPLASTY",
+      "category": "elective_surgery",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "SURG-INGUINAL-HERNIA",
+      "category": "elective_surgery",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "GI-URGENT-ENDOSCOPY",
+      "category": "inpatient_admission",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "ONC-BREAST-BIOPSY",
+      "category": "elective_surgery",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "ONC-BREAST-SURGERY",
+      "category": "elective_surgery",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "CARDIO-CORONARY-ANGIOGRAPHY",
+      "category": "elective_surgery",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "CARDIO-PACEMAKER-REQUEST",
+      "category": "elective_surgery",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "ADMISSION-DKA-HIGH-ACUITY",
+      "category": "inpatient_admission",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "ADMISSION-PNEUMONIA",
+      "category": "inpatient_admission",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "ADMISSION-PNEUMONIA-HIGH-ACUITY",
+      "category": "inpatient_admission",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    },
+    {
+      "service_code": "SURG-CATARACT",
+      "category": "elective_surgery",
+      "source_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1",
+      "required_document_roles": []
+    }
+  ],
+  "capabilities": [
+    {
+      "service_code": "IMG-MRI-LS",
+      "family": "ORTHOPEDICS_TRAUMA",
+      "clinical_reasoning": true,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "EMERGENCY-TRAUMA-FIXATION",
+      "family": "ORTHOPEDICS_TRAUMA",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "OUTPATIENT-FRACTURE-CONSERVATIVE",
+      "family": "ORTHOPEDICS_TRAUMA",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": false
+    },
+    {
+      "service_code": "SURG-KNEE-ARTHROPLASTY",
+      "family": "ORTHOPEDICS_TRAUMA",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "SURG-FACIAL-RECONSTRUCTION",
+      "family": "ORTHOPEDICS_TRAUMA",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "EMERGENCY-APPENDECTOMY",
+      "family": "SURGERY_GI",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": false
+    },
+    {
+      "service_code": "SURG-CHOLECYSTECTOMY",
+      "family": "SURGERY_GI",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "SURG-INGUINAL-HERNIA",
+      "family": "SURGERY_GI",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "GI-URGENT-ENDOSCOPY",
+      "family": "SURGERY_GI",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "SURG-COSMETIC-RHINOPLASTY",
+      "family": "SURGERY_GI",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": false
+    },
+    {
+      "service_code": "ONC-BREAST-BIOPSY",
+      "family": "ONCOLOGY",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "ONC-BREAST-SURGERY",
+      "family": "ONCOLOGY",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "ONC-COLORECTAL-SYSTEMIC-REQUEST",
+      "family": "ONCOLOGY",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "ONC-LUNG-SYSTEMIC-REQUEST",
+      "family": "ONCOLOGY",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "EMERGENCY-PCI-PATHWAY",
+      "family": "ACUTE_CARDIOVASCULAR_NEUROLOGY",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": false
+    },
+    {
+      "service_code": "CARDIO-CORONARY-ANGIOGRAPHY",
+      "family": "ACUTE_CARDIOVASCULAR_NEUROLOGY",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "CARDIO-PACEMAKER-REQUEST",
+      "family": "ACUTE_CARDIOVASCULAR_NEUROLOGY",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "EMERGENCY-STROKE-PATHWAY",
+      "family": "ACUTE_CARDIOVASCULAR_NEUROLOGY",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": false
+    },
+    {
+      "service_code": "ADMISSION-DKA-HIGH-ACUITY",
+      "family": "ACUTE_CARDIOVASCULAR_NEUROLOGY",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "EMERGENCY-SEPSIS-ADMISSION",
+      "family": "ACUTE_CARDIOVASCULAR_NEUROLOGY",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": false
+    },
+    {
+      "service_code": "OUTPATIENT-RESPIRATORY-ROUTINE",
+      "family": "MEDICAL_INFECTIOUS_CHRONIC",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": false
+    },
+    {
+      "service_code": "ADMISSION-PNEUMONIA",
+      "family": "MEDICAL_INFECTIOUS_CHRONIC",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "ADMISSION-PNEUMONIA-HIGH-ACUITY",
+      "family": "MEDICAL_INFECTIOUS_CHRONIC",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "CHRONIC-CKD-PROGRAM",
+      "family": "MEDICAL_INFECTIOUS_CHRONIC",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": false
+    },
+    {
+      "service_code": "NEURO-MS-SPECIALTY-REQUEST",
+      "family": "MEDICAL_INFECTIOUS_CHRONIC",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "REHAB-KNEE-COURSE",
+      "family": "SPECIAL_BENEFITS",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": true,
+      "clinical_knowledge_required": false
+    },
+    {
+      "service_code": "MATERNITY-ANTENATAL-ROUTINE",
+      "family": "SPECIAL_BENEFITS",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": false
+    },
+    {
+      "service_code": "EMERGENCY-MATERNITY-PATHWAY",
+      "family": "SPECIAL_BENEFITS",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": false
+    },
+    {
+      "service_code": "SURG-CATARACT",
+      "family": "SPECIAL_BENEFITS",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": true
+    },
+    {
+      "service_code": "DENTAL-IMPLANT",
+      "family": "SPECIAL_BENEFITS",
+      "clinical_reasoning": false,
+      "insurance_reasoning": false,
+      "benefit_utilization": false,
+      "clinical_knowledge_required": false
     }
   ]
 }
