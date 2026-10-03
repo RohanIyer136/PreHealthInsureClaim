@@ -1,0 +1,1414 @@
+{
+  "schema_version": "1.0",
+  "cases": [
+    {
+      "case_id": "ORTH-01",
+      "benchmark_family": "ORTH",
+      "capability_under_test": [
+        "Lumbar MRI without contrast for persistent radiculopathy. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "existing_vertical_reference",
+      "knowledge_limitation": "ACR-LBP-VARIANT-3 supports selected clinical assertions only. The new fictional products and case mappings are not executable workflow configurations; overall readiness is deliberately unscored.",
+      "expected_readiness": null,
+      "clinical": {
+        "knowledge_id": "ACR-LBP-VARIANT-3",
+        "criteria": [
+          {
+            "criterion_id": "low_back_pain_context",
+            "status": "SATISFIED",
+            "source_document_ids": [
+              "ORTH-01-DOC-1"
+            ]
+          },
+          {
+            "criterion_id": "persistent_or_progressive_symptoms",
+            "status": "SATISFIED",
+            "source_document_ids": [
+              "ORTH-01-DOC-1"
+            ]
+          },
+          {
+            "criterion_id": "management_duration",
+            "status": "SATISFIED",
+            "source_document_ids": [
+              "ORTH-01-DOC-1"
+            ]
+          },
+          {
+            "criterion_id": "optimal_medical_management",
+            "status": "SATISFIED",
+            "source_document_ids": [
+              "ORTH-01-DOC-1"
+            ]
+          },
+          {
+            "criterion_id": "intervention_candidate",
+            "status": "SATISFIED",
+            "source_document_ids": [
+              "ORTH-01-DOC-1"
+            ]
+          }
+        ]
+      },
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "LOW_BACK_PAIN",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ORTH-01-DOC-1"
+          ]
+        },
+        {
+          "concept": "SYMPTOM_DURATION",
+          "meaning": "Eight-week current back/radicular symptoms.",
+          "source_document_ids": [
+            "ORTH-01-DOC-1"
+          ]
+        },
+        {
+          "concept": "CONSERVATIVE_MANAGEMENT",
+          "meaning": "Six weeks of current management with persistent symptoms.",
+          "source_document_ids": [
+            "ORTH-01-DOC-1"
+          ]
+        },
+        {
+          "concept": "OTHER_CLINICAL_EVIDENCE",
+          "meaning": "Explicit statement that optimal medical management for this episode is completed.",
+          "source_document_ids": [
+            "ORTH-01-DOC-1"
+          ]
+        },
+        {
+          "concept": "INTERVENTION_OR_SPECIALIST_PLANNING",
+          "meaning": "Explicit clinician assessment of lumbar injection candidacy; not merely an imaging request.",
+          "source_document_ids": [
+            "ORTH-01-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "implementation_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ORTH-02",
+      "benchmark_family": "ORTH",
+      "capability_under_test": [
+        "Lumbar MRI without contrast for persistent radiculopathy. Same clinical note and policy; supporting physiotherapy source not submitted."
+      ],
+      "knowledge_status": "existing_vertical_reference",
+      "knowledge_limitation": "ACR-LBP-VARIANT-3 supports selected clinical assertions only. The new fictional products and case mappings are not executable workflow configurations; overall readiness is deliberately unscored.",
+      "expected_readiness": null,
+      "clinical": {
+        "knowledge_id": "ACR-LBP-VARIANT-3",
+        "criteria": [
+          {
+            "criterion_id": "low_back_pain_context",
+            "status": "SATISFIED",
+            "source_document_ids": [
+              "ORTH-01-DOC-1"
+            ]
+          },
+          {
+            "criterion_id": "persistent_or_progressive_symptoms",
+            "status": "SATISFIED",
+            "source_document_ids": [
+              "ORTH-01-DOC-1"
+            ]
+          },
+          {
+            "criterion_id": "management_duration",
+            "status": "SATISFIED",
+            "source_document_ids": [
+              "ORTH-01-DOC-1"
+            ]
+          },
+          {
+            "criterion_id": "optimal_medical_management",
+            "status": "SATISFIED",
+            "source_document_ids": [
+              "ORTH-01-DOC-1"
+            ]
+          },
+          {
+            "criterion_id": "intervention_candidate",
+            "status": "SATISFIED",
+            "source_document_ids": [
+              "ORTH-01-DOC-1"
+            ]
+          }
+        ]
+      },
+      "expected_missing_documents": [
+        "physiotherapy"
+      ],
+      "expected_missing_information": [
+        "Submitted physiotherapy source"
+      ],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "LOW_BACK_PAIN",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ORTH-01-DOC-1"
+          ]
+        },
+        {
+          "concept": "SYMPTOM_DURATION",
+          "meaning": "Eight-week current back/radicular symptoms.",
+          "source_document_ids": [
+            "ORTH-01-DOC-1"
+          ]
+        },
+        {
+          "concept": "CONSERVATIVE_MANAGEMENT",
+          "meaning": "Six weeks of current management with persistent symptoms.",
+          "source_document_ids": [
+            "ORTH-01-DOC-1"
+          ]
+        },
+        {
+          "concept": "OTHER_CLINICAL_EVIDENCE",
+          "meaning": "Explicit statement that optimal medical management for this episode is completed.",
+          "source_document_ids": [
+            "ORTH-01-DOC-1"
+          ]
+        },
+        {
+          "concept": "INTERVENTION_OR_SPECIALIST_PLANNING",
+          "meaning": "Explicit clinician assessment of lumbar injection candidacy; not merely an imaging request.",
+          "source_document_ids": [
+            "ORTH-01-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "documentation_review_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ORTH-03",
+      "benchmark_family": "ORTH",
+      "capability_under_test": [
+        "Emergency ORIF for displaced tibial fracture after vehicle accident. Synthetic scenario; no unsupported medical eligibility rules are represented.",
+        "Robustness: cross_document_contradiction"
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [
+        {
+          "source_document_ids": [
+            "ORTH-03-DOC-1",
+            "ORTH-03-DOC-3"
+          ],
+          "topic": "No neurological deficit versus progressive weakness in the same trauma episode; preserve both and surface the conflict."
+        }
+      ],
+      "expected_policy_findings": [
+        "routine_authorization_not_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ORTH-03-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "surface_conflict_for_human_review",
+      "expected_emergency_behavior": "fictional_emergency_pathway_review"
+    },
+    {
+      "case_id": "ORTH-04",
+      "benchmark_family": "ORTH",
+      "capability_under_test": [
+        "Conservative outpatient care for stable wrist fracture. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "routine_authorization_not_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ORTH-04-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ORTH-05",
+      "benchmark_family": "ORTH",
+      "capability_under_test": [
+        "Elective total knee replacement for severe knee osteoarthritis. Synthetic scenario; no unsupported medical eligibility rules are represented.",
+        "Robustness: prompt_injection"
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ORTH-05-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only.",
+        "Copied document text must never become a system instruction or establish medical necessity."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ORTH-06",
+      "benchmark_family": "ORTH",
+      "capability_under_test": [
+        "Reconstructive facial-fracture surgery after assault. Synthetic scenario; no unsupported medical eligibility rules are represented.",
+        "Robustness: reported_approval"
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required",
+        "reconstructive_intent_review"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ORTH-06-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only.",
+        "A patient-reported insurer approval must not become authoritative authorization evidence."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "SURG-01",
+      "benchmark_family": "SURG",
+      "capability_under_test": [
+        "Emergency appendectomy for acute appendicitis. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "routine_authorization_not_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SURG-01-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "fictional_emergency_pathway_review"
+    },
+    {
+      "case_id": "SURG-02",
+      "benchmark_family": "SURG",
+      "capability_under_test": [
+        "Elective laparoscopic cholecystectomy for symptomatic gallstones. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SURG-02-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "SURG-03",
+      "benchmark_family": "SURG",
+      "capability_under_test": [
+        "Elective laparoscopic cholecystectomy for symptomatic gallstones. Same clinical note and policy; supporting diagnostic_imaging source not submitted."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [
+        "diagnostic_imaging"
+      ],
+      "expected_missing_information": [
+        "Submitted diagnostic_imaging source"
+      ],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SURG-02-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "documentation_review_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "SURG-04",
+      "benchmark_family": "SURG",
+      "capability_under_test": [
+        "Elective repair of reducible inguinal hernia. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SURG-04-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "SURG-05",
+      "benchmark_family": "SURG",
+      "capability_under_test": [
+        "Urgent endoscopy for acute gastrointestinal bleeding. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "LEVEL_OF_CARE_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SURG-05-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "SURG-06",
+      "benchmark_family": "SURG",
+      "capability_under_test": [
+        "Purely cosmetic rhinoplasty. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required",
+        "service_intent_excluded"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SURG-06-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "policy_review_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ONC-01",
+      "benchmark_family": "ONC",
+      "capability_under_test": [
+        "Diagnostic biopsy of suspicious breast mass. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DOCUMENTED_REQUEST",
+          "meaning": "Faithfully represent the documented request, without inventing a diagnosis or treatment eligibility.",
+          "source_document_ids": [
+            "ONC-01-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ONC-02",
+      "benchmark_family": "ONC",
+      "capability_under_test": [
+        "Surgical treatment of localized breast malignancy. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "PATHOLOGY_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ONC-02-DOC-2"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ONC-03",
+      "benchmark_family": "ONC",
+      "capability_under_test": [
+        "Synthetic systemic treatment for confirmed colorectal malignancy. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "PATHOLOGY_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ONC-03-DOC-2"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ONC-04",
+      "benchmark_family": "ONC",
+      "capability_under_test": [
+        "Synthetic high-cost treatment for metastatic lung malignancy. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "PATHOLOGY_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ONC-04-DOC-2"
+          ]
+        },
+        {
+          "concept": "BIOMARKER_DOCUMENTATION",
+          "meaning": "Project-defined marker form is submitted; no real drug threshold or eligibility inferred.",
+          "source_document_ids": [
+            "ONC-04-DOC-3"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ONC-05",
+      "benchmark_family": "ONC",
+      "capability_under_test": [
+        "Synthetic high-cost treatment for metastatic lung malignancy. Same clinical note and policy; supporting biomarker source not submitted."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [
+        "biomarker"
+      ],
+      "expected_missing_information": [
+        "Submitted biomarker source"
+      ],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "PATHOLOGY_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ONC-04-DOC-2"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only.",
+        "Do not fabricate the omitted marker result from pathology or a treatment request."
+      ],
+      "expected_escalation_behavior": "documentation_review_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ONC-06",
+      "benchmark_family": "ONC",
+      "capability_under_test": [
+        "Exactly ONC-03 clinical request and evidence, assigned to the active restricted legacy product."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "routine_authorization_not_required",
+        "service_category_excluded"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "PATHOLOGY_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ONC-03-DOC-2"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "policy_review_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ACUTE-01",
+      "benchmark_family": "ACUTE",
+      "capability_under_test": [
+        "Emergency PCI pathway for acute STEMI-type presentation. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "routine_authorization_not_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ACUTE-01-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "fictional_emergency_pathway_review"
+    },
+    {
+      "case_id": "ACUTE-02",
+      "benchmark_family": "ACUTE",
+      "capability_under_test": [
+        "Elective coronary angiography for stable coronary disease. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ACUTE-02-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ACUTE-03",
+      "benchmark_family": "ACUTE",
+      "capability_under_test": [
+        "Pacemaker/device request for symptomatic bradyarrhythmia. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ACUTE-03-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ACUTE-04",
+      "benchmark_family": "ACUTE",
+      "capability_under_test": [
+        "Time-sensitive intervention for acute ischemic stroke. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "routine_authorization_not_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ACUTE-04-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "fictional_time_critical_pathway_review"
+    },
+    {
+      "case_id": "ACUTE-05",
+      "benchmark_family": "ACUTE",
+      "capability_under_test": [
+        "Higher-acuity admission for diabetic ketoacidosis. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "LEVEL_OF_CARE_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ACUTE-05-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "ACUTE-06",
+      "benchmark_family": "ACUTE",
+      "capability_under_test": [
+        "Emergency ICU admission for septic shock. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "routine_authorization_not_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "LEVEL_OF_CARE_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "ACUTE-06-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "fictional_emergency_pathway_review"
+    },
+    {
+      "case_id": "MED-01",
+      "benchmark_family": "MED",
+      "capability_under_test": [
+        "Routine outpatient care for uncomplicated influenza-like illness. Synthetic scenario; no unsupported medical eligibility rules are represented.",
+        "Robustness: irrelevant_information"
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "routine_authorization_not_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "MED-01-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only.",
+        "Unrelated historical records must not support the current illness or requested service."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "MED-02",
+      "benchmark_family": "MED",
+      "capability_under_test": [
+        "Routine outpatient care for uncomplicated viral URI and cough. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "routine_authorization_not_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "MED-02-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "MED-03",
+      "benchmark_family": "MED",
+      "capability_under_test": [
+        "Inpatient admission for community-acquired pneumonia. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "LEVEL_OF_CARE_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "MED-03-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "MED-04",
+      "benchmark_family": "MED",
+      "capability_under_test": [
+        "Higher-acuity admission for severe pneumonia with hypoxemia. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "LEVEL_OF_CARE_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "MED-04-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "MED-05",
+      "benchmark_family": "MED",
+      "capability_under_test": [
+        "Recurring chronic-care program for chronic kidney disease after the included policy benefit's effective interval has ended.",
+        "Robustness: expired_policy"
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required",
+        "policy_outside_effective_dates"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "MED-05-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "policy_review_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "MED-06",
+      "benchmark_family": "MED",
+      "capability_under_test": [
+        "High-cost specialty treatment for multiple sclerosis. Synthetic scenario; no unsupported medical eligibility rules are represented.",
+        "Robustness: unsupported_inference"
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [
+        "specialist_assessment"
+      ],
+      "expected_missing_information": [
+        "Submitted specialist_assessment source",
+        "Current disease activity and previous treatment response"
+      ],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DOCUMENTED_REQUEST",
+          "meaning": "Faithfully represent the documented request, without inventing a diagnosis or treatment eligibility.",
+          "source_document_ids": [
+            "MED-06-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "documentation_review_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "SPEC-01",
+      "benchmark_family": "SPEC",
+      "capability_under_test": [
+        "Six-visit post-operative knee physiotherapy course. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required",
+        "rehabilitation_within_limit"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "FUNCTIONAL_IMPACT",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SPEC-01-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "SPEC-02",
+      "benchmark_family": "SPEC",
+      "capability_under_test": [
+        "Same rehabilitation request and clinical evidence; recorded utilization reaches the ordinary benefit limit before this course."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required",
+        "rehabilitation_limit_exceeded"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "FUNCTIONAL_IMPACT",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SPEC-01-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "policy_review_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "SPEC-03",
+      "benchmark_family": "SPEC",
+      "capability_under_test": [
+        "Routine antenatal maternity care. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "routine_authorization_not_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "PREGNANCY_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SPEC-03-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "SPEC-04",
+      "benchmark_family": "SPEC",
+      "capability_under_test": [
+        "Emergency admission and delivery pathway for pregnancy complication. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "routine_authorization_not_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "PREGNANCY_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SPEC-04-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "fictional_emergency_pathway_review"
+    },
+    {
+      "case_id": "SPEC-05",
+      "benchmark_family": "SPEC",
+      "capability_under_test": [
+        "Cataract surgery for reading-related functional limitation. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "prior_authorization_review_required"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "FUNCTIONAL_IMPACT",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SPEC-05-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "future_domain_knowledge_required",
+      "expected_emergency_behavior": "not_applicable"
+    },
+    {
+      "case_id": "SPEC-06",
+      "benchmark_family": "SPEC",
+      "capability_under_test": [
+        "Elective dental implant. Synthetic scenario; no unsupported medical eligibility rules are represented."
+      ],
+      "knowledge_status": "requires_future_domain_knowledge",
+      "knowledge_limitation": "No authoritative clinical artifact or production capability exists for this domain. Clinical statuses and overall readiness await future domain knowledge. Documentation and fictional policy behaviors are design targets, not medical guidelines.",
+      "expected_readiness": null,
+      "clinical": null,
+      "expected_missing_documents": [],
+      "expected_missing_information": [],
+      "expected_conflicts": [],
+      "expected_policy_findings": [
+        "routine_authorization_not_required",
+        "service_category_excluded",
+        "service_intent_excluded"
+      ],
+      "required_evidence_concepts": [
+        {
+          "concept": "DIAGNOSIS_DOCUMENTATION",
+          "meaning": "Represent only the clinical facts explicitly documented by this source; no unrepresented clinical criteria are implied.",
+          "source_document_ids": [
+            "SPEC-06-DOC-1"
+          ]
+        }
+      ],
+      "forbidden_inferences": [
+        "A procedure request alone must not establish all clinical eligibility criteria.",
+        "Policy changes must not change the interpretation of identical clinical evidence.",
+        "No autonomous approval, denial, or rejection; readiness is human-review workflow only."
+      ],
+      "expected_escalation_behavior": "policy_review_required",
+      "expected_emergency_behavior": "not_applicable"
+    }
+  ],
+  "comparisons": [
+    {
+      "comparison_id": "PAIR-LUMBAR-DOCUMENT",
+      "baseline_case_id": "ORTH-01",
+      "variant_case_id": "ORTH-02",
+      "comparison_dimension": "missing_document",
+      "purpose": "Remove only physiotherapy source; preserve all explicit clinical assertions in the common note. Missing documentation changes, not the interpretation of unchanged facts."
+    },
+    {
+      "comparison_id": "PAIR-GALLSTONE-DOCUMENT",
+      "baseline_case_id": "SURG-02",
+      "variant_case_id": "SURG-03",
+      "comparison_dimension": "missing_document",
+      "purpose": "Remove only diagnostic ultrasound; detect the missing source without inventing surgical eligibility."
+    },
+    {
+      "comparison_id": "PAIR-ONCOLOGY-MARKER",
+      "baseline_case_id": "ONC-04",
+      "variant_case_id": "ONC-05",
+      "comparison_dimension": "missing_document",
+      "purpose": "Remove only a project-defined supporting marker form; never fabricate marker results."
+    },
+    {
+      "comparison_id": "PAIR-REHAB-UTILIZATION",
+      "baseline_case_id": "SPEC-01",
+      "variant_case_id": "SPEC-02",
+      "comparison_dimension": "utilization",
+      "purpose": "Keep request, policy, and clinical documentation constant; change only recorded visits used across the fictional benefit limit."
+    },
+    {
+      "comparison_id": "PAIR-ONCOLOGY-POLICY",
+      "baseline_case_id": "ONC-03",
+      "variant_case_id": "ONC-06",
+      "comparison_dimension": "policy",
+      "purpose": "Keep every clinical input constant and switch only active policy product. Clinical interpretation remains stable; coverage and administrative findings change without an effective-date conflict."
+    }
+  ]
+}

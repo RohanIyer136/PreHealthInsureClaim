@@ -1,5 +1,9 @@
 # Synthetic Authorization Benchmark
 
+The separate [multi-domain design foundation](MULTIDOMAIN.md) adds 36 design-only
+scenarios and six fictional policy products. It does not replace this implemented
+lumbar benchmark, change its answers, or expand production clinical coverage.
+
 This benchmark is synthetic developer evaluation data, not evidence of clinical
 efficacy or regulatory validation. `golden_cases.json` holds expected truth;
 model responses, scores, and runtime results must be separate artifacts. Nothing

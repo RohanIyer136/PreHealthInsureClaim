@@ -1,0 +1,940 @@
+{
+  "schema_version": "1.0",
+  "policies": [
+    {
+      "policy_id": "P1_ESSENTIAL",
+      "display_name": "Fictional Essential",
+      "synthetic": true,
+      "fictional": true,
+      "wording_origin": "project_authored",
+      "version": "1.0",
+      "description": "Basic outpatient and emergency benefits, with limited rehabilitation.",
+      "effective_from": "2025-01-01",
+      "effective_to": "2027-12-31",
+      "network": {
+        "scope": "restricted",
+        "outside_network": "not_included_except_emergency_review"
+      },
+      "prior_authorization_categories": [
+        "advanced_imaging",
+        "inpatient_admission",
+        "rehabilitation",
+        "chronic_care"
+      ],
+      "emergency_handling": {
+        "authorization_timing": "expedited_review",
+        "notes": "Entirely fictional emergency administrative timing. Never use this design to delay care, infer payment, or claim regulatory compliance."
+      },
+      "benefits": [
+        {
+          "category": "routine_outpatient",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "advanced_imaging",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "elective_surgery",
+          "included": false,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "emergency_care",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "inpatient_admission",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "hospital_summary"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "rehabilitation",
+          "included": true,
+          "prior_authorization": true,
+          "limit": {
+            "amount": 6,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "physiotherapy",
+            "utilization_statement"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "specialty_medication",
+          "included": false,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "specialist_assessment"
+          ],
+          "notes": "Project-defined request documentation only; no drug eligibility or biomarker thresholds."
+        },
+        {
+          "category": "maternity",
+          "included": false,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine antenatal/maternity benefits where included; complications use separate emergency handling."
+        },
+        {
+          "category": "dental",
+          "included": false,
+          "prior_authorization": false,
+          "limit": {
+            "amount": 2,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine dental visits where included; elective implants remain excluded."
+        },
+        {
+          "category": "chronic_care",
+          "included": true,
+          "prior_authorization": true,
+          "limit": {
+            "amount": 12,
+            "unit": "months",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        }
+      ],
+      "exclusions": [
+        "Purely cosmetic procedures.",
+        "Elective dental implants.",
+        "Services outside the effective-date interval require manual policy review."
+      ],
+      "excluded_service_intents": [
+        "cosmetic",
+        "dental_implant"
+      ],
+      "disclaimers": [
+        "Not a real insurance product or contract; all wording is project-authored and synthetic.",
+        "No proprietary wording, clinical eligibility rules, or regulatory obligations are represented."
+      ]
+    },
+    {
+      "policy_id": "P2_STANDARD",
+      "display_name": "Fictional Standard",
+      "synthetic": true,
+      "fictional": true,
+      "wording_origin": "project_authored",
+      "version": "1.0",
+      "description": "Elective surgery, imaging, and a twelve-visit rehabilitation allowance.",
+      "effective_from": "2025-01-01",
+      "effective_to": "2027-12-31",
+      "network": {
+        "scope": "standard",
+        "outside_network": "review_required"
+      },
+      "prior_authorization_categories": [
+        "advanced_imaging",
+        "elective_surgery",
+        "inpatient_admission",
+        "rehabilitation",
+        "chronic_care"
+      ],
+      "emergency_handling": {
+        "authorization_timing": "retrospective_review",
+        "notes": "Entirely fictional emergency administrative timing. Never use this design to delay care, infer payment, or claim regulatory compliance."
+      },
+      "benefits": [
+        {
+          "category": "routine_outpatient",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "advanced_imaging",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "physiotherapy"
+          ],
+          "notes": "Physiotherapy documentation applies to the synthetic lumbar MRI example only, not all imaging. Other service-specific rules are deferred."
+        },
+        {
+          "category": "elective_surgery",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "emergency_care",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "inpatient_admission",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "hospital_summary"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "rehabilitation",
+          "included": true,
+          "prior_authorization": true,
+          "limit": {
+            "amount": 12,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "physiotherapy",
+            "utilization_statement"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "specialty_medication",
+          "included": false,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "specialist_assessment"
+          ],
+          "notes": "Project-defined request documentation only; no drug eligibility or biomarker thresholds."
+        },
+        {
+          "category": "maternity",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine antenatal/maternity benefits where included; complications use separate emergency handling."
+        },
+        {
+          "category": "dental",
+          "included": false,
+          "prior_authorization": false,
+          "limit": {
+            "amount": 2,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine dental visits where included; elective implants remain excluded."
+        },
+        {
+          "category": "chronic_care",
+          "included": true,
+          "prior_authorization": true,
+          "limit": {
+            "amount": 12,
+            "unit": "months",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        }
+      ],
+      "exclusions": [
+        "Purely cosmetic procedures.",
+        "Elective dental implants.",
+        "Services outside the effective-date interval require manual policy review."
+      ],
+      "excluded_service_intents": [
+        "cosmetic",
+        "dental_implant"
+      ],
+      "disclaimers": [
+        "Not a real insurance product or contract; all wording is project-authored and synthetic.",
+        "No proprietary wording, clinical eligibility rules, or regulatory obligations are represented."
+      ]
+    },
+    {
+      "policy_id": "P3_PREMIUM",
+      "display_name": "Fictional Premium",
+      "synthetic": true,
+      "fictional": true,
+      "wording_origin": "project_authored",
+      "version": "1.0",
+      "description": "Extended benefits including specialty-treatment administrative review.",
+      "effective_from": "2025-01-01",
+      "effective_to": "2027-12-31",
+      "network": {
+        "scope": "extended",
+        "outside_network": "review_required"
+      },
+      "prior_authorization_categories": [
+        "elective_surgery",
+        "inpatient_admission",
+        "rehabilitation",
+        "specialty_medication",
+        "chronic_care"
+      ],
+      "emergency_handling": {
+        "authorization_timing": "retrospective_review",
+        "notes": "Entirely fictional emergency administrative timing. Never use this design to delay care, infer payment, or claim regulatory compliance."
+      },
+      "benefits": [
+        {
+          "category": "routine_outpatient",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "advanced_imaging",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "elective_surgery",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "emergency_care",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "inpatient_admission",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "hospital_summary"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "rehabilitation",
+          "included": true,
+          "prior_authorization": true,
+          "limit": {
+            "amount": 24,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "physiotherapy",
+            "utilization_statement"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "specialty_medication",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "specialist_assessment"
+          ],
+          "notes": "Project-defined request documentation only; no drug eligibility or biomarker thresholds."
+        },
+        {
+          "category": "maternity",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine antenatal/maternity benefits where included; complications use separate emergency handling."
+        },
+        {
+          "category": "dental",
+          "included": true,
+          "prior_authorization": false,
+          "limit": {
+            "amount": 2,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine dental visits where included; elective implants remain excluded."
+        },
+        {
+          "category": "chronic_care",
+          "included": true,
+          "prior_authorization": true,
+          "limit": {
+            "amount": 12,
+            "unit": "months",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        }
+      ],
+      "exclusions": [
+        "Purely cosmetic procedures.",
+        "Elective dental implants.",
+        "Services outside the effective-date interval require manual policy review."
+      ],
+      "excluded_service_intents": [
+        "cosmetic",
+        "dental_implant"
+      ],
+      "disclaimers": [
+        "Not a real insurance product or contract; all wording is project-authored and synthetic.",
+        "No proprietary wording, clinical eligibility rules, or regulatory obligations are represented."
+      ]
+    },
+    {
+      "policy_id": "P4_FAMILY_PLUS",
+      "display_name": "Fictional Family Plus",
+      "synthetic": true,
+      "fictional": true,
+      "wording_origin": "project_authored",
+      "version": "1.0",
+      "description": "Maternity and routine dental visits; implants remain excluded.",
+      "effective_from": "2025-01-01",
+      "effective_to": "2027-12-31",
+      "network": {
+        "scope": "standard",
+        "outside_network": "limited"
+      },
+      "prior_authorization_categories": [
+        "advanced_imaging",
+        "elective_surgery",
+        "inpatient_admission",
+        "rehabilitation",
+        "chronic_care"
+      ],
+      "emergency_handling": {
+        "authorization_timing": "retrospective_review",
+        "notes": "Entirely fictional emergency administrative timing. Never use this design to delay care, infer payment, or claim regulatory compliance."
+      },
+      "benefits": [
+        {
+          "category": "routine_outpatient",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "advanced_imaging",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "elective_surgery",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "emergency_care",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "inpatient_admission",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "hospital_summary"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "rehabilitation",
+          "included": true,
+          "prior_authorization": true,
+          "limit": {
+            "amount": 16,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "physiotherapy",
+            "utilization_statement"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "specialty_medication",
+          "included": false,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "specialist_assessment"
+          ],
+          "notes": "Project-defined request documentation only; no drug eligibility or biomarker thresholds."
+        },
+        {
+          "category": "maternity",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine antenatal/maternity benefits where included; complications use separate emergency handling."
+        },
+        {
+          "category": "dental",
+          "included": true,
+          "prior_authorization": false,
+          "limit": {
+            "amount": 2,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine dental visits where included; elective implants remain excluded."
+        },
+        {
+          "category": "chronic_care",
+          "included": true,
+          "prior_authorization": true,
+          "limit": {
+            "amount": 12,
+            "unit": "months",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        }
+      ],
+      "exclusions": [
+        "Purely cosmetic procedures.",
+        "Elective dental implants.",
+        "Services outside the effective-date interval require manual policy review."
+      ],
+      "excluded_service_intents": [
+        "cosmetic",
+        "dental_implant"
+      ],
+      "disclaimers": [
+        "Not a real insurance product or contract; all wording is project-authored and synthetic.",
+        "No proprietary wording, clinical eligibility rules, or regulatory obligations are represented."
+      ]
+    },
+    {
+      "policy_id": "P5_CHRONIC_CARE",
+      "display_name": "Fictional Chronic Care",
+      "synthetic": true,
+      "fictional": true,
+      "wording_origin": "project_authored",
+      "version": "1.0",
+      "description": "Recurring chronic-care programs and specialty-treatment review.",
+      "effective_from": "2025-01-01",
+      "effective_to": "2027-12-31",
+      "network": {
+        "scope": "standard",
+        "outside_network": "review_required"
+      },
+      "prior_authorization_categories": [
+        "advanced_imaging",
+        "elective_surgery",
+        "inpatient_admission",
+        "rehabilitation",
+        "specialty_medication",
+        "chronic_care"
+      ],
+      "emergency_handling": {
+        "authorization_timing": "retrospective_review",
+        "notes": "Entirely fictional emergency administrative timing. Never use this design to delay care, infer payment, or claim regulatory compliance."
+      },
+      "benefits": [
+        {
+          "category": "routine_outpatient",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "advanced_imaging",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "elective_surgery",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "emergency_care",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "inpatient_admission",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "hospital_summary"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "rehabilitation",
+          "included": true,
+          "prior_authorization": true,
+          "limit": {
+            "amount": 18,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "physiotherapy",
+            "utilization_statement"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "specialty_medication",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "specialist_assessment"
+          ],
+          "notes": "Project-defined request documentation only; no drug eligibility or biomarker thresholds."
+        },
+        {
+          "category": "maternity",
+          "included": false,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine antenatal/maternity benefits where included; complications use separate emergency handling."
+        },
+        {
+          "category": "dental",
+          "included": false,
+          "prior_authorization": false,
+          "limit": {
+            "amount": 2,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine dental visits where included; elective implants remain excluded."
+        },
+        {
+          "category": "chronic_care",
+          "included": true,
+          "prior_authorization": true,
+          "limit": {
+            "amount": 12,
+            "unit": "months",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        }
+      ],
+      "exclusions": [
+        "Purely cosmetic procedures.",
+        "Elective dental implants.",
+        "Services outside the effective-date interval require manual policy review."
+      ],
+      "excluded_service_intents": [
+        "cosmetic",
+        "dental_implant"
+      ],
+      "disclaimers": [
+        "Not a real insurance product or contract; all wording is project-authored and synthetic.",
+        "No proprietary wording, clinical eligibility rules, or regulatory obligations are represented."
+      ]
+    },
+    {
+      "policy_id": "P6_RESTRICTED_LEGACY",
+      "display_name": "Fictional Restricted Legacy",
+      "synthetic": true,
+      "fictional": true,
+      "wording_origin": "project_authored",
+      "version": "0.9",
+      "description": "Historical restricted product for effective-date and benefit-conflict testing.",
+      "effective_from": "2025-01-01",
+      "effective_to": "2027-12-31",
+      "network": {
+        "scope": "restricted",
+        "outside_network": "not_included_except_emergency_review"
+      },
+      "prior_authorization_categories": [
+        "advanced_imaging",
+        "inpatient_admission",
+        "rehabilitation"
+      ],
+      "emergency_handling": {
+        "authorization_timing": "retrospective_review",
+        "notes": "Entirely fictional emergency administrative timing. Never use this design to delay care, infer payment, or claim regulatory compliance."
+      },
+      "benefits": [
+        {
+          "category": "routine_outpatient",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "advanced_imaging",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "elective_surgery",
+          "included": false,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "emergency_care",
+          "included": true,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "inpatient_admission",
+          "included": true,
+          "prior_authorization": true,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "hospital_summary"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "rehabilitation",
+          "included": true,
+          "prior_authorization": true,
+          "limit": {
+            "amount": 4,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "physiotherapy",
+            "utilization_statement"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        },
+        {
+          "category": "specialty_medication",
+          "included": false,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note",
+            "specialist_assessment"
+          ],
+          "notes": "Project-defined request documentation only; no drug eligibility or biomarker thresholds."
+        },
+        {
+          "category": "maternity",
+          "included": false,
+          "prior_authorization": false,
+          "limit": null,
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine antenatal/maternity benefits where included; complications use separate emergency handling."
+        },
+        {
+          "category": "dental",
+          "included": false,
+          "prior_authorization": false,
+          "limit": {
+            "amount": 2,
+            "unit": "visits",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Routine dental visits where included; elective implants remain excluded."
+        },
+        {
+          "category": "chronic_care",
+          "included": false,
+          "prior_authorization": false,
+          "limit": {
+            "amount": 12,
+            "unit": "months",
+            "period_months": 12
+          },
+          "documentation_requirements": [
+            "clinical_note"
+          ],
+          "notes": "Fictional administrative benefit handling, not clinical eligibility or a payment promise."
+        }
+      ],
+      "exclusions": [
+        "Purely cosmetic procedures.",
+        "Elective dental implants.",
+        "Services outside the effective-date interval require manual policy review."
+      ],
+      "excluded_service_intents": [
+        "cosmetic",
+        "dental_implant"
+      ],
+      "disclaimers": [
+        "Not a real insurance product or contract; all wording is project-authored and synthetic.",
+        "No proprietary wording, clinical eligibility rules, or regulatory obligations are represented."
+      ]
+    }
+  ]
+}
