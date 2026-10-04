@@ -1,102 +1,226 @@
 # PreHealthInsureClaim
 
-Local API (synthetic source data only):
+## Healthcare Decision Workspace
 
-```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m uvicorn backend.api.main:app --host 127.0.0.1 --port 8000
+Healthcare Decision Workspace is a working prototype for **AI-assisted healthcare prior authorization**.
+
+Prior authorization decisions often require reviewers to bring together insurance coverage rules, required documentation, clinical evidence, and exceptions before a decision can be made.
+
+This prototype turns that fragmented process into a single **evidence-backed decision workspace**.
+
+> **The system does not automate the final authorization decision. It prepares the decision context for a human reviewer.**
+
+---
+
+## 🚀 Live Prototype
+
+### [Open the Healthcare Decision Workspace](https://pre-health-insure-claim.vercel.app/)
+
+The public prototype contains **55 synthetic authorization cases** covering different services, policies, documentation states, and processing pathways.
+
+The deployment runs in **Demo Mode** using validated, pre-evaluated synthetic cases so it can be demonstrated without exposing a live AI inference service.
+
+**No real patient data is used.**
+
+### Recommended Cases
+
+For a quick walkthrough, try these three cases:
+
+| Case | Scenario | Demonstrates |
+|---|---|---|
+| `PA-BENCH-006` | MRI Lumbar Spine | ✅ **Ready for Expert Review** — clinical criteria are supported by source-linked evidence |
+| `PA-MD-ORTH-02` | Lumbar MRI with incomplete documentation | ⚠️ **Evidence Required** — identifies missing physiotherapy documentation |
+| `PA-MD-ONC-03` | Oncology systemic treatment | 🛡️ **Human Review Required** — safely escalates an unsupported clinical capability instead of guessing |
+
+### How to Explore
+
+1. Open the prototype.
+2. Search for one of the case IDs above.
+3. Review **Case & documents**.
+4. Select **Analyze Authorization**.
+5. Inspect the **Decision workspace**.
+
+The workspace shows insurance and documentation findings, missing information, clinical criteria where supported, source-linked evidence, escalation reasons, and the processing trace.
+
+---
+
+## 💡 Design Principle
+
+Not every authorization problem requires AI.
+
+The system separates work into three broad paths:
+
+- **Deterministic processing** — explicit coverage, policy, documentation, benefit, and administrative rules.
+- **Clinical AI processing** — unstructured clinical evidence is evaluated against configured clinical criteria.
+- **Human escalation** — unsupported or uncertain cases are escalated rather than forcing an automated conclusion.
+
+> **We don't automate clinical judgment. We automate everything surrounding clinical judgment.**
+
+---
+
+## 🧠 How It Works
+
+```text
+      Authorization Request
+               │
+               ▼
+    Policy + Documents + Case
+               │
+               ▼
+      Deterministic Checks
+               │
+               ▼
+        Execution Router
+          ┌────┴────┐
+          │         │
+          ▼         ▼
+ Administrative   Clinical AI
+    Pathway        Pathway
+                      │
+                      ▼
+              Knowledge Retrieval
+                      │
+                      ▼
+              Evidence Extraction
+                      │
+                      ▼
+              Criterion Reasoning
+                      │
+                      ▼
+            Grounding & Validation
+          └───────────┬───────────┘
+                      ▼
+              Decision Workspace
+                      │
+                      ▼
+                Human Reviewer
 ```
 
-- `GET /health`: liveness, no workflow or AI execution.
-- `GET /api/v1/cases`: sorted source summaries.
-- `GET /api/v1/cases/{authorization_id}`: patient, policy, authorization, submitted documents.
-- `POST /api/v1/cases/{authorization_id}/analyze`: existing workspace orchestration.
+Explicit rules are handled deterministically. AI is used selectively where interpretation of unstructured clinical evidence adds value.
 
-Interactive API documentation: `http://127.0.0.1:8000/docs`.
-Only analysis invokes local Ollama; it can take several minutes. Defaults remain
-`OLLAMA_BASE_URL=http://localhost:11434` and `OLLAMA_MODEL=qwen3:8b`. No API key.
-Document requirements come from the existing fictional insurance policy artifact,
-not benchmark expectations. Domain rules, validation, and readiness derivation are unchanged.
+The final authorization decision always remains with the human reviewer.
+
+---
+
+## 🏗️ Technical Architecture
+
+| Layer | Implementation |
+|---|---|
+| Frontend | React + TypeScript + Vite |
+| API | FastAPI |
+| Data contracts | Pydantic |
+| Decision logic | Python deterministic evaluation services |
+| Orchestration | Typed execution router + Decision Workspace service |
+| Clinical knowledge | Versioned structured knowledge artifacts |
+| Retrieval | Exact service/scope-based retrieval |
+| LLM | Qwen3:8B |
+| Local inference | Ollama |
+| Public frontend | Vercel |
+| Public backend | Render |
 
 ### Execution Routing
 
-The production builder configures `IMG-MRI-LS` and `SURG-CHOLECYSTECTOMY` for clinical
-retrieval and reasoning. The deterministic router uses exact service-code
-configuration, never document keywords or model-selected tools. Existing policy
-and document checks run first. Explicit routing control marks failed coverage
-validity and service-coverage rules terminal, skipping AI. Other deficiencies,
-including missing documentation, may continue useful clinical preparation while
-remaining authoritative in workspace readiness. Required knowledge is checked before inference.
-An `EXECUTION_PLANNED` audit event records the typed plan and reasons.
+The execution router determines which capabilities a case requires before clinical inference occurs.
 
-Unconfigured services or unavailable required clinical/insurance capabilities
-require expert review without invented clinical criteria. Insurance reasoning and
-benefit utilization are declared future capabilities, not implemented engines.
-Lumbar PT documentation requirements apply only to the configured lumbar service.
-Other document requirements need deliberate future configuration.
-The existing case repository now serves 55 synthetic cases: the original 19 plus
-36 source-only runtime cases described in [synthetic_data/RUNTIME_CASES.md](synthetic_data/RUNTIME_CASES.md).
-Administrative-only processing and unavailable clinical capabilities are explicitly
-recorded in workspaces; only these two service codes enable clinical AI.
+Policy and documentation checks run first. Explicit terminal findings can prevent unnecessary AI execution, while missing documentation can still allow useful clinical preparation when appropriate.
 
-The second vertical represents symptomatic gallstone evidence for elective
-laparoscopic cholecystectomy, derived from SAGES' January 2010
-[Guidelines for the Clinical Application of Laparoscopic Biliary Tract Surgery](https://www.sages.org/publications/guidelines/guidelines-for-the-clinical-application-of-laparoscopic-biliary-tract-surgery/),
-section III (accessed 2026-10-04). It is a prototype structured representation,
-not an official guideline artifact or a complete surgical eligibility assessment.
-It checks documented symptoms attributed to stones and explicit stone evidence;
-anesthesia fitness, contraindications and final authorization remain human judgments.
-Missing diagnostic-report roles are separate deterministic findings; the guideline
-does not require a submitted ultrasound report for the represented indication.
-Unsupported clinical domains continue to escalate without clinical AI.
+Currently configured clinical AI pathways include:
 
-`DecisionWorkspaceService(execution_router=...)` enables this routing; the production
-builder always supplies it. Existing injected setups without a router retain their
-original full-pipeline behavior. No final authorization decision is generated.
-`HUMAN_REVIEW` in a plan means exceptional escalation, not the normal final expert
-decision. Successful preparation plans omit that capability; every workspace still
-requires a human expert for the final authorization decision.
-Design-only multidomain specifications are not runtime configuration; their separate
-source-only runtime copies contain no evaluation targets. Frozen demo
-workspaces remain historical saved outputs, not regenerated routed outputs.
+- `IMG-MRI-LS` — lumbar spine MRI
+- `SURG-CHOLECYSTECTOMY` — laparoscopic cholecystectomy
 
-`CORS_ORIGINS` is a comma-separated allowlist, defaulting to
-`http://localhost:5173,http://127.0.0.1:5173`. Credentials are disabled.
-`create_app(repository=..., workspace_service=...)` and the dependency functions
-in `backend/api/dependencies.py` provide offline injection points. Nothing under
-`evaluation/` is loaded by the API.
+Unsupported clinical services are explicitly escalated to human review without generating invented clinical criteria.
 
-## Server Runtime Mode
+---
 
-`APP_MODE` accepts only `full` or `demo`; invalid values fail application creation.
-If unset, `full` preserves local behavior: `/health`, live `/api/v1/cases` routes,
-and frozen `/api/v1/demo/cases` routes are available. The existing Uvicorn command
-continues to work unchanged.
+## 🤖 AI Grounding & Safety
 
-For a demo-only server, set the mode before starting Uvicorn:
+For supported clinical cases, the local AI pipeline performs:
 
-```powershell
-$env:APP_MODE = "demo"
-python -m uvicorn backend.api.main:app --host 127.0.0.1 --port 8000
+1. Clinical knowledge retrieval
+2. Evidence extraction from submitted documents
+3. Criterion-level clinical reasoning
+4. Source/citation grounding
+5. Structured output validation
+
+Model output is treated as **untrusted until validated**.
+
+If clinical reasoning output fails validation, the system permits one bounded structured-output repair using the same evidence and knowledge. The repaired result must pass the same validator; otherwise the pipeline fails closed.
+
+The LLM does **not** determine final authorization.
+
+The current local implementation uses:
+
+```text
+Qwen3:8B
+    ↓
+Ollama
+    ↓
+Structured clinical output
+    ↓
+Deterministic validation
+    ↓
+Decision Workspace
 ```
 
-In `demo`, live routes are not registered and return 404. Live workspace service
-injection and construction through the API dependency are blocked; demo requests
-serve only validated frozen outputs without Ollama/Qwen inference. Configure the
-frontend with `VITE_WORKSPACE_MODE=demo` before its build; that frontend setting
-does not enforce the backend boundary. `CORS_ORIGINS` remains an explicit
-comma-separated allowlist for localhost or a future frontend origin; wildcards
-are rejected and credentials remain disabled. No deployment is configured here.
-To return to local full mode, set `$env:APP_MODE = "full"` and restart the server.
+This design also keeps the model provider replaceable rather than coupling the workflow to a specific hosted AI API.
 
-Errors use `{"error": {"code": "...", "message": "..."}}`: unknown cases 404,
-invalid parameters/workflow inputs 422, rejected AI output 502, local AI failure
-503, and internal/source-data failures 500. Public messages never include exception
-causes, provider output, or filesystem paths. No approval/rejection endpoints exist.
+---
 
-## Review Interface
+## 🎭 Public Demo vs Local Live Mode
 
-Keep the backend command above running. In a second terminal:
+| Capability | Public Demo | Local Live |
+|---|:---:|:---:|
+| Synthetic cases | ✅ | ✅ |
+| Decision workspace | ✅ | ✅ |
+| Insurance/document findings | ✅ | ✅ |
+| Clinical evidence & criteria | ✅ Pre-evaluated | ✅ Live |
+| Human escalation | ✅ | ✅ |
+| Live Qwen inference | ❌ | ✅ |
+| Ollama required | ❌ | ✅ |
+| Real patient data | ❌ | ❌ |
+
+The public deployment serves validated frozen workspace artifacts.
+
+The local system runs the full supported workflow, including Qwen inference through Ollama.
+
+---
+
+## 💻 Running Locally
+
+### Backend
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+
+.\.venv\Scripts\python.exe -m uvicorn backend.api.main:app --host 127.0.0.1 --port 8000
+```
+
+API documentation:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+Main endpoints:
+
+```text
+GET  /health
+GET  /api/v1/cases
+GET  /api/v1/cases/{authorization_id}
+POST /api/v1/cases/{authorization_id}/analyze
+```
+
+Live clinical analysis requires Ollama. Defaults:
+
+```text
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=qwen3:8b
+```
+
+No API key is required.
+
+### Frontend
 
 ```powershell
 cd frontend
@@ -104,54 +228,72 @@ npm install
 npm run dev
 ```
 
-Open the Vite URL (normally `http://127.0.0.1:5173`). `VITE_API_BASE_URL`
-defaults to `http://127.0.0.1:8000`; set it in `frontend/.env.local` for another
-local API URL. If Vite chooses another port, add that origin to backend
-`CORS_ORIGINS`. Analysis can take several minutes; queue and document browsing
-do not invoke Ollama. Final authorization remains with the human reviewer.
-
-Offline frontend checks: `npm test`, `npm run typecheck`, `npm run build`.
-The frontend tests mock HTTP and require neither FastAPI nor Ollama.
-
-## Pre-Evaluated Demo Mode
-
-See [demo/README.md](demo/README.md) for full synthetic repository coverage, offline coverage checks, artifact
-generation, and exact local run commands. `VITE_WORKSPACE_MODE=demo` selects
-separate offline demo endpoints; the default `live` mode keeps the existing local
-Ollama pipeline. Demo Mode is visibly disclosed and never pretends to run live
-inference. Both modes use the same human-review workspace contract.
-
-## Public Demo Deployment
-
-Deploy the backend from the repository root, retaining `demo/workspaces/`,
-`synthetic_data/`, `backend/runtime/`, and `knowledge/`. Install dependencies with
-`python -m pip install -r requirements.txt`. Configure the host environment:
+The frontend normally runs at:
 
 ```text
+http://127.0.0.1:5173
+```
+
+---
+
+## 🔐 Runtime Modes
+
+The backend supports two explicit runtime modes:
+
+```text
+APP_MODE=full
 APP_MODE=demo
-CORS_ORIGINS=<exact deployed frontend origin>
-PORT=<port supplied by the web host>
 ```
 
-Use the root `Procfile`, or set this equivalent startup command on a host that
-does not read Procfiles (POSIX shell):
+### `full`
 
-```sh
-python -m uvicorn backend.api.main:app --host 0.0.0.0 --port "${PORT}"
-```
+Used for local development.
 
-Use `/health` for the host's health check. Demo mode exposes frozen demo APIs
-only; no live inference or Ollama installation is required. Set `APP_MODE=demo`
-explicitly before startup; leaving it unset enables local/default full mode.
+Provides the live authorization workflow, Demo Mode APIs, deterministic evaluation, and supported local AI inference.
 
-Deploy the frontend separately, with these variables set before its Vite build:
+### `demo`
 
-```text
-VITE_WORKSPACE_MODE=demo
-VITE_API_BASE_URL=<public backend origin>
-```
+Used by the public deployment.
 
-From `frontend/`, run `npm ci` and `npm run build`, then serve `frontend/dist/`
-as static files. Use HTTPS origins without paths or trailing slashes; the CORS
-origin must exactly match the frontend scheme, hostname, and port. No production
-URL is hardcoded. Existing local backend and frontend commands remain unchanged.
+Only the frozen Demo Mode APIs are registered. Live workflow routes are unavailable and the live Ollama/Qwen service is not constructed.
+
+This makes the public deployment boundary **server-side rather than only a frontend setting**.
+
+---
+
+## 🧪 Prototype Data & Evaluation
+
+The repository contains **55 synthetic runtime authorization cases** spanning multiple healthcare service families and decision pathways.
+
+Cases exercise behaviors including:
+
+- complete authorization submissions
+- missing required documentation
+- policy and coverage checks
+- administrative-only processing
+- supported clinical evaluation
+- unsupported clinical capabilities
+- human escalation
+- adversarial and conflicting inputs
+
+Synthetic policies and clinical documentation are used throughout the prototype.
+
+Automated tests cover the API, domain models, deterministic rules, routing, AI contracts and validation, demo artifact integrity, runtime modes, and frontend behavior.
+
+---
+
+## ⚠️ Prototype Scope
+
+This project is a technical prototype built with **synthetic patient data, fictional insurance policies, and synthetic authorization requests**.
+
+It demonstrates decision-workflow orchestration, deterministic insurance processing, selective AI-assisted clinical analysis, evidence grounding, safe escalation, and human-in-the-loop decision support.
+
+It is **not** a medical device, production insurer system, or autonomous authorization engine.
+
+Clinical knowledge represented in the prototype is intentionally limited and versioned. Production use would require formal clinical, regulatory, privacy, security, and customer-specific policy validation.
+
+---
+
+## Core Principle
+
+**AI prepares the decision. Humans remain responsible for making it.**
