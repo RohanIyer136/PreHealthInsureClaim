@@ -66,6 +66,29 @@ workspaces remain historical saved outputs, not regenerated routed outputs.
 in `backend/api/dependencies.py` provide offline injection points. Nothing under
 `evaluation/` is loaded by the API.
 
+## Server Runtime Mode
+
+`APP_MODE` accepts only `full` or `demo`; invalid values fail application creation.
+If unset, `full` preserves local behavior: `/health`, live `/api/v1/cases` routes,
+and frozen `/api/v1/demo/cases` routes are available. The existing Uvicorn command
+continues to work unchanged.
+
+For a demo-only server, set the mode before starting Uvicorn:
+
+```powershell
+$env:APP_MODE = "demo"
+python -m uvicorn backend.api.main:app --host 127.0.0.1 --port 8000
+```
+
+In `demo`, live routes are not registered and return 404. Live workspace service
+injection and construction through the API dependency are blocked; demo requests
+serve only validated frozen outputs without Ollama/Qwen inference. Configure the
+frontend with `VITE_WORKSPACE_MODE=demo` before its build; that frontend setting
+does not enforce the backend boundary. `CORS_ORIGINS` remains an explicit
+comma-separated allowlist for localhost or a future frontend origin; wildcards
+are rejected and credentials remain disabled. No deployment is configured here.
+To return to local full mode, set `$env:APP_MODE = "full"` and restart the server.
+
 Errors use `{"error": {"code": "...", "message": "..."}}`: unknown cases 404,
 invalid parameters/workflow inputs 422, rejected AI output 502, local AI failure
 503, and internal/source-data failures 500. Public messages never include exception

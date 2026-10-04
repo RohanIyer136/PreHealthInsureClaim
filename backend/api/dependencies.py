@@ -5,8 +5,10 @@ from pathlib import Path
 from typing import Annotated
 from uuid import uuid4
 
-from fastapi import Depends, Path as PathParameter, Request
+from fastapi import Depends, HTTPException, Path as PathParameter, Request
 from pydantic import BaseModel
+
+from backend.api.runtime_mode import RuntimeMode
 
 from backend.ai.clinical_reasoner import GroundedClinicalReasoner
 from backend.ai.evidence_extractor import EvidenceExtractor
@@ -71,6 +73,8 @@ def get_workspace_service(
     request: Request,
     case: Annotated[CaseSource, Depends(get_case_source)],
 ) -> DecisionWorkspaceService:
+    if request.app.state.runtime_mode is not RuntimeMode.FULL:
+        raise HTTPException(status_code=404, detail="Not Found")
     # Resolve the case before any local-provider construction, including for 404s.
     if request.app.state.workspace_service is None:
         request.app.state.workspace_service = build_local_workspace_service()
