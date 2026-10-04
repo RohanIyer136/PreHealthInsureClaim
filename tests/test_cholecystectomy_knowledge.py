@@ -9,7 +9,7 @@ import socket
 import pytest
 
 from backend.ai.clinical_reasoner import GroundedClinicalReasoner
-from backend.ai.evidence_extractor import EvidenceExtractor
+from backend.ai.evidence_extractor import EvidenceExtractionError, EvidenceExtractor
 from backend.ai.providers.ollama import (
     _LocalOllamaClient, OllamaClinicalReasoningProvider, OllamaEvidenceProvider,
 )
@@ -20,12 +20,59 @@ from backend.knowledge.clinical_retriever import (
 )
 from backend.models.schemas import CriterionStatus, ReadinessStatus
 from backend.repositories.synthetic_cases import SyntheticCaseRepository
-from tests.test_ollama_evidence_provider import ollama_response
+from tests.test_ollama_evidence_provider import FakeClient, ollama_response
+from tests.test_evidence_extractor import make_document
 
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACT = ROOT / "knowledge/clinical/cholecystectomy_sages.json"
 KNOWLEDGE_ID = "SAGES-SYMPTOMATIC-GALLSTONES-PROTOTYPE"
+
+
+@pytest.mark.parametrize("valid", [False, True])
+def test_live_extraction_failure_replay_keeps_literal_grounding_strict(valid):
+    content = (
+        "Recurring right upper abdominal pain with symptomatic gallstones. "
+        "Elective laparoscopic cholecystectomy requested; diagnostic reporting is held separately."
+    )
+    document = make_document(content)
+    assertions = [
+        ("OTHER_CLINICAL_EVIDENCE" if valid else "LOW_BACK_PAIN", "Recurring right upper abdominal pain"),
+        ("OTHER_CLINICAL_EVIDENCE", "with symptomatic gallstones"),
+        ("INTERVENTION_OR_SPECIALIST_PLANNING", "Elective laparoscopic cholecystectomy requested"),
+    ]
+    if not valid:
+        assertions.append(("OTHER_CLINICAL_EVIDENCE", "Diagnostic reporting is held separately"))
+    payload = {"evidence": [dict(
+        evidence_id=f"{document.document_id}-EV-{index:03d}", source_document_id=document.document_id,
+        concept=concept, value=excerpt, excerpt=excerpt, confidence=1.0,
+        uncertainty=None, location="document_content",
+    ) for index, (concept, excerpt) in enumerate(assertions, start=1)]}
+    client = FakeClient(ollama_response(json.dumps(payload)))
+    extractor = EvidenceExtractor(OllamaEvidenceProvider(client=client))
+    if not valid:
+        with pytest.raises(EvidenceExtractionError, match="EV-004 contains a source excerpt not found"):
+            extractor.extract(document)
+    else:
+        evidence = extractor.extract(document)
+        assert len(evidence) == 3
+        assert all(item.excerpt in content for item in evidence)
+        assert evidence[0].concept.value == "OTHER_CLINICAL_EVIDENCE"
+
+
+def test_extraction_guidance_is_domain_neutral_and_preserves_literal_quotes():
+    document = make_document("Fictional clinical assertion.")
+    client = FakeClient(ollama_response('{"evidence": []}'))
+    EvidenceExtractor(OllamaEvidenceProvider(client=client)).extract(document)
+    payload = client.calls[0][1]
+    system = payload["messages"][0]["content"]
+    assert "Omit administrative document-handling statements" in system
+    assert "named anatomical concepts only for the anatomy they describe" in system
+    assert "semicolon is still mid-sentence" in system
+    description = payload["format"]["$defs"]["_ProviderEvidence"]["properties"]["concept"]["description"]
+    assert "not pain in another anatomical region" in description
+    assert "OTHER_CLINICAL_EVIDENCE" in description
+    assert "PA-MD-SURG" not in system and "SURG-CHOLECYSTECTOMY" not in system
 
 
 @pytest.fixture(autouse=True)
