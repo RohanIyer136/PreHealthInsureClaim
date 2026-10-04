@@ -270,7 +270,9 @@ describe("workspace semantics", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("No conflicts identified.")).toBeInTheDocument();
     fireEvent.click(screen.getByText("Decision Trace"));
-    expect(screen.getByText("Synthetic test event.")).toBeVisible();
+    const auditSummary = screen.getByText("Synthetic test event.", { selector: "p" });
+    expect(auditSummary).toBeVisible();
+    fireEvent.click(within(auditSummary.closest("li")!).getByText("Technical details"));
     expect(screen.getByText(/workspace-service/)).toBeVisible();
   });
 

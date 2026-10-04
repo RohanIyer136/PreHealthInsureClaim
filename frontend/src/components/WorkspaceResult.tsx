@@ -12,6 +12,8 @@ import type {
 } from "../types/api";
 import { date, label } from "../utils/format";
 import { StatusBadge } from "./StatusBadge";
+import { isDemoMode } from "../api/client";
+import { evaluationSummary, findingTitle, readableFinding, tracePresentation } from "../utils/workspacePresentation";
 
 type OpenSource = (id: string, excerpt?: string) => void;
 
@@ -34,11 +36,14 @@ function Findings({
       {results.map((result) => (
         <article className="criterion" key={result.criterion_id}>
           <div className="criterion-heading">
-            <h3>{result.criterion_name}</h3>
+            <h3>{findingTitle(result.criterion_id, result.criterion_name)}</h3>
             <StatusBadge status={result.status} />
           </div>
           <p>{result.explanation}</p>
-          <div className="metadata">
+          <details className="technical-details">
+            <summary>Technical details</summary>
+            <p>{result.criterion_name}</p>
+            <div className="metadata">
             <span>{result.criterion_id}</span>
             {result.source_rule_id && (
               <span>Source: {result.source_rule_id}</span>
@@ -46,7 +51,8 @@ function Findings({
             {result.confidence !== null && (
               <span>Confidence {Math.round(result.confidence * 100)}%</span>
             )}
-          </div>
+            </div>
+          </details>
           {result.evidence.length > 0 && (
             <div className="citation-list">
               {result.evidence.map((item) => (
@@ -99,8 +105,8 @@ export function WorkspaceResult({
           <p className="eyebrow">Workspace readiness</p>
           <StatusBadge status={workspace.readiness_status} />
           <p>
-            Decision support only - final authorization remains with the human
-            reviewer.
+            {workspace.readiness_status === "READY_FOR_EXPERT_REVIEW" ? "Prepared for review." : "Further review or information is required."}{" "}
+            Final authorization decision remains with the human reviewer.
           </p>
         </div>
         <ShieldCheck size={32} aria-hidden="true" />
@@ -114,6 +120,12 @@ export function WorkspaceResult({
           </span>
         )}
       </div>
+      <section className="evaluation-summary" aria-labelledby="evaluation-heading">
+        <h2 id="evaluation-heading">How this case was evaluated</h2>
+        <dl>{evaluationSummary(workspace, isDemoMode()).map(([name, value]) => (
+          <div key={name}><dt>{name}</dt><dd>{value}</dd></div>
+        ))}</dl>
+      </section>
       <div className="review-flags">
         <section>
           <h2>
@@ -123,7 +135,7 @@ export function WorkspaceResult({
           {workspace.missing_evidence.length ? (
             <ul>
               {workspace.missing_evidence.map((item, i) => (
-                <li key={i}>{item}</li>
+                <li key={i} title={item}>{readableFinding(item)}</li>
               ))}
             </ul>
           ) : (
@@ -138,7 +150,7 @@ export function WorkspaceResult({
           {workspace.conflicts.length ? (
             <ul>
               {workspace.conflicts.map((item, i) => (
-                <li key={i}>{item}</li>
+                <li key={i} title={item}>{readableFinding(item)}</li>
               ))}
             </ul>
           ) : (
@@ -216,15 +228,20 @@ export function WorkspaceResult({
           {workspace.audit_trail.map((event) => (
             <li key={event.event_id}>
               <div>
-                <strong>{label(event.action)}</strong>
+                <strong>{tracePresentation(event).title}</strong>
                 <time dateTime={event.timestamp}>
                   {new Date(event.timestamp).toLocaleString("en-GB")}
                 </time>
               </div>
-              <p>{event.details}</p>
-              <span className="metadata">
+              <p>{tracePresentation(event).summary}</p>
+              <details className="technical-details">
+                <summary>Technical details</summary>
+                <pre>{event.details}</pre>
+                <span className="metadata">
+                {event.action} /{" "}
                 {event.actor} / {event.event_id}
-              </span>
+                </span>
+              </details>
             </li>
           ))}
         </ol>
