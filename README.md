@@ -120,3 +120,38 @@ generation, and exact local run commands. `VITE_WORKSPACE_MODE=demo` selects
 separate offline demo endpoints; the default `live` mode keeps the existing local
 Ollama pipeline. Demo Mode is visibly disclosed and never pretends to run live
 inference. Both modes use the same human-review workspace contract.
+
+## Public Demo Deployment
+
+Deploy the backend from the repository root, retaining `demo/workspaces/`,
+`synthetic_data/`, `backend/runtime/`, and `knowledge/`. Install dependencies with
+`python -m pip install -r requirements.txt`. Configure the host environment:
+
+```text
+APP_MODE=demo
+CORS_ORIGINS=<exact deployed frontend origin>
+PORT=<port supplied by the web host>
+```
+
+Use the root `Procfile`, or set this equivalent startup command on a host that
+does not read Procfiles (POSIX shell):
+
+```sh
+python -m uvicorn backend.api.main:app --host 0.0.0.0 --port "${PORT}"
+```
+
+Use `/health` for the host's health check. Demo mode exposes frozen demo APIs
+only; no live inference or Ollama installation is required. Set `APP_MODE=demo`
+explicitly before startup; leaving it unset enables local/default full mode.
+
+Deploy the frontend separately, with these variables set before its Vite build:
+
+```text
+VITE_WORKSPACE_MODE=demo
+VITE_API_BASE_URL=<public backend origin>
+```
+
+From `frontend/`, run `npm ci` and `npm run build`, then serve `frontend/dist/`
+as static files. Use HTTPS origins without paths or trailing slashes; the CORS
+origin must exactly match the frontend scheme, hostname, and port. No production
+URL is hardcoded. Existing local backend and frontend commands remain unchanged.
