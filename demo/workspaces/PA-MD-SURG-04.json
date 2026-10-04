@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "mode": "pre_evaluated_synthetic_demo",
+  "generator": "production_local_ollama",
+  "model": "qwen3:8b",
+  "source_sha256": "f45cbddff49a4dd24445d8e76c36a3ed8e97afcd18351f9ea2471f0e3079b689",
+  "elapsed_seconds": 0.0007906999671831727,
+  "workspace": {
+    "workspace_id": "d740f3c7-1b68-44ed-b90c-855bd77044e1",
+    "authorization_id": "PA-MD-SURG-04",
+    "clinical_results": [],
+    "insurance_results": [
+      {
+        "criterion_id": "policy_active_on_service_date",
+        "criterion_name": "Policy active on service date",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured policy status and coverage dates evaluated for service date 2026-10-02.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "requested_service_category_covered",
+        "criterion_name": "Requested service category covered",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured category inclusion evaluated; this is not clinical appropriateness.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "service_intent_not_excluded",
+        "criterion_name": "Service intent not excluded",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured intent therapeutic evaluated against explicit intent exclusions.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "prior_authorization_required",
+        "criterion_name": "Prior authorization required",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Product requires prior authorization for this category.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "required_document_roles_present",
+        "criterion_name": "Required document roles present",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Configured document roles are present; document presence does not establish clinical facts.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1;P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "benefit_utilization_within_limit",
+        "criterion_name": "Benefit utilization within limit",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "No utilization check applies to an excluded category or a benefit without a represented limit.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "emergency_administrative_handling",
+        "criterion_name": "Emergency administrative handling",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "Structured urgency does not select an emergency administrative pathway.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      }
+    ],
+    "regulatory_results": [],
+    "missing_evidence": [],
+    "conflicts": [
+      "Clinical knowledge/capability for the requested service is unavailable; expert review is required."
+    ],
+    "overall_confidence": null,
+    "readiness_status": "HUMAN_REVIEW_REQUIRED",
+    "generated_at": "2026-10-04T15:43:05.379977Z",
+    "audit_trail": [
+      {
+        "event_id": "0162f9c8-fc1a-4597-ace1-31a31e514294",
+        "timestamp": "2026-10-04T15:43:05.379696Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_PROCESSING_STARTED",
+        "details": "Started processing authorization PA-MD-SURG-04."
+      },
+      {
+        "event_id": "fbd8a26c-7b1d-4118-886e-a7a44d5c83a4",
+        "timestamp": "2026-10-04T15:43:05.379831Z",
+        "actor": "decision-workspace-service",
+        "action": "DETERMINISTIC_RULES_COMPLETED",
+        "details": "Completed 7 deterministic rule evaluations."
+      },
+      {
+        "event_id": "44f574b5-ab2e-4e2e-b7cb-bcd15e8fdcb5",
+        "timestamp": "2026-10-04T15:43:05.379910Z",
+        "actor": "decision-workspace-service",
+        "action": "EXECUTION_PLANNED",
+        "details": "{\"service_code\":\"SURG-INGUINAL-HERNIA\",\"family\":\"SURGERY_GI\",\"steps\":[\"POLICY_ELIGIBILITY\",\"DOCUMENT_COMPLETENESS\",\"HUMAN_REVIEW\"],\"deferred\":[\"CLINICAL_RETRIEVAL\",\"EVIDENCE_EXTRACTION\",\"CLINICAL_REASONING\"],\"reasons\":[\"Clinical knowledge/capability for the requested service is unavailable; expert review is required.\"],\"requires_escalation\":true}"
+      },
+      {
+        "event_id": "ce0607e6-7027-4001-a684-b318d2b4080f",
+        "timestamp": "2026-10-04T15:43:05.379925Z",
+        "actor": "decision-workspace-service",
+        "action": "EVIDENCE_EXTRACTION_SKIPPED",
+        "details": "Extraction was not required by the execution plan; no model was invoked."
+      },
+      {
+        "event_id": "8ec9a308-5238-4c30-90ef-93f577245136",
+        "timestamp": "2026-10-04T15:43:05.379939Z",
+        "actor": "decision-workspace-service",
+        "action": "CLINICAL_RETRIEVAL_SKIPPED",
+        "details": "Clinical retrieval was not required by the execution plan."
+      },
+      {
+        "event_id": "3b22562d-04a4-4dd6-a764-78088769d8e6",
+        "timestamp": "2026-10-04T15:43:05.379953Z",
+        "actor": "decision-workspace-service",
+        "action": "ADMINISTRATIVE_PREPARATION_ONLY",
+        "details": "Structured insurance preparation only; clinical medical necessity was not evaluated. Final authorization remains with a human expert."
+      },
+      {
+        "event_id": "69160bd0-6895-47b1-adf6-dab1b80b9349",
+        "timestamp": "2026-10-04T15:43:05.379977Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_ASSEMBLED",
+        "details": "Workspace readiness is HUMAN_REVIEW_REQUIRED."
+      }
+    ]
+  }
+}

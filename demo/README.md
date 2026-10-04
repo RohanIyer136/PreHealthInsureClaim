@@ -5,23 +5,49 @@ keys. Generation runs the same deterministic rules, retrieval, grounded evidence
 extraction, and clinical reasoning used by live analysis. Only generation needs
 local Ollama. Serving artifacts never invokes a model.
 
-Selected cases:
+Currently checked-in cases (full repository coverage awaits local generation):
 
 - PA-BENCH-006: explicit complete clinical evidence; expert-review readiness.
 - PA-DEMO-002: missing submitted physiotherapy documentation; evidence required.
 - PA-DEMO-003: expired policy at submission; human review required.
 
-Regenerate from the repository root (local qwen3:8b must be available):
+Generate every case listed by the production `SyntheticCaseRepository` from the
+repository root (local qwen3:8b must be available). This includes legacy,
+benchmark, and runtime cases; there is no separate demo allowlist:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\generate_demo_workspaces.py --timeout 300
 ```
 
 For one case, add `--authorization-id PA-BENCH-006` (repeat the option for a
-subset). Every artifact is written only after production workspace validation and
+subset). Unknown IDs fail before service construction. To check coverage offline
+without constructing the local inference service:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\generate_demo_workspaces.py --check-coverage
+```
+
+The check lists missing IDs and exits 1 for incomplete coverage (0 when complete).
+Malformed, duplicate, stale, or ungrounded artifacts fail closed rather than
+being treated as absent. To resume sequentially, generating only missing cases
+and retaining the existing valid artifacts:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\generate_demo_workspaces.py --missing-only --timeout 300
+```
+
+These selection options are mutually exclusive. Generation prints progress,
+case ID, readiness, and elapsed time. A failing case stops generation visibly;
+already completed artifacts remain valid. Every artifact is written only after production workspace validation and
 source-grounding checks. Failed runs do not overwrite completed artifacts.
 Generation does not force any readiness or clinical status. Model outputs may
 vary; inspect the generated artifacts before presenting them.
+The generator uses production orchestration without service-specific decisions:
+administrative and unsupported pathways may legitimately return no clinical
+criteria; unsupported capability preserves human escalation. Supported clinical
+pathways use the configured local model. Offline tests never run full Qwen
+generation. The full-coverage test is staged as an expected failure while cases
+are missing and automatically becomes a passing subset check after generation.
 Schema and source-grounding validation do not certify clinical correctness.
 The saved PA-DEMO-002 run marked optimal management satisfied using medication
 evidence alone, and both PA-DEMO-002 and PA-DEMO-003 marked intervention candidacy
@@ -65,3 +91,6 @@ Open `http://127.0.0.1:5173`. Set `VITE_WORKSPACE_MODE=live` and restart Vite to
 return to live local inference. The environment variable is compiled into Vite
 builds, so set it before `npm run build` for a demo build. Keep API base URL and
 CORS settings aligned if using other ports. No deployment is part of this demo.
+Live Local Mode remains separate: FastAPI invokes production orchestration and
+local Ollama/Qwen where configured. Public Demo Mode reads only validated,
+checked-in, pre-evaluated synthetic workspaces and performs no live inference.

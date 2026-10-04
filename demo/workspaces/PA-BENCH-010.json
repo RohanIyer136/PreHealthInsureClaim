@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "mode": "pre_evaluated_synthetic_demo",
+  "generator": "production_local_ollama",
+  "model": "qwen3:8b",
+  "source_sha256": "094a11e5407c5e6b88e20a5265ba46656600fba1a326e894d7777a70be966ec9",
+  "elapsed_seconds": 125.81833420007024,
+  "workspace": {
+    "workspace_id": "c056d036-002c-4112-8141-c2cd2e7c29e2",
+    "authorization_id": "PA-BENCH-010",
+    "clinical_results": [
+      {
+        "criterion_id": "low_back_pain_context",
+        "criterion_name": "SUBACUTE_OR_CHRONIC_LOW_BACK_PAIN_WITH_OR_WITHOUT_RADICULOPATHY",
+        "domain": "CLINICAL",
+        "status": "SATISFIED",
+        "explanation": "The patient has subacute or chronic low back pain with or without radiculopathy, as indicated by the clinical scenario and the evidence.",
+        "evidence": [
+          {
+            "evidence_id": "NOTE-BENCH-010-001",
+            "source_document_id": "NOTE-BENCH-010",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "persisted for eight weeks",
+            "concept": "SYMPTOM_DURATION",
+            "value": "eight weeks",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": null,
+            "relevance": null
+          },
+          {
+            "evidence_id": "NOTE-BENCH-010-002",
+            "source_document_id": "NOTE-BENCH-010",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "denies leg radiation, numbness, and weakness",
+            "concept": "OTHER_CLINICAL_EVIDENCE",
+            "value": "denies leg radiation, numbness, and weakness",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": null,
+            "relevance": null
+          },
+          {
+            "evidence_id": "NOTE-BENCH-010-003",
+            "source_document_id": "NOTE-BENCH-010",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "Examination shows normal leg strength",
+            "concept": "NEUROLOGICAL_FINDINGS",
+            "value": "normal leg strength",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": null,
+            "relevance": null
+          }
+        ],
+        "confidence": 0.95,
+        "source_rule_id": "ACR-LBP-VARIANT-3"
+      },
+      {
+        "criterion_id": "persistent_or_progressive_symptoms",
+        "criterion_name": "PERSISTENT_OR_PROGRESSIVE_SYMPTOMS",
+        "domain": "CLINICAL",
+        "status": "SATISFIED",
+        "explanation": "The patient has persistent or progressive symptoms, as evidenced by the duration of symptoms and the lack of improvement.",
+        "evidence": [
+          {
+            "evidence_id": "NOTE-BENCH-010-001",
+            "source_document_id": "NOTE-BENCH-010",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "persisted for eight weeks",
+            "concept": "SYMPTOM_DURATION",
+            "value": "eight weeks",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": null,
+            "relevance": null
+          }
+        ],
+        "confidence": 0.95,
+        "source_rule_id": "ACR-LBP-VARIANT-3"
+      },
+      {
+        "criterion_id": "management_duration",
+        "criterion_name": "DURING_OR_FOLLOWING_APPROXIMATELY_SIX_WEEKS",
+        "domain": "CLINICAL",
+        "status": "SATISFIED",
+        "explanation": "The patient has been experiencing symptoms for approximately six weeks, as indicated by the duration of symptoms.",
+        "evidence": [
+          {
+            "evidence_id": "NOTE-BENCH-010-001",
+            "source_document_id": "NOTE-BENCH-010",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "persisted for eight weeks",
+            "concept": "SYMPTOM_DURATION",
+            "value": "eight weeks",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": null,
+            "relevance": null
+          }
+        ],
+        "confidence": 0.95,
+        "source_rule_id": "ACR-LBP-VARIANT-3"
+      },
+      {
+        "criterion_id": "optimal_medical_management",
+        "criterion_name": "OPTIMAL_MEDICAL_MANAGEMENT",
+        "domain": "CLINICAL",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "explanation": "There is no direct evidence to confirm that the patient has received optimal medical management.",
+        "evidence": [],
+        "confidence": 0.5,
+        "source_rule_id": "ACR-LBP-VARIANT-3"
+      },
+      {
+        "criterion_id": "intervention_candidate",
+        "criterion_name": "SURGERY_OR_INTERVENTION_CANDIDATE",
+        "domain": "CLINICAL",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "explanation": "There is no direct evidence to confirm that the patient is a candidate for surgery or intervention.",
+        "evidence": [],
+        "confidence": 0.5,
+        "source_rule_id": "ACR-LBP-VARIANT-3"
+      }
+    ],
+    "insurance_results": [
+      {
+        "criterion_id": "policy_active_at_submission",
+        "criterion_name": "Policy active at submission",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Policy is active and the submission date is within its coverage dates.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "POL-DOC-BENCH-010"
+      },
+      {
+        "criterion_id": "requested_service_category_covered",
+        "criterion_name": "Requested service category covered",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Service category 'Diagnostic imaging' is listed in policy benefits.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "POL-DOC-BENCH-010"
+      },
+      {
+        "criterion_id": "prior_authorization_required",
+        "criterion_name": "Prior authorization requirement",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Policy marks the requested benefit as requiring prior authorization.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "POL-DOC-BENCH-010"
+      },
+      {
+        "criterion_id": "required_document_types_present",
+        "criterion_name": "Required document types present",
+        "domain": "INSURANCE",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "explanation": "Required submitted document types not present: PHYSIOTHERAPY_REPORT.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "DEMOCARE-LUMBAR-MRI-001"
+      }
+    ],
+    "regulatory_results": [],
+    "missing_evidence": [
+      "required_document_types_present: Required submitted document types not present: PHYSIOTHERAPY_REPORT.",
+      "optimal_medical_management: There is no direct evidence to confirm that the patient has received optimal medical management.",
+      "intervention_candidate: There is no direct evidence to confirm that the patient is a candidate for surgery or intervention."
+    ],
+    "conflicts": [],
+    "overall_confidence": null,
+    "readiness_status": "EVIDENCE_REQUIRED",
+    "generated_at": "2026-10-04T14:57:02.647935Z",
+    "audit_trail": [
+      {
+        "event_id": "a81dba73-da90-4160-b386-477f1c7e0f4d",
+        "timestamp": "2026-10-04T14:54:56.829959Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_PROCESSING_STARTED",
+        "details": "Started processing authorization PA-BENCH-010."
+      },
+      {
+        "event_id": "35c68196-72e4-469d-adeb-87dd9a990a99",
+        "timestamp": "2026-10-04T14:54:56.830074Z",
+        "actor": "decision-workspace-service",
+        "action": "DETERMINISTIC_RULES_COMPLETED",
+        "details": "Completed 4 deterministic rule evaluations."
+      },
+      {
+        "event_id": "89d6f508-84ae-4cf0-af1f-3df2fa19ee07",
+        "timestamp": "2026-10-04T14:54:56.830176Z",
+        "actor": "decision-workspace-service",
+        "action": "EXECUTION_PLANNED",
+        "details": "{\"service_code\":\"IMG-MRI-LS\",\"family\":\"ORTHOPEDICS_TRAUMA\",\"steps\":[\"POLICY_ELIGIBILITY\",\"DOCUMENT_COMPLETENESS\",\"CLINICAL_RETRIEVAL\",\"EVIDENCE_EXTRACTION\",\"CLINICAL_REASONING\"],\"deferred\":[],\"reasons\":[\"Explicit service configuration requires clinical evaluation.\",\"Deterministic finding: required_document_types_present (INSUFFICIENT_EVIDENCE).\"],\"requires_escalation\":false}"
+      },
+      {
+        "event_id": "5fbd9ad2-dab9-4fa4-ba3f-cf2e05666911",
+        "timestamp": "2026-10-04T14:55:54.857555Z",
+        "actor": "decision-workspace-service",
+        "action": "EVIDENCE_EXTRACTION_COMPLETED",
+        "details": "Extracted 4 evidence items from 1 submitted documents."
+      },
+      {
+        "event_id": "a110de60-ac70-4cf9-9166-6964b61dc8d3",
+        "timestamp": "2026-10-04T14:55:54.857573Z",
+        "actor": "decision-workspace-service",
+        "action": "CLINICAL_KNOWLEDGE_RETRIEVED",
+        "details": "Retrieved 1 matching clinical knowledge artifacts."
+      },
+      {
+        "event_id": "230a565a-6e47-4531-9145-8b0429504d6e",
+        "timestamp": "2026-10-04T14:57:02.647900Z",
+        "actor": "decision-workspace-service",
+        "action": "CLINICAL_REASONING_COMPLETED",
+        "details": "Completed 5 clinical criterion evaluations."
+      },
+      {
+        "event_id": "05804114-6bd8-4ee2-a56a-cb575331f08c",
+        "timestamp": "2026-10-04T14:57:02.647935Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_ASSEMBLED",
+        "details": "Workspace readiness is EVIDENCE_REQUIRED."
+      }
+    ]
+  }
+}

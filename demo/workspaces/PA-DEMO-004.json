@@ -3,39 +3,26 @@
   "mode": "pre_evaluated_synthetic_demo",
   "generator": "production_local_ollama",
   "model": "qwen3:8b",
-  "source_sha256": "6d56de29e82e7ddea12ce842d80bfcd0093dec4eba78f4915c96e4de896bc244",
-  "elapsed_seconds": 193.7644509000238,
+  "source_sha256": "f48833d44e4448b71fb06c7f3583e15d318a8e6679629bc05b8152ec89071e50",
+  "elapsed_seconds": 166.62036149995402,
   "workspace": {
-    "workspace_id": "6d62ea4e-d2f3-413e-889b-84b2b58b24b4",
-    "authorization_id": "PA-DEMO-002",
+    "workspace_id": "2e11918d-26bf-4aad-b0fc-df621122c54f",
+    "authorization_id": "PA-DEMO-004",
     "clinical_results": [
       {
         "criterion_id": "low_back_pain_context",
         "criterion_name": "SUBACUTE_OR_CHRONIC_LOW_BACK_PAIN_WITH_OR_WITHOUT_RADICULOPATHY",
         "domain": "CLINICAL",
         "status": "SATISFIED",
-        "explanation": "The patient has subacute or chronic low back pain with radiculopathy, as evidenced by the seven weeks of lower-back pain and symptoms radiating to the left calf.",
+        "explanation": "The patient reports several weeks of lower-back pain, which satisfies the criterion for subacute or chronic low back pain.",
         "evidence": [
           {
             "evidence_id": "EVIDENCE-001",
-            "source_document_id": "NOTE-002",
+            "source_document_id": "NOTE-004",
             "source_type": "CLINICAL_NOTE",
-            "excerpt": "Seven weeks of lower-back pain",
+            "excerpt": "Patient reports several weeks of lower-back pain",
             "concept": "LOW_BACK_PAIN",
-            "value": "Seven weeks",
-            "confidence": 1.0,
-            "uncertainty": null,
-            "extraction_method": "ollama",
-            "location": "document_content",
-            "relevance": null
-          },
-          {
-            "evidence_id": "EVIDENCE-002",
-            "source_document_id": "NOTE-002",
-            "source_type": "CLINICAL_NOTE",
-            "excerpt": "lower-back pain radiating to the left calf",
-            "concept": "RADICULAR_SYMPTOMS",
-            "value": "radiating to the left calf",
+            "value": "several weeks",
             "confidence": 1.0,
             "uncertainty": null,
             "extraction_method": "ollama",
@@ -51,28 +38,15 @@
         "criterion_name": "PERSISTENT_OR_PROGRESSIVE_SYMPTOMS",
         "domain": "CLINICAL",
         "status": "SATISFIED",
-        "explanation": "The patient has persistent or progressive symptoms, as indicated by the limited improvement despite a six-week physiotherapy course and continued functional impact.",
+        "explanation": "The patient has intermittent tingling into the right foot, indicating persistent or progressive symptoms.",
         "evidence": [
           {
-            "evidence_id": "EVIDENCE-003",
-            "source_document_id": "NOTE-002",
+            "evidence_id": "EVIDENCE-002",
+            "source_document_id": "NOTE-004",
             "source_type": "CLINICAL_NOTE",
-            "excerpt": "despite a reported six-week physiotherapy course",
-            "concept": "PHYSIOTHERAPY_HISTORY",
-            "value": "six-week physiotherapy course",
-            "confidence": 1.0,
-            "uncertainty": null,
-            "extraction_method": "ollama",
-            "location": "document_content",
-            "relevance": null
-          },
-          {
-            "evidence_id": "EVIDENCE-005",
-            "source_document_id": "NOTE-002",
-            "source_type": "CLINICAL_NOTE",
-            "excerpt": "Improvement has been limited",
-            "concept": "FUNCTIONAL_IMPACT",
-            "value": "Improvement has been limited",
+            "excerpt": "lower-back pain with intermittent tingling into the right foot",
+            "concept": "RADICULAR_SYMPTOMS",
+            "value": "intermittent tingling into the right foot",
             "confidence": 1.0,
             "uncertainty": null,
             "extraction_method": "ollama",
@@ -88,28 +62,15 @@
         "criterion_name": "DURING_OR_FOLLOWING_APPROXIMATELY_SIX_WEEKS",
         "domain": "CLINICAL",
         "status": "SATISFIED",
-        "explanation": "The patient has been under optimal medical management for approximately six weeks, as evidenced by the six-week physiotherapy course and use of home exercises, ibuprofen, and acetaminophen.",
+        "explanation": "The patient has been managing the condition for several weeks, which aligns with the criterion of during or following approximately six weeks.",
         "evidence": [
           {
-            "evidence_id": "EVIDENCE-003",
-            "source_document_id": "NOTE-002",
+            "evidence_id": "EVIDENCE-001",
+            "source_document_id": "NOTE-004",
             "source_type": "CLINICAL_NOTE",
-            "excerpt": "despite a reported six-week physiotherapy course",
-            "concept": "PHYSIOTHERAPY_HISTORY",
-            "value": "six-week physiotherapy course",
-            "confidence": 1.0,
-            "uncertainty": null,
-            "extraction_method": "ollama",
-            "location": "document_content",
-            "relevance": null
-          },
-          {
-            "evidence_id": "EVIDENCE-004",
-            "source_document_id": "NOTE-002",
-            "source_type": "CLINICAL_NOTE",
-            "excerpt": "home exercises, ibuprofen, and acetaminophen",
-            "concept": "MEDICATION_HISTORY",
-            "value": "ibuprofen, and acetaminophen",
+            "excerpt": "Patient reports several weeks of lower-back pain",
+            "concept": "LOW_BACK_PAIN",
+            "value": "several weeks",
             "confidence": 1.0,
             "uncertainty": null,
             "extraction_method": "ollama",
@@ -124,16 +85,16 @@
         "criterion_id": "optimal_medical_management",
         "criterion_name": "OPTIMAL_MEDICAL_MANAGEMENT",
         "domain": "CLINICAL",
-        "status": "SATISFIED",
-        "explanation": "The patient is receiving optimal medical management, as indicated by the six-week physiotherapy course, home exercises, and use of ibuprofen and acetaminophen.",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "explanation": "While the patient has used over-the-counter anti-inflammatory medication and attended physiotherapy, there is no explicit evidence that optimal medical management has been achieved.",
         "evidence": [
           {
             "evidence_id": "EVIDENCE-003",
-            "source_document_id": "NOTE-002",
+            "source_document_id": "NOTE-004",
             "source_type": "CLINICAL_NOTE",
-            "excerpt": "despite a reported six-week physiotherapy course",
-            "concept": "PHYSIOTHERAPY_HISTORY",
-            "value": "six-week physiotherapy course",
+            "excerpt": "They have used an over-the-counter anti-inflammatory",
+            "concept": "MEDICATION_HISTORY",
+            "value": "over-the-counter anti-inflammatory",
             "confidence": 1.0,
             "uncertainty": null,
             "extraction_method": "ollama",
@@ -142,11 +103,11 @@
           },
           {
             "evidence_id": "EVIDENCE-004",
-            "source_document_id": "NOTE-002",
+            "source_document_id": "NOTE-004",
             "source_type": "CLINICAL_NOTE",
-            "excerpt": "home exercises, ibuprofen, and acetaminophen",
-            "concept": "MEDICATION_HISTORY",
-            "value": "ibuprofen, and acetaminophen",
+            "excerpt": "attended physiotherapy during the past month",
+            "concept": "PHYSIOTHERAPY_HISTORY",
+            "value": "attended physiotherapy during the past month",
             "confidence": 1.0,
             "uncertainty": null,
             "extraction_method": "ollama",
@@ -154,7 +115,7 @@
             "relevance": null
           }
         ],
-        "confidence": 1.0,
+        "confidence": 0.5,
         "source_rule_id": "ACR-LBP-VARIANT-3"
       },
       {
@@ -162,8 +123,22 @@
         "criterion_name": "SURGERY_OR_INTERVENTION_CANDIDATE",
         "domain": "CLINICAL",
         "status": "INSUFFICIENT_EVIDENCE",
-        "explanation": "While the patient has symptoms that suggest the need for surgery or intervention, there is no explicit evidence that the patient is a candidate for surgery or intervention.",
-        "evidence": [],
+        "explanation": "The patient is requesting an MRI for further assessment, but there is no explicit evidence that the patient is a candidate for surgery or intervention.",
+        "evidence": [
+          {
+            "evidence_id": "EVIDENCE-006",
+            "source_document_id": "NOTE-004",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "Lumbar spine MRI is requested for further assessment",
+            "concept": "INTERVENTION_OR_SPECIALIST_PLANNING",
+            "value": "Lumbar spine MRI is requested for further assessment",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": "document_content",
+            "relevance": null
+          }
+        ],
         "confidence": 0.5,
         "source_rule_id": "ACR-LBP-VARIANT-3"
       }
@@ -177,7 +152,7 @@
         "explanation": "Policy is active and the submission date is within its coverage dates.",
         "evidence": [],
         "confidence": null,
-        "source_rule_id": "POL-DOC-02"
+        "source_rule_id": "POL-DOC-04"
       },
       {
         "criterion_id": "requested_service_category_covered",
@@ -187,7 +162,7 @@
         "explanation": "Service category 'Diagnostic imaging' is listed in policy benefits.",
         "evidence": [],
         "confidence": null,
-        "source_rule_id": "POL-DOC-02"
+        "source_rule_id": "POL-DOC-04"
       },
       {
         "criterion_id": "prior_authorization_required",
@@ -197,7 +172,7 @@
         "explanation": "Policy marks the requested benefit as requiring prior authorization.",
         "evidence": [],
         "confidence": null,
-        "source_rule_id": "POL-DOC-02"
+        "source_rule_id": "POL-DOC-04"
       },
       {
         "criterion_id": "required_document_types_present",
@@ -213,58 +188,59 @@
     "regulatory_results": [],
     "missing_evidence": [
       "required_document_types_present: Required submitted document types not present: PHYSIOTHERAPY_REPORT.",
-      "intervention_candidate: While the patient has symptoms that suggest the need for surgery or intervention, there is no explicit evidence that the patient is a candidate for surgery or intervention."
+      "optimal_medical_management: While the patient has used over-the-counter anti-inflammatory medication and attended physiotherapy, there is no explicit evidence that optimal medical management has been achieved.",
+      "intervention_candidate: The patient is requesting an MRI for further assessment, but there is no explicit evidence that the patient is a candidate for surgery or intervention."
     ],
     "conflicts": [],
     "overall_confidence": null,
     "readiness_status": "EVIDENCE_REQUIRED",
-    "generated_at": "2026-10-04T15:25:21.956414Z",
+    "generated_at": "2026-10-04T15:28:08.593739Z",
     "audit_trail": [
       {
-        "event_id": "f371265f-14a8-4e10-8dc9-1275b2f417a6",
-        "timestamp": "2026-10-04T15:22:08.192460Z",
+        "event_id": "aeb83781-4227-49ea-ab2c-b1425b9dc650",
+        "timestamp": "2026-10-04T15:25:21.973874Z",
         "actor": "decision-workspace-service",
         "action": "WORKSPACE_PROCESSING_STARTED",
-        "details": "Started processing authorization PA-DEMO-002."
+        "details": "Started processing authorization PA-DEMO-004."
       },
       {
-        "event_id": "b48e8fce-9809-426c-a548-3e65084aa832",
-        "timestamp": "2026-10-04T15:22:08.192572Z",
+        "event_id": "89b1fca2-8bb7-4fe5-8a1d-0e4e404b8d45",
+        "timestamp": "2026-10-04T15:25:21.973986Z",
         "actor": "decision-workspace-service",
         "action": "DETERMINISTIC_RULES_COMPLETED",
         "details": "Completed 4 deterministic rule evaluations."
       },
       {
-        "event_id": "bed87411-c5c3-4948-b401-da5ca897decd",
-        "timestamp": "2026-10-04T15:22:08.192678Z",
+        "event_id": "4a005686-45fd-42a9-805d-db8c73c7f3e5",
+        "timestamp": "2026-10-04T15:25:21.974082Z",
         "actor": "decision-workspace-service",
         "action": "EXECUTION_PLANNED",
         "details": "{\"service_code\":\"IMG-MRI-LS\",\"family\":\"ORTHOPEDICS_TRAUMA\",\"steps\":[\"POLICY_ELIGIBILITY\",\"DOCUMENT_COMPLETENESS\",\"CLINICAL_RETRIEVAL\",\"EVIDENCE_EXTRACTION\",\"CLINICAL_REASONING\"],\"deferred\":[],\"reasons\":[\"Explicit service configuration requires clinical evaluation.\",\"Deterministic finding: required_document_types_present (INSUFFICIENT_EVIDENCE).\"],\"requires_escalation\":false}"
       },
       {
-        "event_id": "991efa34-8eee-4a4b-b6de-dc14cdd93481",
-        "timestamp": "2026-10-04T15:23:51.054567Z",
+        "event_id": "9fb801a9-4878-4bd8-aab2-dad715264d27",
+        "timestamp": "2026-10-04T15:26:51.845399Z",
         "actor": "decision-workspace-service",
         "action": "EVIDENCE_EXTRACTION_COMPLETED",
-        "details": "Extracted 7 evidence items from 1 submitted documents."
+        "details": "Extracted 6 evidence items from 1 submitted documents."
       },
       {
-        "event_id": "a7cc1f70-7837-4f57-85c0-77f2fcca1e19",
-        "timestamp": "2026-10-04T15:23:51.054593Z",
+        "event_id": "3e0a5da9-8be0-43c5-b6c8-7d6af731eb5a",
+        "timestamp": "2026-10-04T15:26:51.845427Z",
         "actor": "decision-workspace-service",
         "action": "CLINICAL_KNOWLEDGE_RETRIEVED",
         "details": "Retrieved 1 matching clinical knowledge artifacts."
       },
       {
-        "event_id": "be335c35-2a5f-4b71-8c8a-9f945ae1a34c",
-        "timestamp": "2026-10-04T15:25:21.956372Z",
+        "event_id": "af91a6f6-4700-449f-a9ed-35f492a0118a",
+        "timestamp": "2026-10-04T15:28:08.593700Z",
         "actor": "decision-workspace-service",
         "action": "CLINICAL_REASONING_COMPLETED",
         "details": "Completed 5 clinical criterion evaluations."
       },
       {
-        "event_id": "a99bb078-f326-4eb2-9a62-ebcbfa18dce0",
-        "timestamp": "2026-10-04T15:25:21.956414Z",
+        "event_id": "bf5e5c4e-ea7e-424a-b5bb-00afd2d37d49",
+        "timestamp": "2026-10-04T15:28:08.593739Z",
         "actor": "decision-workspace-service",
         "action": "WORKSPACE_ASSEMBLED",
         "details": "Workspace readiness is EVIDENCE_REQUIRED."

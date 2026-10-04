@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "mode": "pre_evaluated_synthetic_demo",
+  "generator": "production_local_ollama",
+  "model": "qwen3:8b",
+  "source_sha256": "00538730de15c3cbb4f3b52b568fd6d41bd3f9caf14c5bb62d2e157faa5e7826",
+  "elapsed_seconds": 0.001362200011499226,
+  "workspace": {
+    "workspace_id": "ae2b54f0-0231-4657-95e2-d943e992620d",
+    "authorization_id": "PA-MD-ACUTE-06",
+    "clinical_results": [],
+    "insurance_results": [
+      {
+        "criterion_id": "policy_active_on_service_date",
+        "criterion_name": "Policy active on service date",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured policy status and coverage dates evaluated for service date 2026-10-02.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "requested_service_category_covered",
+        "criterion_name": "Requested service category covered",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured category inclusion evaluated; this is not clinical appropriateness.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "service_intent_not_excluded",
+        "criterion_name": "Service intent not excluded",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured intent therapeutic evaluated against explicit intent exclusions.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "prior_authorization_required",
+        "criterion_name": "Prior authorization required",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "Product does not require ordinary prior authorization for this category.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "required_document_roles_present",
+        "criterion_name": "Required document roles present",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Configured document roles are present; document presence does not establish clinical facts.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1;P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "benefit_utilization_within_limit",
+        "criterion_name": "Benefit utilization within limit",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "No utilization check applies to an excluded category or a benefit without a represented limit.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "emergency_administrative_handling",
+        "criterion_name": "Emergency administrative handling",
+        "domain": "INSURANCE",
+        "status": "REQUIRES_HUMAN_REVIEW",
+        "explanation": "Fictional expedited_review administrative pathway; never delay care or infer treatment eligibility or payment.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      }
+    ],
+    "regulatory_results": [],
+    "missing_evidence": [],
+    "conflicts": [
+      "Explicit service configuration requires deterministic checks only.",
+      "Deterministic finding: emergency_administrative_handling (REQUIRES_HUMAN_REVIEW).",
+      "emergency_administrative_handling: Fictional expedited_review administrative pathway; never delay care or infer treatment eligibility or payment."
+    ],
+    "overall_confidence": null,
+    "readiness_status": "HUMAN_REVIEW_REQUIRED",
+    "generated_at": "2026-10-04T15:31:36.721647Z",
+    "audit_trail": [
+      {
+        "event_id": "35e6719e-0c09-4048-afc8-1497a0ae22e1",
+        "timestamp": "2026-10-04T15:31:36.720964Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_PROCESSING_STARTED",
+        "details": "Started processing authorization PA-MD-ACUTE-06."
+      },
+      {
+        "event_id": "a66be7c6-d028-47d7-af38-8868ee48b784",
+        "timestamp": "2026-10-04T15:31:36.721396Z",
+        "actor": "decision-workspace-service",
+        "action": "DETERMINISTIC_RULES_COMPLETED",
+        "details": "Completed 7 deterministic rule evaluations."
+      },
+      {
+        "event_id": "77b55e91-f0e5-4ff6-ab0a-f4a85b773302",
+        "timestamp": "2026-10-04T15:31:36.721547Z",
+        "actor": "decision-workspace-service",
+        "action": "EXECUTION_PLANNED",
+        "details": "{\"service_code\":\"EMERGENCY-SEPSIS-ADMISSION\",\"family\":\"ACUTE_CARDIOVASCULAR_NEUROLOGY\",\"steps\":[\"POLICY_ELIGIBILITY\",\"DOCUMENT_COMPLETENESS\",\"HUMAN_REVIEW\"],\"deferred\":[],\"reasons\":[\"Explicit service configuration requires deterministic checks only.\",\"Deterministic finding: emergency_administrative_handling (REQUIRES_HUMAN_REVIEW).\"],\"requires_escalation\":true}"
+      },
+      {
+        "event_id": "8ff59287-c5c0-4a50-8b8a-10e4d769e598",
+        "timestamp": "2026-10-04T15:31:36.721573Z",
+        "actor": "decision-workspace-service",
+        "action": "EVIDENCE_EXTRACTION_SKIPPED",
+        "details": "Extraction was not required by the execution plan; no model was invoked."
+      },
+      {
+        "event_id": "e17d302f-09b1-4bf2-83fc-7675e40c0a78",
+        "timestamp": "2026-10-04T15:31:36.721588Z",
+        "actor": "decision-workspace-service",
+        "action": "CLINICAL_RETRIEVAL_SKIPPED",
+        "details": "Clinical retrieval was not required by the execution plan."
+      },
+      {
+        "event_id": "25696212-965e-40b0-99fe-57efaf1f9eb1",
+        "timestamp": "2026-10-04T15:31:36.721606Z",
+        "actor": "decision-workspace-service",
+        "action": "ADMINISTRATIVE_PREPARATION_ONLY",
+        "details": "Structured insurance preparation only; clinical medical necessity was not evaluated. Final authorization remains with a human expert."
+      },
+      {
+        "event_id": "ed806853-7c32-4284-92a1-d19814a61906",
+        "timestamp": "2026-10-04T15:31:36.721647Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_ASSEMBLED",
+        "details": "Workspace readiness is HUMAN_REVIEW_REQUIRED."
+      }
+    ]
+  }
+}

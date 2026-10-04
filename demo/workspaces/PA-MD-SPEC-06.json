@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "mode": "pre_evaluated_synthetic_demo",
+  "generator": "production_local_ollama",
+  "model": "qwen3:8b",
+  "source_sha256": "4abfeaba3219f73665ebe8b1ead2c7f56b8e627b788945e33d38a10068c2e7f9",
+  "elapsed_seconds": 0.0018835999071598053,
+  "workspace": {
+    "workspace_id": "bf6ffecc-6edb-4016-bc2c-d49067c7d883",
+    "authorization_id": "PA-MD-SPEC-06",
+    "clinical_results": [],
+    "insurance_results": [
+      {
+        "criterion_id": "policy_active_on_service_date",
+        "criterion_name": "Policy active on service date",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured policy status and coverage dates evaluated for service date 2026-10-02.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "requested_service_category_covered",
+        "criterion_name": "Requested service category covered",
+        "domain": "INSURANCE",
+        "status": "NOT_SATISFIED",
+        "explanation": "Structured category inclusion evaluated; this is not clinical appropriateness.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "service_intent_not_excluded",
+        "criterion_name": "Service intent not excluded",
+        "domain": "INSURANCE",
+        "status": "NOT_SATISFIED",
+        "explanation": "Structured intent dental_implant evaluated against explicit intent exclusions.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "prior_authorization_required",
+        "criterion_name": "Prior authorization required",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "Product does not require ordinary prior authorization for this category.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "required_document_roles_present",
+        "criterion_name": "Required document roles present",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Configured document roles are present; document presence does not establish clinical facts.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1;P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "benefit_utilization_within_limit",
+        "criterion_name": "Benefit utilization within limit",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "No utilization check applies to an excluded category or a benefit without a represented limit.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      },
+      {
+        "criterion_id": "emergency_administrative_handling",
+        "criterion_name": "Emergency administrative handling",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "Structured urgency does not select an emergency administrative pathway.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P1_ESSENTIAL@1.0"
+      }
+    ],
+    "regulatory_results": [],
+    "missing_evidence": [],
+    "conflicts": [
+      "Deterministic finding: requested_service_category_covered (NOT_SATISFIED).",
+      "Deterministic finding: service_intent_not_excluded (NOT_SATISFIED).",
+      "Configured terminal deterministic finding; clinical preparation deferred.",
+      "requested_service_category_covered: Structured category inclusion evaluated; this is not clinical appropriateness.",
+      "service_intent_not_excluded: Structured intent dental_implant evaluated against explicit intent exclusions."
+    ],
+    "overall_confidence": null,
+    "readiness_status": "HUMAN_REVIEW_REQUIRED",
+    "generated_at": "2026-10-04T15:39:25.365912Z",
+    "audit_trail": [
+      {
+        "event_id": "f6670e53-1c9d-4e50-8c66-a3eaa69d006a",
+        "timestamp": "2026-10-04T15:39:25.365428Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_PROCESSING_STARTED",
+        "details": "Started processing authorization PA-MD-SPEC-06."
+      },
+      {
+        "event_id": "6d085349-adf4-40c4-92b3-a3b1c097676a",
+        "timestamp": "2026-10-04T15:39:25.365568Z",
+        "actor": "decision-workspace-service",
+        "action": "DETERMINISTIC_RULES_COMPLETED",
+        "details": "Completed 7 deterministic rule evaluations."
+      },
+      {
+        "event_id": "f6b8e433-733a-45eb-b264-b4ec64c96ed4",
+        "timestamp": "2026-10-04T15:39:25.365671Z",
+        "actor": "decision-workspace-service",
+        "action": "EXECUTION_PLANNED",
+        "details": "{\"service_code\":\"DENTAL-IMPLANT\",\"family\":\"SPECIAL_BENEFITS\",\"steps\":[\"POLICY_ELIGIBILITY\",\"DOCUMENT_COMPLETENESS\",\"HUMAN_REVIEW\"],\"deferred\":[],\"reasons\":[\"Deterministic finding: requested_service_category_covered (NOT_SATISFIED).\",\"Deterministic finding: service_intent_not_excluded (NOT_SATISFIED).\",\"Configured terminal deterministic finding; clinical preparation deferred.\"],\"requires_escalation\":true}"
+      },
+      {
+        "event_id": "e6716c49-2657-4c1c-930c-441818a5a20c",
+        "timestamp": "2026-10-04T15:39:25.365730Z",
+        "actor": "decision-workspace-service",
+        "action": "EVIDENCE_EXTRACTION_SKIPPED",
+        "details": "Extraction was not required by the execution plan; no model was invoked."
+      },
+      {
+        "event_id": "d98a20f6-deb2-48cd-b89e-f22981b56a97",
+        "timestamp": "2026-10-04T15:39:25.365778Z",
+        "actor": "decision-workspace-service",
+        "action": "CLINICAL_RETRIEVAL_SKIPPED",
+        "details": "Clinical retrieval was not required by the execution plan."
+      },
+      {
+        "event_id": "59989867-5537-46a6-adb0-63133d658b29",
+        "timestamp": "2026-10-04T15:39:25.365832Z",
+        "actor": "decision-workspace-service",
+        "action": "ADMINISTRATIVE_PREPARATION_ONLY",
+        "details": "Structured insurance preparation only; clinical medical necessity was not evaluated. Final authorization remains with a human expert."
+      },
+      {
+        "event_id": "c4ca8020-ce45-4a96-9f35-e3c9426ce37f",
+        "timestamp": "2026-10-04T15:39:25.365912Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_ASSEMBLED",
+        "details": "Workspace readiness is HUMAN_REVIEW_REQUIRED."
+      }
+    ]
+  }
+}

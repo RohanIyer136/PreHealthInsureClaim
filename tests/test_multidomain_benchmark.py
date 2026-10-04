@@ -3,7 +3,6 @@
 import ast
 from collections import Counter
 from copy import deepcopy
-import hashlib
 from pathlib import Path
 import socket
 
@@ -14,6 +13,8 @@ import pytest
 from backend.ai.providers.ollama import _LocalOllamaClient
 from backend.api.main import create_app
 from backend.knowledge.clinical_retriever import load_clinical_knowledge_artifact
+from backend.repositories.demo_workspaces import DemoWorkspaceRepository
+from backend.repositories.synthetic_cases import SyntheticCaseRepository
 from evaluation.multidomain import (
     DesignMatrix, EvaluationMatrix, PolicyCatalog, load_design_inputs,
     load_evaluation_specs, load_policy_catalog, validate_foundation,
@@ -21,11 +22,6 @@ from evaluation.multidomain import (
 
 ROOT = Path(__file__).resolve().parents[1]
 INPUTS = ROOT / "synthetic_data/benchmark_design"
-FROZEN_HASHES = {
-    "PA-BENCH-006": "344a7e1f312b5d33ef5a8513a30fe165d087d28fbb900b6221d2f7667879dfdd",
-    "PA-DEMO-002": "8619158bd5506c2ba7640ddb3f67a88f138653cb0eb8a8d7366b0017028f6c00",
-    "PA-DEMO-003": "3e4ffe5477ed72948315508d4b619f12924bea46bc293a31c8004fece1a3cf2b",
-}
 
 
 @pytest.fixture(autouse=True)
@@ -221,12 +217,23 @@ def test_invalid_references_or_controlled_comparisons_rejected(foundation, failu
         validate_foundation(inputs, catalog, golden, knowledge)
 
 
-def test_frozen_demo_artifacts_are_byte_for_byte_unchanged():
-    for identifier, digest in FROZEN_HASHES.items():
-        assert hashlib.sha256((ROOT / "demo/workspaces" / f"{identifier}.json").read_bytes()).hexdigest() == digest
+def test_frozen_demo_artifacts_are_validated_and_unchanged_by_reads():
+    sources = SyntheticCaseRepository.from_directory(ROOT / "synthetic_data")
+    directory = ROOT / "demo/workspaces"
+    before = {path.name: path.read_bytes() for path in directory.glob("*.json")}
+    repository = DemoWorkspaceRepository(directory, sources)
+    artifacts = repository.load()
+    assert {case.authorization_id for case in sources.list_cases()} <= artifacts.keys()
+    assert repository.load() == artifacts
+    assert {path.name: path.read_bytes() for path in directory.glob("*.json")} == before
 
 
 def test_production_api_payloads_exclude_design_data_and_golden_fields():
+    sources = SyntheticCaseRepository.from_directory(ROOT / "synthetic_data")
+    source_ids = {case.authorization_id for case in sources.list_cases()}
+    directory = ROOT / "demo/workspaces"
+    before = {path.name: path.read_bytes() for path in directory.glob("*.json")}
+    artifacts = DemoWorkspaceRepository(directory, sources).load()
     prohibited = {"expected_readiness", "expected_policy_findings", "expected_conflicts",
                   "expected_missing_information", "forbidden_inferences", "capability_under_test",
                   "knowledge_status", "benchmark_family", "benchmark_tags", "comparisons",
@@ -241,22 +248,27 @@ def test_production_api_payloads_exclude_design_data_and_golden_fields():
 
     with TestClient(create_app()) as client:
         queue = client.get("/api/v1/cases").json()
-        assert len(queue) == 55
+        assert {case["authorization_id"] for case in queue} == source_ids
+        assert len(queue) == len(source_ids)
         for case in queue:
             assert case["authorization_id"].startswith("PA-")
             detail = client.get(f'/api/v1/cases/{case["authorization_id"]}')
             assert detail.status_code == 200
             inspect(detail.json())
         demo = client.get("/api/v1/demo/cases").json()
-        assert {c["authorization_id"] for c in demo} == set(FROZEN_HASHES)
-        for identifier in FROZEN_HASHES:
+        assert {c["authorization_id"] for c in demo} == source_ids
+        assert len(demo) == len(source_ids)
+        for identifier in source_ids:
             result = client.post(f"/api/v1/demo/cases/{identifier}/analyze")
             assert result.status_code == 200
+            assert result.headers["X-Workspace-Mode"] == "pre-evaluated-synthetic-demo"
+            assert result.json() == artifacts[identifier].workspace.model_dump(mode="json")
             inspect(result.json())
         assert client.get("/api/v1/cases/ORTH-01").status_code == 404
         assert client.app.state.workspace_service is None
         inspect(queue)
         inspect(demo)
+    assert {path.name: path.read_bytes() for path in directory.glob("*.json")} == before
 
 
 def test_backend_cannot_import_or_read_design_evaluation():

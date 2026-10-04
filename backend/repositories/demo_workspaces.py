@@ -95,3 +95,8 @@ class DemoWorkspaceRepository:
         if authorization_id not in artifacts:
             raise CaseNotFoundError("Synthetic demo case not found.")
         return artifacts[authorization_id]
+
+    def missing_authorization_ids(self) -> list[str]:
+        """Check full source coverage offline; invalid artifacts still fail closed."""
+        artifacts = self.load()
+        return sorted({case.authorization_id for case in self.sources.list_cases()} - artifacts.keys())

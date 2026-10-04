@@ -1,6 +1,7 @@
 """Provider-independent reasoning grounded in evidence and clinical knowledge."""
 
 from dataclasses import dataclass
+import logging
 from typing import Protocol
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
@@ -59,6 +60,18 @@ class ClinicalReasoningProvider(Protocol):
 class ClinicalReasoningError(ValueError):
     """Raised when reasoning inputs or provider output violate the contract."""
 
+    def __init__(self, message: str, *, category: str = "invalid_structured_output"):
+        super().__init__(message)
+        self.category = category
+
+
+LOGGER = logging.getLogger(__name__)
+_REPAIR_CATEGORIES = {
+    "invalid_structured_output", "schema_invalid", "duplicate_criteria", "unknown_criteria",
+    "missing_criteria", "unsupported_status", "duplicate_evidence_references",
+    "unknown_evidence_references", "required_citations_missing",
+}
+
 
 class _ProviderCriterionResult(BaseModel):
     """Strict provider payload for one clinical criterion result."""
@@ -115,14 +128,37 @@ class GroundedClinicalReasoner:
             instructions=CLINICAL_REASONING_INSTRUCTIONS,
         )
 
-        raw_response = None
         try:
-            raw_response = self._provider.reason(request)
+            return self._validate_response(self._provider.reason(request), knowledge, evidence_by_id, criteria_by_id)
+        except ClinicalReasoningError as error:
+            repair = getattr(self._provider, "repair", None)
+            if not callable(repair):
+                raise
+            category = error.category if error.category in _REPAIR_CATEGORIES else "invalid_structured_output"
+            LOGGER.warning("Clinical reasoning initial_validation_failure category=%s", category)
+            LOGGER.warning("Clinical reasoning repair_attempt attempt=1 category=%s", category)
+            try:
+                results = self._validate_response(
+                    repair(request, validation_category=category), knowledge, evidence_by_id, criteria_by_id,
+                )
+            except Exception:
+                LOGGER.warning("Clinical reasoning repair_failure attempt=1")
+                raise
+            LOGGER.warning("Clinical reasoning repair_success attempt=1")
+            return results
+
+    def _validate_response(
+        self, raw_response: object, knowledge: ClinicalArtifact,
+        evidence_by_id: dict[str, EvidenceItem], criteria_by_id: dict[str, str],
+    ) -> list[CriterionResult]:
+        """Apply identical schema and grounding checks to initial and repaired output."""
+        try:
             response = _ProviderReasoningResponse.model_validate(raw_response)
         except ValidationError as error:
             report_schema_failure("clinical_reasoning", self._provider.provider_name, error, raw_response)
             raise ClinicalReasoningError(
-                "Provider returned malformed structured clinical reasoning."
+                "Provider returned malformed structured clinical reasoning.",
+                category="schema_invalid",
             ) from error
 
         result_by_id = self._validate_result_coverage(response, criteria_by_id)
@@ -163,7 +199,7 @@ class GroundedClinicalReasoner:
         result_ids = [item.criterion_id for item in response.results]
         if len(result_ids) != len(set(result_ids)):
             report_grounding_failure("clinical_reasoning", "results.criterion_id", "duplicate_criteria")
-            raise ClinicalReasoningError("Provider returned duplicate criterion results.")
+            raise ClinicalReasoningError("Provider returned duplicate criterion results.", category="duplicate_criteria")
 
         expected_ids = set(criteria_by_id)
         actual_ids = set(result_ids)
@@ -172,12 +208,14 @@ class GroundedClinicalReasoner:
         if unknown_ids:
             report_grounding_failure("clinical_reasoning", "results.criterion_id", "unknown_criteria")
             raise ClinicalReasoningError(
-                f"Provider returned unknown criterion IDs: {', '.join(unknown_ids)}."
+                f"Provider returned unknown criterion IDs: {', '.join(unknown_ids)}.",
+                category="unknown_criteria",
             )
         if missing_ids:
             report_grounding_failure("clinical_reasoning", "results.criterion_id", "missing_criteria")
             raise ClinicalReasoningError(
-                f"Provider omitted criterion IDs: {', '.join(missing_ids)}."
+                f"Provider omitted criterion IDs: {', '.join(missing_ids)}.",
+                category="missing_criteria",
             )
         return {item.criterion_id: item for item in response.results}
 
@@ -191,14 +229,16 @@ class GroundedClinicalReasoner:
         if provider_result.status not in _ALLOWED_STATUSES:
             report_grounding_failure("clinical_reasoning", "results.status", "unsupported_status")
             raise ClinicalReasoningError(
-                f"Unsupported clinical criterion status: {provider_result.status.value}."
+                f"Unsupported clinical criterion status: {provider_result.status.value}.",
+                category="unsupported_status",
             )
         if len(provider_result.evidence_ids) != len(
             set(provider_result.evidence_ids)
         ):
             report_grounding_failure("clinical_reasoning", "results.evidence_ids", "duplicate_evidence_references")
             raise ClinicalReasoningError(
-                f"Criterion {provider_result.criterion_id} contains duplicate evidence IDs."
+                f"Criterion {provider_result.criterion_id} contains duplicate evidence IDs.",
+                category="duplicate_evidence_references",
             )
 
         unknown_evidence_ids = sorted(
@@ -208,7 +248,8 @@ class GroundedClinicalReasoner:
             report_grounding_failure("clinical_reasoning", "results.evidence_ids", "unknown_evidence_references")
             raise ClinicalReasoningError(
                 "Provider referenced unknown evidence IDs: "
-                f"{', '.join(unknown_evidence_ids)}."
+                f"{', '.join(unknown_evidence_ids)}.",
+                category="unknown_evidence_references",
             )
         if (
             not provider_result.evidence_ids
@@ -217,7 +258,8 @@ class GroundedClinicalReasoner:
         ):
             report_grounding_failure("clinical_reasoning", "results.evidence_ids", "required_citations_missing")
             raise ClinicalReasoningError(
-                "SATISFIED and NOT_SATISFIED results require cited evidence."
+                "SATISFIED and NOT_SATISFIED results require cited evidence.",
+                category="required_citations_missing",
             )
         original_evidence = [
             evidence_by_id[evidence_id]

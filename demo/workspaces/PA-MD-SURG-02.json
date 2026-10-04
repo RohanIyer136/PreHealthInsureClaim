@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "mode": "pre_evaluated_synthetic_demo",
+  "generator": "production_local_ollama",
+  "model": "qwen3:8b",
+  "source_sha256": "69be3bf3ffc03ab9ce86ed70071eea68a816a83a9d4c5446734b2384349afc56",
+  "elapsed_seconds": 132.7248733000597,
+  "workspace": {
+    "workspace_id": "44c98bbb-adae-48e2-b8e8-2e7189728e19",
+    "authorization_id": "PA-MD-SURG-02",
+    "clinical_results": [
+      {
+        "criterion_id": "symptomatic_gallstone_presentation",
+        "criterion_name": "Submitted clinical evidence explicitly describes symptoms attributed to gallstones, rather than asymptomatic incidental stones. This represents the symptomatic component of SAGES section III, not independent diagnosis or full surgical candidacy.",
+        "domain": "CLINICAL",
+        "status": "SATISFIED",
+        "explanation": "The evidence explicitly describes symptoms attributed to gallstones, which satisfies the criterion for symptomatic gallstone presentation.",
+        "evidence": [
+          {
+            "evidence_id": "PA-MD-SURG-02-DOC-1-EV-002",
+            "source_document_id": "PA-MD-SURG-02-DOC-1",
+            "source_type": "CLINICAL_NOTE",
+            "excerpt": "with symptomatic gallstones",
+            "concept": "OTHER_CLINICAL_EVIDENCE",
+            "value": "symptomatic gallstones",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": "middle",
+            "relevance": null
+          }
+        ],
+        "confidence": 1.0,
+        "source_rule_id": "SAGES-SYMPTOMATIC-GALLSTONES-PROTOTYPE"
+      },
+      {
+        "criterion_id": "gallstones_documented",
+        "criterion_name": "Submitted evidence explicitly documents gallstones, the stone component of symptomatic cholelithiasis in SAGES section III. Clinical assertions or diagnostic findings may support this criterion; an imaging document's presence alone cannot. Do not infer stones from abdominal pain or a procedure request alone.",
+        "domain": "CLINICAL",
+        "status": "SATISFIED",
+        "explanation": "The evidence explicitly documents gallstones through the synthetic ultrasound records, satisfying the criterion for gallstone documentation.",
+        "evidence": [
+          {
+            "evidence_id": "PA-MD-SURG-02-DOC-2-EV-001",
+            "source_document_id": "PA-MD-SURG-02-DOC-2",
+            "source_type": "IMAGING_REPORT",
+            "excerpt": "Synthetic ultrasound records gallstones",
+            "concept": "OTHER_CLINICAL_EVIDENCE",
+            "value": "Synthetic ultrasound records gallstones",
+            "confidence": 1.0,
+            "uncertainty": null,
+            "extraction_method": "ollama",
+            "location": null,
+            "relevance": null
+          }
+        ],
+        "confidence": 1.0,
+        "source_rule_id": "SAGES-SYMPTOMATIC-GALLSTONES-PROTOTYPE"
+      }
+    ],
+    "insurance_results": [
+      {
+        "criterion_id": "policy_active_on_service_date",
+        "criterion_name": "Policy active on service date",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured policy status and coverage dates evaluated for service date 2026-10-02.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "requested_service_category_covered",
+        "criterion_name": "Requested service category covered",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured category inclusion evaluated; this is not clinical appropriateness.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "service_intent_not_excluded",
+        "criterion_name": "Service intent not excluded",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured intent therapeutic evaluated against explicit intent exclusions.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "prior_authorization_required",
+        "criterion_name": "Prior authorization required",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Product requires prior authorization for this category.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "required_document_roles_present",
+        "criterion_name": "Required document roles present",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Configured document roles are present; document presence does not establish clinical facts.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1;P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "benefit_utilization_within_limit",
+        "criterion_name": "Benefit utilization within limit",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "No utilization check applies to an excluded category or a benefit without a represented limit.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "emergency_administrative_handling",
+        "criterion_name": "Emergency administrative handling",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "Structured urgency does not select an emergency administrative pathway.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      }
+    ],
+    "regulatory_results": [],
+    "missing_evidence": [],
+    "conflicts": [],
+    "overall_confidence": null,
+    "readiness_status": "READY_FOR_EXPERT_REVIEW",
+    "generated_at": "2026-10-04T15:41:38.108348Z",
+    "audit_trail": [
+      {
+        "event_id": "fdfe27bd-4e76-40d6-a933-6c40e386dc0e",
+        "timestamp": "2026-10-04T15:39:25.384077Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_PROCESSING_STARTED",
+        "details": "Started processing authorization PA-MD-SURG-02."
+      },
+      {
+        "event_id": "823eea38-173f-472c-9a52-5f4e6cb55e2c",
+        "timestamp": "2026-10-04T15:39:25.384216Z",
+        "actor": "decision-workspace-service",
+        "action": "DETERMINISTIC_RULES_COMPLETED",
+        "details": "Completed 7 deterministic rule evaluations."
+      },
+      {
+        "event_id": "105601bf-ba23-4323-95ed-c1370167d0cb",
+        "timestamp": "2026-10-04T15:39:25.384389Z",
+        "actor": "decision-workspace-service",
+        "action": "EXECUTION_PLANNED",
+        "details": "{\"service_code\":\"SURG-CHOLECYSTECTOMY\",\"family\":\"SURGERY_GI\",\"steps\":[\"POLICY_ELIGIBILITY\",\"DOCUMENT_COMPLETENESS\",\"CLINICAL_RETRIEVAL\",\"EVIDENCE_EXTRACTION\",\"CLINICAL_REASONING\"],\"deferred\":[],\"reasons\":[\"Explicit service configuration requires clinical evaluation.\"],\"requires_escalation\":false}"
+      },
+      {
+        "event_id": "6e895012-24a0-480f-bc26-f4bf546aa8c6",
+        "timestamp": "2026-10-04T15:40:56.176315Z",
+        "actor": "decision-workspace-service",
+        "action": "EVIDENCE_EXTRACTION_COMPLETED",
+        "details": "Extracted 5 evidence items from 2 submitted documents."
+      },
+      {
+        "event_id": "a2ce0e49-6720-4f00-a98f-c8f06a6a315f",
+        "timestamp": "2026-10-04T15:40:56.176342Z",
+        "actor": "decision-workspace-service",
+        "action": "CLINICAL_KNOWLEDGE_RETRIEVED",
+        "details": "Retrieved 1 matching clinical knowledge artifacts."
+      },
+      {
+        "event_id": "79f828bd-8cc0-4f67-b847-ab6dbec8349a",
+        "timestamp": "2026-10-04T15:41:38.108311Z",
+        "actor": "decision-workspace-service",
+        "action": "CLINICAL_REASONING_COMPLETED",
+        "details": "Completed 2 clinical criterion evaluations."
+      },
+      {
+        "event_id": "2047ff43-aea7-4a53-aa2e-e46e56474a17",
+        "timestamp": "2026-10-04T15:41:38.108348Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_ASSEMBLED",
+        "details": "Workspace readiness is READY_FOR_EXPERT_REVIEW."
+      }
+    ]
+  }
+}

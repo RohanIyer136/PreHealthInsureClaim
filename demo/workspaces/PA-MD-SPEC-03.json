@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "mode": "pre_evaluated_synthetic_demo",
+  "generator": "production_local_ollama",
+  "model": "qwen3:8b",
+  "source_sha256": "97f8d2a50a80d09169a1b487e3b1311b90a0ae1530d0c2d3ee2bcbaa1f5a3a08",
+  "elapsed_seconds": 0.0009183000074699521,
+  "workspace": {
+    "workspace_id": "456cdd00-36f2-494a-909c-4876947e93c6",
+    "authorization_id": "PA-MD-SPEC-03",
+    "clinical_results": [],
+    "insurance_results": [
+      {
+        "criterion_id": "policy_active_on_service_date",
+        "criterion_name": "Policy active on service date",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured policy status and coverage dates evaluated for service date 2026-10-02.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P4_FAMILY_PLUS@1.0"
+      },
+      {
+        "criterion_id": "requested_service_category_covered",
+        "criterion_name": "Requested service category covered",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured category inclusion evaluated; this is not clinical appropriateness.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P4_FAMILY_PLUS@1.0"
+      },
+      {
+        "criterion_id": "service_intent_not_excluded",
+        "criterion_name": "Service intent not excluded",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured intent maternity evaluated against explicit intent exclusions.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P4_FAMILY_PLUS@1.0"
+      },
+      {
+        "criterion_id": "prior_authorization_required",
+        "criterion_name": "Prior authorization required",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "Product does not require ordinary prior authorization for this category.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P4_FAMILY_PLUS@1.0"
+      },
+      {
+        "criterion_id": "required_document_roles_present",
+        "criterion_name": "Required document roles present",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Configured document roles are present; document presence does not establish clinical facts.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1;P4_FAMILY_PLUS@1.0"
+      },
+      {
+        "criterion_id": "benefit_utilization_within_limit",
+        "criterion_name": "Benefit utilization within limit",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "No utilization check applies to an excluded category or a benefit without a represented limit.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P4_FAMILY_PLUS@1.0"
+      },
+      {
+        "criterion_id": "emergency_administrative_handling",
+        "criterion_name": "Emergency administrative handling",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "Structured urgency does not select an emergency administrative pathway.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P4_FAMILY_PLUS@1.0"
+      }
+    ],
+    "regulatory_results": [],
+    "missing_evidence": [],
+    "conflicts": [],
+    "overall_confidence": null,
+    "readiness_status": "READY_FOR_EXPERT_REVIEW",
+    "generated_at": "2026-10-04T15:39:25.344262Z",
+    "audit_trail": [
+      {
+        "event_id": "556464ef-bf17-49e9-88bd-a527dca571f9",
+        "timestamp": "2026-10-04T15:39:25.343948Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_PROCESSING_STARTED",
+        "details": "Started processing authorization PA-MD-SPEC-03."
+      },
+      {
+        "event_id": "75c26381-7fa8-4aa4-82ec-48b328083a3a",
+        "timestamp": "2026-10-04T15:39:25.344108Z",
+        "actor": "decision-workspace-service",
+        "action": "DETERMINISTIC_RULES_COMPLETED",
+        "details": "Completed 7 deterministic rule evaluations."
+      },
+      {
+        "event_id": "87e168bc-2e43-472e-8463-ea3c7e3b06f6",
+        "timestamp": "2026-10-04T15:39:25.344194Z",
+        "actor": "decision-workspace-service",
+        "action": "EXECUTION_PLANNED",
+        "details": "{\"service_code\":\"MATERNITY-ANTENATAL-ROUTINE\",\"family\":\"SPECIAL_BENEFITS\",\"steps\":[\"POLICY_ELIGIBILITY\",\"DOCUMENT_COMPLETENESS\"],\"deferred\":[],\"reasons\":[\"Explicit service configuration requires deterministic checks only.\"],\"requires_escalation\":false}"
+      },
+      {
+        "event_id": "db32d3ba-9e7d-4444-84d6-3734b448db28",
+        "timestamp": "2026-10-04T15:39:25.344210Z",
+        "actor": "decision-workspace-service",
+        "action": "EVIDENCE_EXTRACTION_SKIPPED",
+        "details": "Extraction was not required by the execution plan; no model was invoked."
+      },
+      {
+        "event_id": "1c36607a-19df-4aa6-813c-7257d021779d",
+        "timestamp": "2026-10-04T15:39:25.344224Z",
+        "actor": "decision-workspace-service",
+        "action": "CLINICAL_RETRIEVAL_SKIPPED",
+        "details": "Clinical retrieval was not required by the execution plan."
+      },
+      {
+        "event_id": "90da0bf7-a0dc-47e0-aede-18ab23c1dc61",
+        "timestamp": "2026-10-04T15:39:25.344236Z",
+        "actor": "decision-workspace-service",
+        "action": "ADMINISTRATIVE_PREPARATION_ONLY",
+        "details": "Structured insurance preparation only; clinical medical necessity was not evaluated. Final authorization remains with a human expert."
+      },
+      {
+        "event_id": "30caab31-16f9-40b6-8727-973e983909d9",
+        "timestamp": "2026-10-04T15:39:25.344262Z",
+        "actor": "decision-workspace-service",
+        "action": "WORKSPACE_ASSEMBLED",
+        "details": "Workspace readiness is READY_FOR_EXPERT_REVIEW."
+      }
+    ]
+  }
+}

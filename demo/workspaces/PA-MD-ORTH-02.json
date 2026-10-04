@@ -3,11 +3,11 @@
   "mode": "pre_evaluated_synthetic_demo",
   "generator": "production_local_ollama",
   "model": "qwen3:8b",
-  "source_sha256": "40116e39fff05b89837bc1453d1330b09a5104724449d03f9d2ce2bbc76eb292",
-  "elapsed_seconds": 235.33377240004484,
+  "source_sha256": "1c8b131119e8ff6b7e9ca01d6a711f700b5d1b36584d22c984ce05fb4f8aa7c0",
+  "elapsed_seconds": 182.24556940002367,
   "workspace": {
-    "workspace_id": "55a60a42-eb26-4294-bcef-d73f609ec41a",
-    "authorization_id": "PA-BENCH-006",
+    "workspace_id": "fbc9a3f4-42d6-4c16-bfd8-68731e6d0ed6",
+    "authorization_id": "PA-MD-ORTH-02",
     "clinical_results": [
       {
         "criterion_id": "low_back_pain_context",
@@ -17,8 +17,8 @@
         "explanation": "The patient has subacute or chronic low back pain with radiculopathy, as evidenced by persistent lower-back pain radiating to the right leg.",
         "evidence": [
           {
-            "evidence_id": "NOTE-BENCH-006-001",
-            "source_document_id": "NOTE-BENCH-006",
+            "evidence_id": "PA-MD-ORTH-02-DOC-1-1",
+            "source_document_id": "PA-MD-ORTH-02-DOC-1",
             "source_type": "CLINICAL_NOTE",
             "excerpt": "Persistent lower-back pain radiating to the right leg has continued for eight weeks.",
             "concept": "LOW_BACK_PAIN",
@@ -30,8 +30,8 @@
             "relevance": null
           },
           {
-            "evidence_id": "NOTE-BENCH-006-002",
-            "source_document_id": "NOTE-BENCH-006",
+            "evidence_id": "PA-MD-ORTH-02-DOC-1-2",
+            "source_document_id": "PA-MD-ORTH-02-DOC-1",
             "source_type": "CLINICAL_NOTE",
             "excerpt": "Persistent lower-back pain radiating to the right leg has continued for eight weeks.",
             "concept": "RADICULAR_SYMPTOMS",
@@ -54,25 +54,12 @@
         "explanation": "The patient has persistent lower-back pain radiating to the right leg that has continued for eight weeks.",
         "evidence": [
           {
-            "evidence_id": "NOTE-BENCH-006-001",
-            "source_document_id": "NOTE-BENCH-006",
+            "evidence_id": "PA-MD-ORTH-02-DOC-1-1",
+            "source_document_id": "PA-MD-ORTH-02-DOC-1",
             "source_type": "CLINICAL_NOTE",
             "excerpt": "Persistent lower-back pain radiating to the right leg has continued for eight weeks.",
             "concept": "LOW_BACK_PAIN",
             "value": "Persistent lower-back pain",
-            "confidence": 1.0,
-            "uncertainty": null,
-            "extraction_method": "ollama",
-            "location": null,
-            "relevance": null
-          },
-          {
-            "evidence_id": "NOTE-BENCH-006-002",
-            "source_document_id": "NOTE-BENCH-006",
-            "source_type": "CLINICAL_NOTE",
-            "excerpt": "Persistent lower-back pain radiating to the right leg has continued for eight weeks.",
-            "concept": "RADICULAR_SYMPTOMS",
-            "value": "Radiating to the right leg",
             "confidence": 1.0,
             "uncertainty": null,
             "extraction_method": "ollama",
@@ -88,41 +75,15 @@
         "criterion_name": "DURING_OR_FOLLOWING_APPROXIMATELY_SIX_WEEKS",
         "domain": "CLINICAL",
         "status": "SATISFIED",
-        "explanation": "The patient has undergone approximately six weeks of optimal medical management, including supervised physiotherapy, home exercises, and NSAID treatment.",
+        "explanation": "The patient has undergone six weeks of conservative management, which aligns with the duration specified in the criterion.",
         "evidence": [
           {
-            "evidence_id": "NOTE-BENCH-006-003",
-            "source_document_id": "NOTE-BENCH-006",
-            "source_type": "CLINICAL_NOTE",
-            "excerpt": "Persistent lower-back pain radiating to the right leg has continued for eight weeks.",
-            "concept": "SYMPTOM_DURATION",
-            "value": "Eight weeks",
-            "confidence": 1.0,
-            "uncertainty": null,
-            "extraction_method": "ollama",
-            "location": null,
-            "relevance": null
-          },
-          {
-            "evidence_id": "NOTE-BENCH-006-004",
-            "source_document_id": "NOTE-BENCH-006",
+            "evidence_id": "PA-MD-ORTH-02-DOC-1-3",
+            "source_document_id": "PA-MD-ORTH-02-DOC-1",
             "source_type": "CLINICAL_NOTE",
             "excerpt": "Despite six weeks of supervised physiotherapy, home exercises, and NSAID treatment, symptoms persist with little improvement.",
             "concept": "CONSERVATIVE_MANAGEMENT",
             "value": "Six weeks of supervised physiotherapy, home exercises, and NSAID treatment",
-            "confidence": 1.0,
-            "uncertainty": null,
-            "extraction_method": "ollama",
-            "location": null,
-            "relevance": null
-          },
-          {
-            "evidence_id": "PT-BENCH-006-001",
-            "source_document_id": "PT-BENCH-006",
-            "source_type": "PHYSIOTHERAPY_REPORT",
-            "excerpt": "Six weeks of supervised physiotherapy completed.",
-            "concept": "CONSERVATIVE_MANAGEMENT",
-            "value": "Six weeks of supervised physiotherapy completed",
             "confidence": 1.0,
             "uncertainty": null,
             "extraction_method": "ollama",
@@ -138,15 +99,15 @@
         "criterion_name": "OPTIMAL_MEDICAL_MANAGEMENT",
         "domain": "CLINICAL",
         "status": "SATISFIED",
-        "explanation": "Optimal medical management for this episode has been completed, as stated in the clinical note.",
+        "explanation": "The patient has completed optimal medical management, including six weeks of supervised physiotherapy, home exercises, and NSAID treatment.",
         "evidence": [
           {
-            "evidence_id": "NOTE-BENCH-006-006",
-            "source_document_id": "NOTE-BENCH-006",
+            "evidence_id": "PA-MD-ORTH-02-DOC-1-3",
+            "source_document_id": "PA-MD-ORTH-02-DOC-1",
             "source_type": "CLINICAL_NOTE",
-            "excerpt": "Optimal medical management for this episode has been completed.",
-            "concept": "INTERVENTION_OR_SPECIALIST_PLANNING",
-            "value": "Optimal medical management for this episode has been completed",
+            "excerpt": "Despite six weeks of supervised physiotherapy, home exercises, and NSAID treatment, symptoms persist with little improvement.",
+            "concept": "CONSERVATIVE_MANAGEMENT",
+            "value": "Six weeks of supervised physiotherapy, home exercises, and NSAID treatment",
             "confidence": 1.0,
             "uncertainty": null,
             "extraction_method": "ollama",
@@ -162,15 +123,15 @@
         "criterion_name": "SURGERY_OR_INTERVENTION_CANDIDATE",
         "domain": "CLINICAL",
         "status": "SATISFIED",
-        "explanation": "The patient is a candidate for surgery or intervention, as an initial lumbar MRI without contrast is requested for intervention planning.",
+        "explanation": "The patient has been assessed as a candidate for a lumbar epidural injection, which supports the criterion for intervention candidacy.",
         "evidence": [
           {
-            "evidence_id": "NOTE-BENCH-006-007",
-            "source_document_id": "NOTE-BENCH-006",
+            "evidence_id": "PA-MD-ORTH-02-DOC-1-5",
+            "source_document_id": "PA-MD-ORTH-02-DOC-1",
             "source_type": "CLINICAL_NOTE",
-            "excerpt": "Initial lumbar MRI without contrast is requested for intervention planning.",
+            "excerpt": "Optimal medical management for this episode has been completed. I have assessed the patient as a candidate for a lumbar epidural injection. Initial lumbar MRI without contrast is requested for intervention planning.",
             "concept": "INTERVENTION_OR_SPECIALIST_PLANNING",
-            "value": "Initial lumbar MRI without contrast is requested for intervention planning",
+            "value": "Optimal medical management for this episode has been completed. I have assessed the patient as a candidate for a lumbar epidural injection. Initial lumbar MRI without contrast is requested for intervention planning.",
             "confidence": 1.0,
             "uncertainty": null,
             "extraction_method": "ollama",
@@ -184,101 +145,133 @@
     ],
     "insurance_results": [
       {
-        "criterion_id": "policy_active_at_submission",
-        "criterion_name": "Policy active at submission",
+        "criterion_id": "policy_active_on_service_date",
+        "criterion_name": "Policy active on service date",
         "domain": "INSURANCE",
         "status": "SATISFIED",
-        "explanation": "Policy is active and the submission date is within its coverage dates.",
+        "explanation": "Structured policy status and coverage dates evaluated for service date 2026-10-02.",
         "evidence": [],
         "confidence": null,
-        "source_rule_id": "POL-DOC-BENCH-006"
+        "source_rule_id": "P2_STANDARD@1.0"
       },
       {
         "criterion_id": "requested_service_category_covered",
         "criterion_name": "Requested service category covered",
         "domain": "INSURANCE",
         "status": "SATISFIED",
-        "explanation": "Service category 'Diagnostic imaging' is listed in policy benefits.",
+        "explanation": "Structured category inclusion evaluated; this is not clinical appropriateness.",
         "evidence": [],
         "confidence": null,
-        "source_rule_id": "POL-DOC-BENCH-006"
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "service_intent_not_excluded",
+        "criterion_name": "Service intent not excluded",
+        "domain": "INSURANCE",
+        "status": "SATISFIED",
+        "explanation": "Structured intent diagnostic evaluated against explicit intent exclusions.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
       },
       {
         "criterion_id": "prior_authorization_required",
-        "criterion_name": "Prior authorization requirement",
+        "criterion_name": "Prior authorization required",
         "domain": "INSURANCE",
         "status": "SATISFIED",
-        "explanation": "Policy marks the requested benefit as requiring prior authorization.",
+        "explanation": "Product requires prior authorization for this category.",
         "evidence": [],
         "confidence": null,
-        "source_rule_id": "POL-DOC-BENCH-006"
+        "source_rule_id": "P2_STANDARD@1.0"
       },
       {
-        "criterion_id": "required_document_types_present",
-        "criterion_name": "Required document types present",
+        "criterion_id": "required_document_roles_present",
+        "criterion_name": "Required document roles present",
         "domain": "INSURANCE",
-        "status": "SATISFIED",
-        "explanation": "All required submitted document types are present.",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "explanation": "Missing required document roles: physiotherapy",
         "evidence": [],
         "confidence": null,
-        "source_rule_id": "DEMOCARE-LUMBAR-MRI-001"
+        "source_rule_id": "SYNTHETIC-SERVICE-DOCUMENTS-V1;P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "benefit_utilization_within_limit",
+        "criterion_name": "Benefit utilization within limit",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "No utilization check applies to an excluded category or a benefit without a represented limit.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
+      },
+      {
+        "criterion_id": "emergency_administrative_handling",
+        "criterion_name": "Emergency administrative handling",
+        "domain": "INSURANCE",
+        "status": "NOT_APPLICABLE",
+        "explanation": "Structured urgency does not select an emergency administrative pathway.",
+        "evidence": [],
+        "confidence": null,
+        "source_rule_id": "P2_STANDARD@1.0"
       }
     ],
     "regulatory_results": [],
-    "missing_evidence": [],
+    "missing_evidence": [
+      "required_document_roles_present: Missing required document roles: physiotherapy"
+    ],
     "conflicts": [],
     "overall_confidence": null,
-    "readiness_status": "READY_FOR_EXPERT_REVIEW",
-    "generated_at": "2026-10-04T14:48:27.922658Z",
+    "readiness_status": "EVIDENCE_REQUIRED",
+    "generated_at": "2026-10-04T15:39:25.288522Z",
     "audit_trail": [
       {
-        "event_id": "443e5d66-8aae-475f-bcd8-5beaed1d2a8b",
-        "timestamp": "2026-10-04T14:44:32.592328Z",
+        "event_id": "ea3903d3-21ab-4f0a-b5a2-640d529d1bcb",
+        "timestamp": "2026-10-04T15:36:23.043761Z",
         "actor": "decision-workspace-service",
         "action": "WORKSPACE_PROCESSING_STARTED",
-        "details": "Started processing authorization PA-BENCH-006."
+        "details": "Started processing authorization PA-MD-ORTH-02."
       },
       {
-        "event_id": "b0b27f22-5780-4821-8eae-569875a2c4f8",
-        "timestamp": "2026-10-04T14:44:32.592379Z",
+        "event_id": "30b77e6a-4499-4f78-967a-eb8ea4e6acb8",
+        "timestamp": "2026-10-04T15:36:23.043882Z",
         "actor": "decision-workspace-service",
         "action": "DETERMINISTIC_RULES_COMPLETED",
-        "details": "Completed 4 deterministic rule evaluations."
+        "details": "Completed 7 deterministic rule evaluations."
       },
       {
-        "event_id": "eabd974d-ebfb-4457-b5a9-d05e7eb7607b",
-        "timestamp": "2026-10-04T14:44:32.592451Z",
+        "event_id": "ff705f48-86bc-4b51-8f79-a740480be81c",
+        "timestamp": "2026-10-04T15:36:23.043968Z",
         "actor": "decision-workspace-service",
         "action": "EXECUTION_PLANNED",
-        "details": "{\"service_code\":\"IMG-MRI-LS\",\"family\":\"ORTHOPEDICS_TRAUMA\",\"steps\":[\"POLICY_ELIGIBILITY\",\"DOCUMENT_COMPLETENESS\",\"CLINICAL_RETRIEVAL\",\"EVIDENCE_EXTRACTION\",\"CLINICAL_REASONING\"],\"deferred\":[],\"reasons\":[\"Explicit service configuration requires clinical evaluation.\"],\"requires_escalation\":false}"
+        "details": "{\"service_code\":\"IMG-MRI-LS\",\"family\":\"ORTHOPEDICS_TRAUMA\",\"steps\":[\"POLICY_ELIGIBILITY\",\"DOCUMENT_COMPLETENESS\",\"CLINICAL_RETRIEVAL\",\"EVIDENCE_EXTRACTION\",\"CLINICAL_REASONING\"],\"deferred\":[],\"reasons\":[\"Explicit service configuration requires clinical evaluation.\",\"Deterministic finding: required_document_roles_present (INSUFFICIENT_EVIDENCE).\"],\"requires_escalation\":false}"
       },
       {
-        "event_id": "b2675b03-414a-4f80-a614-f4d515b3bc1b",
-        "timestamp": "2026-10-04T14:46:58.053076Z",
+        "event_id": "70398531-ae1a-4c71-9ea5-beef2b94ff27",
+        "timestamp": "2026-10-04T15:38:01.086647Z",
         "actor": "decision-workspace-service",
         "action": "EVIDENCE_EXTRACTION_COMPLETED",
-        "details": "Extracted 9 evidence items from 2 submitted documents."
+        "details": "Extracted 5 evidence items from 1 submitted documents."
       },
       {
-        "event_id": "0ebedd4d-e14a-4a45-88c3-9cc9bf5269ed",
-        "timestamp": "2026-10-04T14:46:58.053100Z",
+        "event_id": "cbd724e4-47dc-4b07-a8d2-8efd1a335947",
+        "timestamp": "2026-10-04T15:38:01.086674Z",
         "actor": "decision-workspace-service",
         "action": "CLINICAL_KNOWLEDGE_RETRIEVED",
         "details": "Retrieved 1 matching clinical knowledge artifacts."
       },
       {
-        "event_id": "2f61b6a6-405e-418d-b3bf-63dcea438ab9",
-        "timestamp": "2026-10-04T14:48:27.922620Z",
+        "event_id": "dd8fae51-d133-49f1-b8d7-6e66523d5770",
+        "timestamp": "2026-10-04T15:39:25.288464Z",
         "actor": "decision-workspace-service",
         "action": "CLINICAL_REASONING_COMPLETED",
         "details": "Completed 5 clinical criterion evaluations."
       },
       {
-        "event_id": "1b0d48d7-56d8-40cf-8b32-7c53b7d70a1c",
-        "timestamp": "2026-10-04T14:48:27.922658Z",
+        "event_id": "acbefc05-f2ec-4813-a111-f04528901413",
+        "timestamp": "2026-10-04T15:39:25.288522Z",
         "actor": "decision-workspace-service",
         "action": "WORKSPACE_ASSEMBLED",
-        "details": "Workspace readiness is READY_FOR_EXPERT_REVIEW."
+        "details": "Workspace readiness is EVIDENCE_REQUIRED."
       }
     ]
   }

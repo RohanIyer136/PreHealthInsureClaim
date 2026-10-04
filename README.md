@@ -92,7 +92,7 @@ The frontend tests mock HTTP and require neither FastAPI nor Ollama.
 
 ## Pre-Evaluated Demo Mode
 
-See [demo/README.md](demo/README.md) for selected synthetic cases, artifact
+See [demo/README.md](demo/README.md) for full synthetic repository coverage, offline coverage checks, artifact
 generation, and exact local run commands. `VITE_WORKSPACE_MODE=demo` selects
 separate offline demo endpoints; the default `live` mode keeps the existing local
 Ollama pipeline. Demo Mode is visibly disclosed and never pretends to run live

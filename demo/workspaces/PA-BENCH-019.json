@@ -3,32 +3,32 @@
   "mode": "pre_evaluated_synthetic_demo",
   "generator": "production_local_ollama",
   "model": "qwen3:8b",
-  "source_sha256": "3a4a223d46fc7387e4cf74fda602b101fc97de84a70afb8927735145b0409bd9",
-  "elapsed_seconds": 0.0006163000361993909,
+  "source_sha256": "5b00e2c7fd88a87e0d7fa59d12e19468cf1d221de74a6c387db9d70e2b02488b",
+  "elapsed_seconds": 0.0005807999987155199,
   "workspace": {
-    "workspace_id": "6d28f15e-8908-4e1b-b182-a6ce41f38ef1",
-    "authorization_id": "PA-DEMO-003",
+    "workspace_id": "b494e212-3ff4-4965-b288-c43c0c0d3b96",
+    "authorization_id": "PA-BENCH-019",
     "clinical_results": [],
     "insurance_results": [
       {
         "criterion_id": "policy_active_at_submission",
         "criterion_name": "Policy active at submission",
         "domain": "INSURANCE",
-        "status": "NOT_SATISFIED",
-        "explanation": "Structured coverage status is EXPIRED. Authorization was submitted after the policy expiry date.",
+        "status": "SATISFIED",
+        "explanation": "Policy is active and the submission date is within its coverage dates.",
         "evidence": [],
         "confidence": null,
-        "source_rule_id": "POL-DOC-03"
+        "source_rule_id": "POL-DOC-BENCH-019"
       },
       {
         "criterion_id": "requested_service_category_covered",
         "criterion_name": "Requested service category covered",
         "domain": "INSURANCE",
-        "status": "SATISFIED",
-        "explanation": "Service category 'Diagnostic imaging' is listed in policy benefits.",
+        "status": "NOT_SATISFIED",
+        "explanation": "Service category 'Diagnostic imaging' is not covered by the structured policy benefits.",
         "evidence": [],
         "confidence": null,
-        "source_rule_id": "POL-DOC-03"
+        "source_rule_id": "POL-DOC-BENCH-019"
       },
       {
         "criterion_id": "prior_authorization_required",
@@ -38,7 +38,7 @@
         "explanation": "Policy marks the requested benefit as requiring prior authorization.",
         "evidence": [],
         "confidence": null,
-        "source_rule_id": "POL-DOC-03"
+        "source_rule_id": "POL-DOC-BENCH-019"
       },
       {
         "criterion_id": "required_document_types_present",
@@ -54,59 +54,59 @@
     "regulatory_results": [],
     "missing_evidence": [],
     "conflicts": [
-      "Deterministic finding: policy_active_at_submission (NOT_SATISFIED).",
+      "Deterministic finding: requested_service_category_covered (NOT_SATISFIED).",
       "Configured terminal deterministic finding; clinical preparation deferred.",
-      "policy_active_at_submission: Structured coverage status is EXPIRED. Authorization was submitted after the policy expiry date."
+      "requested_service_category_covered: Service category 'Diagnostic imaging' is not covered by the structured policy benefits."
     ],
     "overall_confidence": null,
     "readiness_status": "HUMAN_REVIEW_REQUIRED",
-    "generated_at": "2026-10-04T15:25:21.967151Z",
+    "generated_at": "2026-10-04T15:12:11.281795Z",
     "audit_trail": [
       {
-        "event_id": "696a06cd-090e-41cb-a8e4-7926639e106a",
-        "timestamp": "2026-10-04T15:25:21.966887Z",
+        "event_id": "2c8714d2-b255-42d3-be53-0a99046047a2",
+        "timestamp": "2026-10-04T15:12:11.281561Z",
         "actor": "decision-workspace-service",
         "action": "WORKSPACE_PROCESSING_STARTED",
-        "details": "Started processing authorization PA-DEMO-003."
+        "details": "Started processing authorization PA-BENCH-019."
       },
       {
-        "event_id": "5d41633d-7560-4c3b-a1e2-e41073420ec3",
-        "timestamp": "2026-10-04T15:25:21.966989Z",
+        "event_id": "fbd33c0d-1493-4b4e-9542-24a7cfaace91",
+        "timestamp": "2026-10-04T15:12:11.281652Z",
         "actor": "decision-workspace-service",
         "action": "DETERMINISTIC_RULES_COMPLETED",
         "details": "Completed 4 deterministic rule evaluations."
       },
       {
-        "event_id": "eab44c21-5322-4251-ae9c-bf166a663f2d",
-        "timestamp": "2026-10-04T15:25:21.967084Z",
+        "event_id": "381e2b81-42d5-4fae-bdfe-4ef83430590e",
+        "timestamp": "2026-10-04T15:12:11.281734Z",
         "actor": "decision-workspace-service",
         "action": "EXECUTION_PLANNED",
-        "details": "{\"service_code\":\"IMG-MRI-LS\",\"family\":\"ORTHOPEDICS_TRAUMA\",\"steps\":[\"POLICY_ELIGIBILITY\",\"DOCUMENT_COMPLETENESS\",\"HUMAN_REVIEW\"],\"deferred\":[\"CLINICAL_RETRIEVAL\",\"EVIDENCE_EXTRACTION\",\"CLINICAL_REASONING\"],\"reasons\":[\"Deterministic finding: policy_active_at_submission (NOT_SATISFIED).\",\"Configured terminal deterministic finding; clinical preparation deferred.\"],\"requires_escalation\":true}"
+        "details": "{\"service_code\":\"IMG-MRI-LS\",\"family\":\"ORTHOPEDICS_TRAUMA\",\"steps\":[\"POLICY_ELIGIBILITY\",\"DOCUMENT_COMPLETENESS\",\"HUMAN_REVIEW\"],\"deferred\":[\"CLINICAL_RETRIEVAL\",\"EVIDENCE_EXTRACTION\",\"CLINICAL_REASONING\"],\"reasons\":[\"Deterministic finding: requested_service_category_covered (NOT_SATISFIED).\",\"Configured terminal deterministic finding; clinical preparation deferred.\"],\"requires_escalation\":true}"
       },
       {
-        "event_id": "c29c38b9-f40d-437a-8d03-e5c2114feec4",
-        "timestamp": "2026-10-04T15:25:21.967099Z",
+        "event_id": "0240a9ef-0aad-4c7d-9378-0d92ccc42c88",
+        "timestamp": "2026-10-04T15:12:11.281748Z",
         "actor": "decision-workspace-service",
         "action": "EVIDENCE_EXTRACTION_SKIPPED",
         "details": "Extraction was not required by the execution plan; no model was invoked."
       },
       {
-        "event_id": "aefabcf0-4cbd-4596-a436-1cfe6784fbb2",
-        "timestamp": "2026-10-04T15:25:21.967115Z",
+        "event_id": "9fdea32a-ec32-4615-8cbc-ff8688aee66a",
+        "timestamp": "2026-10-04T15:12:11.281760Z",
         "actor": "decision-workspace-service",
         "action": "CLINICAL_RETRIEVAL_SKIPPED",
         "details": "Clinical retrieval was not required by the execution plan."
       },
       {
-        "event_id": "74c6c188-dae4-4818-a3b4-9d39bb06db3c",
-        "timestamp": "2026-10-04T15:25:21.967129Z",
+        "event_id": "afa5849f-9c89-44af-89a1-9289b59d1147",
+        "timestamp": "2026-10-04T15:12:11.281773Z",
         "actor": "decision-workspace-service",
         "action": "ADMINISTRATIVE_PREPARATION_ONLY",
         "details": "Structured insurance preparation only; clinical medical necessity was not evaluated. Final authorization remains with a human expert."
       },
       {
-        "event_id": "5abc8d72-cae0-4cee-8442-6e7e944a2d0f",
-        "timestamp": "2026-10-04T15:25:21.967151Z",
+        "event_id": "0af5b045-00c1-4479-9d08-cc980dc6249f",
+        "timestamp": "2026-10-04T15:12:11.281795Z",
         "actor": "decision-workspace-service",
         "action": "WORKSPACE_ASSEMBLED",
         "details": "Workspace readiness is HUMAN_REVIEW_REQUIRED."
